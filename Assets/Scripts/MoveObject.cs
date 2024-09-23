@@ -32,14 +32,20 @@ public class MoveObject : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 		
-		Vector3 f = camera.transform.forward;
-		f.y = 0;
-		Vector3 r = Vector3.Cross(Vector3.up, f);
+		//Vector3 f = camera.transform.forward;
+		//f.y = 0;
+		//Vector3 r = Vector3.Cross(Vector3.up, f);
+		transform.Rotate(horizontal, 0, 0);
+		Debug.Log(transform.rotation.eulerAngles.y);
 		
-		Vector3 offset = (f * vertical + r * horizontal);
+		azimuth = transform.rotation.eulerAngles.y;
+		
+		Vector3 offset = new Vector3(vertical, 0, horizontal);
 		//rb.MovePosition(transform.position + offset * accel * Time.deltaTime);
 		//rb.AddForce(offset * accel * Time.deltaTime, ForceMode.VelocityChange);
+		//c.Move(offset);
 		
+		/*
 		if(offset.magnitude != 0)
 		{
 			if(offset.magnitude > 1)
@@ -49,6 +55,7 @@ public class MoveObject : MonoBehaviour
 			c.Move(offset);
 			
 		}
+		*/
 		
         // Calculate movement direction
         // Apply movement
@@ -57,6 +64,11 @@ public class MoveObject : MonoBehaviour
 		
 		//Debug.Log(rb.velocity.ToString());
     }
+	
+	public float GetAzimuth()
+	{
+		return azimuth;
+	}
 	
 	void FixedUpdate()
 	{

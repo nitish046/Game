@@ -5,12 +5,17 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
 	public GameObject player;
+	public MoveObject playerScript;
 	public float camSpeed;
 	
 	float radius, azimuth, polar;
 	
 	float Rad = Mathf.PI/180;
 	float Deg = 180/Mathf.PI;
+	
+	float rotationX, rotationY;
+	
+	Vector3 relPos;
 	
 	public float max;
 	public float min;
@@ -21,6 +26,8 @@ public class CameraControl : MonoBehaviour
         radius = 10;
 		polar = Mathf.PI/2;
 		azimuth = 0;
+		
+		playerScript = player.GetComponent<MoveObject>();
     }
 
 	void FixedUpdate()
@@ -30,10 +37,10 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		float rotationX = -(Input.GetAxis("Mouse X") * Rad * camSpeed);
-		float rotationY = (Input.GetAxis("Mouse Y") * Rad * camSpeed);
+		//float rotationX = -(Input.GetAxis("Mouse X") * Rad * camSpeed);
+		//float rotationY = (Input.GetAxis("Mouse Y") * Rad * camSpeed);
 		
-		azimuth = (azimuth + rotationX) % (2*Mathf.PI);
+		azimuth = playerScript.GetAzimuth() * Rad * -1;
 		
 		polar = polar + rotationY;
 		
@@ -46,7 +53,7 @@ public class CameraControl : MonoBehaviour
 		float z = radius * Mathf.Sin(azimuth) * Mathf.Sin(polar);
 		float y = radius * Mathf.Cos(polar);
 				
-		Vector3 relPos = new Vector3(x, y, z);
+		relPos = new Vector3(x, y, z);
 		
 		Vector3 playerPos = player.GetComponent<CharacterController>().transform.position;
 		
