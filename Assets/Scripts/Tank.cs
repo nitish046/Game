@@ -16,12 +16,11 @@ public class TankController : MonoBehaviour
     {
 		float factor = Input.GetAxis("Vertical");
 		
-		if(factor < 0)
-			factor /= 2.0f;
+		
 		
         transform.position += transform.rotation * new Vector3(0, 0, factor) * movementSpeed * Time.fixedDeltaTime;
 		
-		transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Horizontal") * rotationSpeed * Time.fixedDeltaTime * factor, 0);
+		transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Horizontal") * rotationSpeed * Time.fixedDeltaTime, 0);
 
         cameraTransform.position = transform.position + transform.rotation * new Vector3(0, 1, -cameraDistance);
         cameraTransform.rotation = Quaternion.LookRotation(transform.position - cameraTransform.position);
