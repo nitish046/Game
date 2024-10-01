@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         cameraTransform = Camera.main.transform;
+
     }
 
     private void FixedUpdate()
@@ -40,7 +41,8 @@ public class Player : MonoBehaviour
             float moveDistance = Time.deltaTime * speed;
 
             bool racconColliding = Physics.CapsuleCast(transform.position, transform.position + (transform.rotation * Vector3.forward) * raccoonLength, raccoonRadius, (movementDirection), moveDistance);
-
+            
+            //replace true with !racconColliding
             if (!racconColliding)
             {
                 if(groundcheck())
