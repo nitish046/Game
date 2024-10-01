@@ -5625,7 +5625,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.27, z: 0}
+  m_LocalPosition: {x: 0, y: 2.27, z: -2.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10651,7 +10651,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1644694977}
   - component: {fileID: 1644694978}
-  - component: {fileID: 1644694979}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -10668,7 +10667,7 @@ Transform:
   m_GameObject: {fileID: 1644694975}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.05, y: 0, z: 3.722}
+  m_LocalPosition: {x: 1.37, y: 0.52, z: 4.524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10690,22 +10689,9 @@ MonoBehaviour:
   speed: 7
   cameraDistance: 2
   rotationSpeed: 50
+  jumpHeigh: 0.5
+  gravityScale: 1
   gameInput: {fileID: 187022497}
---- !u!114 &1644694979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644694975}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbfe11323ac19e41a6d9aa84b1ab160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotationSpeed: 60
-  cameraDistance: 5
 --- !u!1001 &1680604425
 PrefabInstance:
   m_ObjectHideFlags: 0
