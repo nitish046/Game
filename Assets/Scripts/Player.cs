@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
         cameraTransform = Camera.main.transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         playerMovement();
         playerJump();
@@ -91,8 +92,8 @@ public class Player : MonoBehaviour
 
     public bool groundcheck()
     {
-        Debug.DrawRay(transform.position + (Vector3.up * .25f), Vector3.down, Color.green);
-        if(Physics.Raycast(transform.position + (Vector3.up * .25f), Vector3.down, out groundCollider, .5f))
+        Debug.DrawRay(transform.position + (Vector3.up * .25f), Vector3.down, UnityEngine.Color.green);
+        if (Physics.Raycast(transform.position + (Vector3.up * .25f), Vector3.down, out groundCollider, .35f))
         {
             return true;
         }
@@ -100,6 +101,7 @@ public class Player : MonoBehaviour
         {
             return false;
         }
+        
     }
 
 }
