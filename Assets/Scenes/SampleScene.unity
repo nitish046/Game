@@ -5595,14 +5595,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotdog Plate
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32392e2a8cc373e4db0768be9ab49732, type: 3}
+      propertyPath: m_TagString
+      value: Collectables
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 32392e2a8cc373e4db0768be9ab49732, type: 3}
       insertIndex: -1
       addedObject: {fileID: 591737789}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 32392e2a8cc373e4db0768be9ab49732, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1529158051}
   m_SourcePrefab: {fileID: 100100000, guid: 32392e2a8cc373e4db0768be9ab49732, type: 3}
+--- !u!1 &602635884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 32392e2a8cc373e4db0768be9ab49732, type: 3}
+  m_PrefabInstance: {fileID: 602635883}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -11242,6 +11254,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 32392e2a8cc373e4db0768be9ab49732, type: 3}
   m_PrefabInstance: {fileID: 602635883}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1529158051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602635884}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.39901638, y: 0.7757293, z: 0.39901638}
+  m_Center: {x: 0, y: 0.38786465, z: 0}
 --- !u!1001 &1613216960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11412,7 +11445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  cameraDistance: 1
+  cameraDistance: 2
   rotationSpeed: 50
   jumpHeigh: 0.5
   gravityScale: 1
@@ -11476,6 +11509,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 79a211df47a1cbc44b7215bf615a4356, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1680604431}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 79a211df47a1cbc44b7215bf615a4356, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1680604434}
   m_SourcePrefab: {fileID: 100100000, guid: 79a211df47a1cbc44b7215bf615a4356, type: 3}
 --- !u!1 &1680604426 stripped
 GameObject:
@@ -11510,6 +11546,19 @@ CapsuleCollider:
   m_Height: 1.2
   m_Direction: 2
   m_Center: {x: 0, y: 0.37221494, z: 0.14999998}
+--- !u!114 &1680604434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680604426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef72e5c9780dc24d958ecfdccf968ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stackHeight: 1
 --- !u!1001 &1761614942
 PrefabInstance:
   m_ObjectHideFlags: 0
