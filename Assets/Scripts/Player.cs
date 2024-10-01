@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
             float moveDistance = Time.deltaTime * speed;
 
             bool racconColliding = Physics.CapsuleCast(transform.position, transform.position + (transform.rotation * Vector3.forward) * raccoonLength, raccoonRadius, (movementDirection), moveDistance);
-            Debug.Log(movementInput);
+
             if (!racconColliding)
             {
                 if(groundcheck())
@@ -91,8 +91,8 @@ public class Player : MonoBehaviour
 
     public bool groundcheck()
     {
-        Debug.DrawRay(transform.position, Vector3.down, Color.green);
-        if(Physics.Raycast(transform.position, Vector3.down, out groundCollider, .1f))
+        Debug.DrawRay(transform.position + (Vector3.up * .25f), Vector3.down, Color.green);
+        if(Physics.Raycast(transform.position + (Vector3.up * .25f), Vector3.down, out groundCollider, .5f))
         {
             return true;
         }
