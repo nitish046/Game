@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         cameraTransform = Camera.main.transform;
+
     }
 
     private void FixedUpdate()
