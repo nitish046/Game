@@ -3,51 +3,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameInput : MonoBehaviour
+namespace MaskedMischiefNamespace
 {
-
-  private PlayerInputActions playerInputActions;
-
-  private void Awake()
+  public class GameInput : MonoBehaviour
   {
-    playerInputActions = new PlayerInputActions();
-    playerInputActions.Player.Enable();
 
-  }
+    private PlayerInputActions playerInputActions;
 
-  public bool getJumpInput()
-  {
-    if (playerInputActions.Player.Jump.ReadValue<float>() == 1)
+    private void Awake()
     {
-      return true;
+      playerInputActions = new PlayerInputActions();
+      playerInputActions.Player.Enable();
+
     }
-    return false;
-  }
 
-  public bool getSprintInput()
-  {
-    if (playerInputActions.Player.Sprint.ReadValue<float>() == 1)
-      return true;
-    return false;
-  }
-
-
-  public Vector2 getMovementInputVectorNormalized()
-  {
-    Vector2 movementInput = playerInputActions.Player.Move.ReadValue<Vector2>();
-    /*
-     if(movementInput.y == 0)
-     {
-         movementInput.x = 0;
-     }*/
-
-    /*if (movementInput.y < 0)
+    public bool getJumpInput()
     {
-        movementInput.x *= -1;
-    }*/
+      if (playerInputActions.Player.Jump.ReadValue<float>() == 1)
+      {
+        return true;
+      }
+      return false;
+    }
 
-    movementInput = movementInput.normalized;
+    public bool getSprintInput()
+    {
+      if (playerInputActions.Player.Sprint.ReadValue<float>() == 1)
+        return true;
+      return false;
+    }
 
-    return movementInput;
+
+    public Vector2 getMovementInputVectorNormalized()
+    {
+      Vector2 movementInput = playerInputActions.Player.Move.ReadValue<Vector2>();
+      /*
+       if(movementInput.y == 0)
+       {
+           movementInput.x = 0;
+       }*/
+
+      /*if (movementInput.y < 0)
+      {
+          movementInput.x *= -1;
+      }*/
+
+      movementInput = movementInput.normalized;
+
+      return movementInput;
+    }
   }
 }
