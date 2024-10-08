@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
 
     bool racconColliding = Physics.CapsuleCast(transform.position, transform.position + (transform.rotation * Vector3.forward) * raccoonLength, raccoonRadius, (movementDirection), moveDistance);
 
-    //replace true with !racconColliding
     if (!racconColliding)
     {
       if (groundcheck())
