@@ -46,10 +46,28 @@ namespace MaskedMischiefNamespace
       {
         moveDistance *= 3;
         movementInput.x *= 0.5f;
+=======
+        transform.position += movementDirection * moveDistance;
+        transform.rotation *= Quaternion.Euler(0, movementInput.x * rotationSpeed * Time.fixedDeltaTime, 0);
       }
+      else if (movementInput.y == 0)
+      {
+        transform.position += transform.rotation * (new Vector3(movementInput.x, 0, 0)) * moveDistance;
+      }
+	  else
+	  {
+		transform.position += transform.rotation * (new Vector3(0, 0, movementInput.y)) * moveDistance;
+	  }
 
       if (movementInput.y < 0)
         movementInput.x *= -1;
+=======
+    }
+
+    cameraTransform.position = transform.position + transform.rotation * new Vector3(0, 0.75f, -(cameraDistance + 1));
+    cameraTransform.rotation = Quaternion.LookRotation(transform.position - cameraTransform.position) * Quaternion.Euler(-5, 0, 0);
+    cameraTransform.position += new Vector3(0, 1, 0);
+  }
 
       // if (movementInput.y == 0 && movementInput.x != 0)
       // {
