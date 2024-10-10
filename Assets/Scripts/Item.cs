@@ -32,6 +32,7 @@ public class Item : MonoBehaviour
             {
 				Debug.Log("Pick");
                 StackColl.AddNewItem(this.transform);
+
                 AlreadyPicked = true;
             }
         }
