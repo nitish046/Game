@@ -13856,9 +13856,10 @@ MonoBehaviour:
   speed: 7
   cameraDistance: 2
   rotationSpeed: 150
-  jumpHeigh: 0.5
+  jumpHeight: 5
   gravityScale: 1
   gameInput: {fileID: 187022497}
+  laugh: {fileID: 8300000, guid: 1c591977b1df048458f15ffbfd382a59, type: 3}
 --- !u!82 &1644694979
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13869,11 +13870,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 51b49e7d4755bed4cb2247dae0bca334, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 1c591977b1df048458f15ffbfd382a59, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -11,18 +11,20 @@ public class Player : MonoBehaviour
   [SerializeField] private float speed = 7f;
   [SerializeField] private float cameraDistance = 5f;
   [SerializeField] private float rotationSpeed = 50f;
-  [SerializeField] float jumpHeigh = 5f;
+  [SerializeField] float jumpHeight = 5f;
   [SerializeField] float gravityScale = 0f;
   [SerializeField] private GameInput gameInput;
   public RaycastHit groundCollider;
   public RaycastHit objectCollider;
   float velocity;
 
+  public AudioClip laugh;
+  private AudioSource audioSource;
 
   private void Awake()
   {
     cameraTransform = Camera.main.transform;
-
+    audioSource = GetComponent<AudioSource>();
   }
 
   private void FixedUpdate()
@@ -57,14 +59,14 @@ public class Player : MonoBehaviour
     // }
 
     bool racconColliding = Physics.CapsuleCast(transform.position, transform.position + (transform.rotation * Vector3.forward) * raccoonLength, raccoonRadius, (movementDirection), out objectCollider, moveDistance);
-    if(objectCollider.collider != null)
+    if (objectCollider.collider != null)
     {
-        if (objectCollider.collider.CompareTag("Henry"))
-        {
-            racconColliding = false;
-        }
+      if (objectCollider.collider.CompareTag("Henry"))
+      {
+        racconColliding = false;
+      }
     }
-        
+
 
     if (!racconColliding)
     {
@@ -81,10 +83,10 @@ public class Player : MonoBehaviour
       {
         transform.position += transform.rotation * (new Vector3(movementInput.x, 0, 0)) * moveDistance;
       }
-	  else
-	  {
-		transform.position += transform.rotation * (new Vector3(0, 0, movementInput.y)) * moveDistance;
-	  }
+      else
+      {
+        transform.position += transform.rotation * (new Vector3(0, 0, movementInput.y)) * moveDistance;
+      }
 
     }
 
@@ -113,7 +115,7 @@ public class Player : MonoBehaviour
 
     if (jump && grounded)
     {
-      velocity = Mathf.Sqrt(jumpHeigh * -3f * (Physics.gravity.y * gravityScale));
+      velocity = Mathf.Sqrt(jumpHeight * -3f * (Physics.gravity.y * gravityScale));
     }
     transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
 
@@ -130,6 +132,15 @@ public class Player : MonoBehaviour
     else
     {
       return false;
+    }
+
+  }
+
+  public void PlayPickupSound()
+  {
+    if (laugh != null && audioSource != null)
+    {
+      audioSource.PlayOneShot(laugh);
     }
 
   }
