@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
   [SerializeField] private float speed = 7f;
   [SerializeField] private float cameraDistance = 5f;
   [SerializeField] private float rotationSpeed = 50f;
-  [SerializeField] float jumpHeight = 5f;
+  [SerializeField] float jumpHeight = 0.5f;
   [SerializeField] float gravityScale = 0f;
   [SerializeField] private GameInput gameInput;
   public RaycastHit groundCollider;

@@ -13856,7 +13856,7 @@ MonoBehaviour:
   speed: 7
   cameraDistance: 2
   rotationSpeed: 150
-  jumpHeight: 5
+  jumpHeight: 0.5
   gravityScale: 1
   gameInput: {fileID: 187022497}
   laugh: {fileID: 8300000, guid: 1c591977b1df048458f15ffbfd382a59, type: 3}
