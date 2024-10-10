@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HenryController : MonoBehaviour
 {
     private bool raccoonOnTrash = false;
     private int movementIndex = 0;
+
+    public Button restartButton;
+    public Button quitButton;
     public TMP_Text loseText;
     public Vector3[] movementPoints;
     [SerializeField] float speed = 5f;
@@ -48,6 +52,8 @@ public class HenryController : MonoBehaviour
         {
             loseText.text = "You were Caught! You Lose!";
             loseText.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+            quitButton.gameObject.SetActive(true);
         }
     }
 }
