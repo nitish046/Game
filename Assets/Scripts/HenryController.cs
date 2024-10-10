@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HenryController : MonoBehaviour
 {
     private bool raccoonOnTrash = false;
     private int movementIndex = 0;
+    public TMP_Text loseText;
     public Vector3[] movementPoints;
     [SerializeField] float speed = 5f;
     [SerializeField] private HideOnCollide collisionOccur;
@@ -37,6 +39,15 @@ public class HenryController : MonoBehaviour
         if(transform.position == movementPoints[movementIndex])
         {
             movementIndex++;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            loseText.text = "You were Caught! You Lose!";
+            loseText.gameObject.SetActive(true);
         }
     }
 }

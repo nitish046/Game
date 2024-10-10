@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
   [SerializeField] float gravityScale = 0f;
   [SerializeField] private GameInput gameInput;
   public RaycastHit groundCollider;
+  public RaycastHit objectCollider;
   float velocity;
 
 
@@ -55,7 +56,15 @@ public class Player : MonoBehaviour
     //   moveDistance = 0.05f;
     // }
 
-    bool racconColliding = Physics.CapsuleCast(transform.position, transform.position + (transform.rotation * Vector3.forward) * raccoonLength, raccoonRadius, (movementDirection), moveDistance);
+    bool racconColliding = Physics.CapsuleCast(transform.position, transform.position + (transform.rotation * Vector3.forward) * raccoonLength, raccoonRadius, (movementDirection), out objectCollider, moveDistance);
+    if(objectCollider.collider != null)
+    {
+        if (objectCollider.collider.CompareTag("Henry"))
+        {
+            racconColliding = false;
+        }
+    }
+        
 
     if (!racconColliding)
     {
