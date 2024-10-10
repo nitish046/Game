@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class HenryController : MonoBehaviour
 {
     private bool raccoonOnTrash = false;
+    private bool doneWaiting = true;
     private int movementIndex = 0;
 
     public Button restartButton;
@@ -29,10 +30,11 @@ public class HenryController : MonoBehaviour
 
     void Update()
     {
-        if(raccoonOnTrash && movementIndex < movementPoints.Length)
+        if((raccoonOnTrash && movementIndex < movementPoints.Length) && doneWaiting)
         {
             HenryMovement();
         }
+
     }
 
     private void HenryMovement()
@@ -42,8 +44,18 @@ public class HenryController : MonoBehaviour
 
         if(transform.position == movementPoints[movementIndex])
         {
-            movementIndex++;
+            StartCoroutine(waitHenry());
+            
         }
+    }
+
+    IEnumerator waitHenry()
+    {
+        doneWaiting = false;
+        yield return new WaitForSeconds(2f);
+        movementIndex++;
+        doneWaiting = true;
+
     }
 
     private void OnTriggerEnter(Collider other)
