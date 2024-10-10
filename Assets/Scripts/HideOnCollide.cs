@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HideOnCollide : MonoBehaviour
 {
+    public event EventHandler onRaccoonFirstTimeOnTrash;
+
+    
     private bool canHide = false;
     private bool alreadyHiding = false;
+    private int timeEntered = 0;
     private Renderer[] playerRenderers;
     private Player movementScript;
     [SerializeField] private GameInput gameInput;
@@ -50,6 +55,11 @@ public class HideOnCollide : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        timeEntered++;
+        if(timeEntered == 1)
+        {
+            onRaccoonFirstTimeOnTrash?.Invoke(this, System.EventArgs.Empty);
+        }
         canHide = true;
         playerRenderers = other.gameObject.GetComponentsInChildren<Renderer>();
         movementScript = other.gameObject.GetComponentInParent<Player>();
