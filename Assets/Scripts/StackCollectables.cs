@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
+
 public class StackCollectables : MonoBehaviour
 {
     public TMP_Text scoreText;
     public TMP_Text winText;
+    public Button restartButton;
+    public Button quitButton;
 
     public Transform ItemHolder;
     int NumOfItemsHoldind;
@@ -41,6 +45,8 @@ public class StackCollectables : MonoBehaviour
         if(NumOfItemsHoldind == 2)
         {
             winText.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+            quitButton.gameObject.SetActive(true);
         }
     }
 }
