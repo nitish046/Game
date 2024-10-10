@@ -5,7 +5,8 @@ using UnityEngine;
 public class HenryController : MonoBehaviour
 {
     private bool raccoonOnTrash = false;
-    private Vector3[] movementPoints;
+    private int movementIndex = 0;
+    public Vector3[] movementPoints;
     [SerializeField] float speed = 5f;
     [SerializeField] private HideOnCollide collisionOccur;
 
@@ -22,7 +23,7 @@ public class HenryController : MonoBehaviour
 
     void Update()
     {
-        if(raccoonOnTrash)
+        if(raccoonOnTrash && movementIndex < movementPoints.Length)
         {
             HenryMovement();
         }
@@ -30,7 +31,12 @@ public class HenryController : MonoBehaviour
 
     private void HenryMovement()
     {
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(0,0,0), speed * Time.deltaTime);
-        
+        transform.position = Vector3.MoveTowards(transform.position, movementPoints[movementIndex], speed * Time.deltaTime);
+        transform.LookAt(movementPoints[movementIndex]);
+
+        if(transform.position == movementPoints[movementIndex])
+        {
+            movementIndex++;
+        }
     }
 }

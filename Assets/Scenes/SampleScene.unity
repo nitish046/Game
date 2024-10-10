@@ -6186,6 +6186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a573ebc99e12dea4c91945566f57d6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementPoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 1}
+  - {x: -1, y: 0, z: 2}
   speed: 5
   collisionOccur: {fileID: 950654937}
 --- !u!1001 &660809420
