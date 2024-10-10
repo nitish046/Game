@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -18,25 +19,29 @@ public class Item : MonoBehaviour
 			tryPick(a);
 		}
 	}
-	
-	private void tryPick(Collider col)
-	{
-		GameObject other = col.gameObject;
-		//Debug.Log(other);
-		if (AlreadyPicked) return;
-        //if (other.CompareTag("Player"))
-        {
-            //Debug.Log("TUCH");  
-            StackCollectables StackColl;
-            if(other.TryGetComponent(out StackColl))
-            {
-				Debug.Log("Pick");
-                StackColl.AddNewItem(this.transform);
 
-                AlreadyPicked = true;
+    private void tryPick(Collider col)
+    {
+        GameObject other = col.gameObject;
+        if (AlreadyPicked) return;
+
+        StackCollectables StackColl;
+        if (other.TryGetComponent(out StackColl))
+        {
+
+            StackColl.AddNewItem(this.transform);
+
+            // Use GetComponentInParent to find the Player component
+            Player player = other.GetComponentInParent<Player>(); //This is necessary because the bipead is the one doing the pickups
+            if (player != null)
+            {
+                player.PlayPickupSound();
             }
+
+            AlreadyPicked = true;
         }
-	}
+    }
+
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {

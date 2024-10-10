@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -18,11 +19,23 @@ public class Player : MonoBehaviour
   float velocity;
 
 
-  private void Awake()
+    public AudioClip laugh;
+    private AudioSource audioSource;
+
+    private void Awake()
   {
     cameraTransform = Camera.main.transform;
+    audioSource = GetComponent<AudioSource>();
+    if (audioSource == null)
+    {
+        UnityEngine.Debug.LogError("AudioSource component not found on " + gameObject.name);
+    }
+    else
+    {
+        UnityEngine.Debug.Log("AudioSource successfully initialized on " + gameObject.name);
+    }
 
-  }
+    }
 
   private void FixedUpdate()
   {
@@ -32,7 +45,8 @@ public class Player : MonoBehaviour
 
   private void playerMovement()
   {
-    Vector2 movementInput = gameInput.getMovementInputVectorNormalized();
+   
+    Vector2 movementInput = gameInput.getMovementInputVectorNormalized(); //Getting error here
 
     Vector3 movementDirection = transform.rotation * (new Vector3(0, 0, movementInput.y));
 
@@ -113,7 +127,7 @@ public class Player : MonoBehaviour
 
   public bool groundcheck()
   {
-    Debug.DrawRay(transform.position + (Vector3.up * .25f), Vector3.down, UnityEngine.Color.green);
+        UnityEngine.Debug.DrawRay(transform.position + (Vector3.up * .25f), Vector3.down, UnityEngine.Color.green);
     if (Physics.Raycast(transform.position + (Vector3.up * .25f), Vector3.down, out groundCollider, .35f))
     {
       return true;
@@ -124,5 +138,19 @@ public class Player : MonoBehaviour
     }
 
   }
+    public void PlayPickupSound()
+    {
+        UnityEngine.Debug.Log("PlayPickupSound called");
+        if (laugh != null && audioSource != null)
+        {
+            UnityEngine.Debug.Log("Playing sound");
+            audioSource.PlayOneShot(laugh);
+        }
+        else
+        {
+            UnityEngine.Debug.Log("Cannot play sound: 'laugh' is " + (laugh == null ? "null" : "not null") +
+                      ", 'audioSource' is " + (audioSource == null ? "null" : "not null"));
+        }
+    }
 
 }
