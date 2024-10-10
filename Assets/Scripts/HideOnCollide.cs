@@ -13,6 +13,8 @@ public class HideOnCollide : MonoBehaviour
     private int timeEntered = 0;
     private Renderer[] playerRenderers;
     private Player movementScript;
+
+    
     [SerializeField] private GameInput gameInput;
     
 
