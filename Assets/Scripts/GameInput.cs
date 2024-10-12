@@ -26,25 +26,25 @@ public class GameInput : MonoBehaviour
     public bool getJumpInput()
   {
     if (player_input_actions.Player.Jump.ReadValue<float>() == 1)
-    {
-      return true;
-    }
+        return true;
+
     return false;
   }
 
   public bool getSprintInput()
   {
     if (player_input_actions.Player.Sprint.ReadValue<float>() == 1)
-      return true;
+        return true;
+
     return false;
   }
 
 
   public Vector2 getMovementInputVectorNormalized()
   {
-    Vector2 movementInput = player_input_actions.Player.Move.ReadValue<Vector2>();
-    movementInput = movementInput.normalized;
+    Vector2 movement_input = player_input_actions.Player.Move.ReadValue<Vector2>();
+    movement_input = movement_input.normalized;
 
-    return movementInput;
+    return movement_input;
   }
 }
