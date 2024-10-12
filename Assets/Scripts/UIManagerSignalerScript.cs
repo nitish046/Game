@@ -13,7 +13,8 @@ public class UIManagerSignalerScript : MonoBehaviour
   {
     if (!hasOccured && other.CompareTag("Player"))
     {
-      UIManager.setTutorialText(text);
+        UIManager.setTutorialText(text);
+        hasOccured = true;
     }
   }
 }
