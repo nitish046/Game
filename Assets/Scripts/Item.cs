@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-  bool AlreadyPicked = false;
+  bool already_picked = false;
 
   private void FixedUpdate()
   {
@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
   {
     GameObject other = col.gameObject;
     //Debug.Log(other);
-    if (AlreadyPicked) return;
+    if (already_picked) return;
     //if (other.CompareTag("Player"))
     {
       //Debug.Log("TUCH");  
@@ -40,7 +40,7 @@ public class Item : MonoBehaviour
           player.PlayPickupSound();
         }
 
-        AlreadyPicked = true;
+        already_picked = true;
       }
     }
   }

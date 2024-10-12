@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class UIManagerSignalerScript : MonoBehaviour
 {
-  private bool hasOccured = false;
+  private bool has_occured = false;
   [SerializeField] string text = " ";
-  [SerializeField] TutorialUIManager UIManager;
+  [SerializeField] TutorialUIManager UI_manager;
 
   void OnTriggerEnter(Collider other)
   {
-    if (!hasOccured && other.CompareTag("Player"))
+    if (!has_occured && other.CompareTag("Player"))
     {
-        UIManager.setTutorialText(text);
-        hasOccured = true;
+        UI_manager.setTutorialText(text);
+        has_occured = true;
     }
   }
 }

@@ -7,29 +7,29 @@ using UnityEngine.UI;
 
 public class StackCollectables : MonoBehaviour
 {
-    public TMP_Text scoreText;
-    public TMP_Text winText;
-    public Button restartButton;
-    public Button quitButton;
+    public TMP_Text score_text;
+    public TMP_Text win_text;
+    public Button restart_button;
+    public Button quit_button;
 
-    public Transform ItemHolder;
-    int NumOfItemsHoldind;
-    public float Ypos;
+    public Transform item_holder;
+    public int num_items_held;
+    public float y_position;
 
 
     private void Start()
     {
-        NumOfItemsHoldind = 0;
+        num_items_held = 0;
         setScore();
-        winText.gameObject.SetActive(false);
+        win_text.gameObject.SetActive(false);
     }
 
     public void AddNewItem(Transform _toAdd)
     {
-        _toAdd.DOJump(ItemHolder.position+new Vector3(0, Ypos * NumOfItemsHoldind, 0), 1.5f, 1, 0.35f).OnComplete(() => {
-            NumOfItemsHoldind++;
+        _toAdd.DOJump(item_holder.position+new Vector3(0, y_position * num_items_held, 0), 1.5f, 1, 0.35f).OnComplete(() => {
+            num_items_held++;
             setScore();
-            _toAdd.SetParent(ItemHolder, true);
+            _toAdd.SetParent(item_holder, true);
             //_toAdd.localPosition = new Vector3(0, Ypos * NumOfItemsHoldind, 0);
             //Temp fix for duel replace below with above later
             _toAdd.localPosition = new Vector3(0, -3, 0);
@@ -41,12 +41,12 @@ public class StackCollectables : MonoBehaviour
 
     public void setScore()
     {
-        scoreText.text = "Food Collected: " + NumOfItemsHoldind.ToString() + " /2";
-        if(NumOfItemsHoldind == 2)
+        score_text.text = "Food Collected: " + num_items_held.ToString() + " /2";
+        if(num_items_held == 2)
         {
-            winText.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(true);
-            quitButton.gameObject.SetActive(true);
+            win_text.gameObject.SetActive(true);
+            restart_button.gameObject.SetActive(true);
+            quit_button.gameObject.SetActive(true);
         }
     }
 }

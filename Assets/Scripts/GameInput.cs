@@ -6,26 +6,26 @@ using UnityEngine;
 public class GameInput : MonoBehaviour
 {
 
-  public event EventHandler OnInteractAction;
+  public event EventHandler on_interact_action;
 
-  private PlayerInputActions playerInputActions;
+  private PlayerInputActions player_input_actions;
 
   private void Awake()
   {
-    playerInputActions = new PlayerInputActions();
-    playerInputActions.Player.Enable();
+    player_input_actions = new PlayerInputActions();
+    player_input_actions.Player.Enable();
 
-    playerInputActions.Player.Interact.performed += Interact_performed;
+    player_input_actions.Player.Interact.performed += Interact_performed;
   }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnInteractAction?.Invoke(this, EventArgs.Empty);
+        on_interact_action?.Invoke(this, EventArgs.Empty);
     }
 
     public bool getJumpInput()
   {
-    if (playerInputActions.Player.Jump.ReadValue<float>() == 1)
+    if (player_input_actions.Player.Jump.ReadValue<float>() == 1)
     {
       return true;
     }
@@ -34,7 +34,7 @@ public class GameInput : MonoBehaviour
 
   public bool getSprintInput()
   {
-    if (playerInputActions.Player.Sprint.ReadValue<float>() == 1)
+    if (player_input_actions.Player.Sprint.ReadValue<float>() == 1)
       return true;
     return false;
   }
@@ -42,18 +42,7 @@ public class GameInput : MonoBehaviour
 
   public Vector2 getMovementInputVectorNormalized()
   {
-    Vector2 movementInput = playerInputActions.Player.Move.ReadValue<Vector2>();
-    /*
-     if(movementInput.y == 0)
-     {
-         movementInput.x = 0;
-     }*/
-
-    /*if (movementInput.y < 0)
-    {
-        movementInput.x *= -1;
-    }*/
-
+    Vector2 movementInput = player_input_actions.Player.Move.ReadValue<Vector2>();
     movementInput = movementInput.normalized;
 
     return movementInput;
