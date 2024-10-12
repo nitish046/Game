@@ -17,20 +17,20 @@ public class HenryController : MonoBehaviour
     [SerializeField] float waypoint_wait_time = 2f;
 
 
-    public Button restartButton;
-    public Button quitButton;
-    public TMP_Text loseText;
+    public Button restart_button;
+    public Button quit_button;
+    public TMP_Text lose_text;
 
     
-    [SerializeField] private HideOnCollide collisionOccur;
+    [SerializeField] private HideOnCollide collision_occur;
 
     private void Start()
     {
-        collisionOccur.onRaccoonFirstTimeOnTrash += CollisionOccur_onRaccoonFirstTimeOnTrash;
+        collision_occur.onRaccoonFirstTimeOnTrash += collisionOccur_onRaccoonFirstTimeOnTrash;
     }
 
 
-    private void CollisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
+    private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
     {
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         StartCoroutine(patrol(getWaypointArray()));
@@ -41,10 +41,10 @@ public class HenryController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            loseText.text = "You were Caught! You Lose!";
-            loseText.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(true);
-            quitButton.gameObject.SetActive(true);
+            lose_text.text = "You were Caught! You Lose!";
+            lose_text.gameObject.SetActive(true);
+            restart_button.gameObject.SetActive(true);
+            quit_button.gameObject.SetActive(true);
         }
     }
 

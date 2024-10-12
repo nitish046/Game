@@ -8,72 +8,72 @@ public class HideOnCollide : MonoBehaviour
     public event EventHandler onRaccoonFirstTimeOnTrash;
 
     
-    private bool canHide = false;
-    private bool alreadyHiding = false;
-    private int timeEntered = 0;
-    private Renderer[] playerRenderers;
-    private Player movementScript;
+    private bool can_hide = false;
+    private bool already_hiding = false;
+    private bool not_entered = true;
+    private Renderer[] player_renderers;
+    private Player movement_script;
 
     
-    [SerializeField] private GameInput gameInput;
+    [SerializeField] private GameInput game_input;
     
 
     private void Start()
     {
-        gameInput.OnInteractAction += GameInput_OnInteractAction;
+        game_input.on_interact_action += GameInput_OnInteractAction;
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
-        Debug.Log( " canHide: " + canHide + " alreadyHiding: " + alreadyHiding);
-        if ((canHide && !alreadyHiding) && playerRenderers != null)
+        Debug.Log( " can_hide: " + can_hide + " already_hiding: " + already_hiding);
+        if ((can_hide && !already_hiding) && player_renderers != null)
         {
-            foreach(Renderer renderer in playerRenderers)
+            foreach(Renderer renderer in player_renderers)
             {
                 renderer.enabled = false;
             }
-            if(movementScript != null)
+            if(movement_script != null)
             {
-                movementScript.enabled = false;
+                movement_script.enabled = false;
             }
-            alreadyHiding = true;
+            already_hiding = true;
             
         }
-        else if(alreadyHiding && playerRenderers != null)
+        else if(already_hiding && player_renderers != null)
         {
-            foreach (Renderer renderer in playerRenderers)
+            foreach (Renderer renderer in player_renderers)
             {
                 renderer.enabled = true;
             }
 
-            if (movementScript != null)
+            if (movement_script != null)
             {
-                movementScript.enabled = true;
+                movement_script.enabled = true;
             }
-            alreadyHiding = false;
+            already_hiding = false;
 
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        timeEntered++;
-        if(timeEntered == 1)
+        if(not_entered)
         {
             onRaccoonFirstTimeOnTrash?.Invoke(this, System.EventArgs.Empty);
+            not_entered = false;
         }
-        canHide = true;
-        playerRenderers = other.gameObject.GetComponentsInChildren<Renderer>();
-        movementScript = other.gameObject.GetComponentInParent<Player>();
+        can_hide = true;
+        player_renderers = other.gameObject.GetComponentsInChildren<Renderer>();
+        movement_script = other.gameObject.GetComponentInParent<Player>();
     }
 
 
    void OnTriggerExit(Collider other)
    {
-        canHide = false;
-        alreadyHiding = false;
-        playerRenderers = null;
-        movementScript = null;
+        can_hide = false;
+        already_hiding = false;
+        player_renderers = null;
+        movement_script = null;
         Debug.Log("left collison");
    }
 }
