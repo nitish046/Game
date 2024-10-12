@@ -25,16 +25,7 @@ public class Player : MonoBehaviour
     private void Awake()
   {
     cameraTransform = Camera.main.transform;
-    audioSource = GetComponent<AudioSource>();
-    if (audioSource == null)
-    {
-        UnityEngine.Debug.LogError("AudioSource component not found on " + gameObject.name);
-    }
-    else
-    {
-        UnityEngine.Debug.Log("AudioSource successfully initialized on " + gameObject.name);
-    }
-
+    audioSource = GetComponent<AudioSource>(); //Initializes the audio source
     }
 
   private void FixedUpdate()
@@ -140,17 +131,11 @@ public class Player : MonoBehaviour
   }
     public void PlayPickupSound()
     {
-        UnityEngine.Debug.Log("PlayPickupSound called");
         if (laugh != null && audioSource != null)
         {
-            UnityEngine.Debug.Log("Playing sound");
             audioSource.PlayOneShot(laugh);
         }
-        else
-        {
-            UnityEngine.Debug.Log("Cannot play sound: 'laugh' is " + (laugh == null ? "null" : "not null") +
-                      ", 'audioSource' is " + (audioSource == null ? "null" : "not null"));
-        }
+        
     }
 
 }
