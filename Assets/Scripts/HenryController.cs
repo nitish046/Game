@@ -15,18 +15,23 @@ public class HenryController : MonoBehaviour
 
     [SerializeField] float waypoint_size = .4f;
     [SerializeField] float waypoint_wait_time = 2f;
-
+    [SerializeField] float distance;
+    [SerializeField] GameObject player;
+    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
 
     public Button restart_button;
     public Button quit_button;
     public TMP_Text lose_text;
-
-    
+    public Material MainColor, FreezeColor;
+    public float duration;
+    public bool allow;
+    public AudioSource splash;
     [SerializeField] private HideOnCollide collision_occur;
 
     private void Start()
     {
         collision_occur.onRaccoonFirstTimeOnTrash += collisionOccur_onRaccoonFirstTimeOnTrash;
+        allow = true;
     }
 
 
@@ -36,10 +41,10 @@ public class HenryController : MonoBehaviour
         StartCoroutine(patrol(getWaypointArray()));
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.CompareTag("Player"))
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance <= 4&& allow)
         {
             lose_text.text = "You were Caught! You Lose!";
             lose_text.gameObject.SetActive(true);
@@ -48,6 +53,24 @@ public class HenryController : MonoBehaviour
         }
     }
 
+   public void Freeze()
+    {
+      skinnedMeshRenderer.material = FreezeColor;
+        movement_speed = 0;
+        allow = false;
+        splash.Play();
+        StartCoroutine(delay());
+    }
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(duration);
+        movement_speed = 5;
+      skinnedMeshRenderer.material = MainColor;
+        allow = true;
+
+
+    }
 
     IEnumerator patrol(Vector3[] waypoints)
     {
@@ -114,3 +137,4 @@ public class HenryController : MonoBehaviour
         Gizmos.DrawLine(previous_waypoint_position, start_waypoint_position);
     }
 }
+
