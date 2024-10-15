@@ -45,8 +45,8 @@ public class StackCollectables : MonoBehaviour
 
   public void setScore()
   {
-    score_text.text = "Food Collected: " + num_items_held.ToString() + " /2";
-    if (num_items_held == 2)
+    score_text.text = "Food Collected: " + num_items_held.ToString() + " /3";
+    if (num_items_held == 3)
     {
       // win_text.gameObject.SetActive(true);
       mainScreen.SetActive(false);
