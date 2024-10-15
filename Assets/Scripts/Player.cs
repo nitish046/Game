@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
   public bool groundcheck()
   {
     Debug.DrawRay(transform.position + (Vector3.up * .25f), Vector3.down, UnityEngine.Color.green);
-    if (Physics.Raycast(transform.position + (Vector3.up * .25f), Vector3.down, out groundCollider, .35f) && !(groundCollider.collider.CompareTag("Henry")))
+    if (Physics.Raycast(transform.position + (Vector3.up * .25f), Vector3.down, out groundCollider, .27f) && !(groundCollider.collider.CompareTag("Henry")))
     {
       return true;
     }
