@@ -12,6 +12,12 @@ public class LifeTracker : MonoBehaviour
   public UnityEngine.UI.Image[] hearts;
   public Sprite heartImage;
 
+  public GameObject loseScreen;
+  public GameObject mainScreen;
+
+  public Button restart_button;
+  public Button quit_button;
+
   void Update()
   {
     if (Input.GetKeyDown(KeyCode.Backspace))
@@ -46,7 +52,10 @@ public class LifeTracker : MonoBehaviour
 
   void LoseGame()
   {
-
+    mainScreen.SetActive(false);
+    loseScreen.SetActive(true);
+    restart_button.gameObject.SetActive(true);
+    quit_button.gameObject.SetActive(true);
   }
 
 }

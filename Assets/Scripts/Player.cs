@@ -57,8 +57,23 @@ public class Player : MonoBehaviour
     //   movementDirection = transform.rotation * (new Vector3(0, 0, 1));
     //   moveDistance = 0.05f;
     // }
-
-    bool racconColliding = Physics.CapsuleCast(transform.position, transform.position + (transform.rotation * Vector3.forward) * raccoonLength, raccoonRadius, (movementDirection), out objectCollider, moveDistance);
+    
+    var c = GetComponentInChildren<CapsuleCollider>();
+    var adjHeight = c.height - 2 * c.radius;
+    
+    Vector3[] capPoints = {c.center + new Vector3(0, adjHeight/2, 0), c.center - new Vector3(0, adjHeight/2, 0)};
+    
+    transform.TransformPoints(capPoints);
+    
+    //Debug.Log((c.center + new Vector3(0, adjHeight/2, 0)));
+    
+    bool racconColliding = Physics.CapsuleCast
+    (capPoints[0], 
+    capPoints[1],
+    c.radius,
+    (movementDirection),
+    out objectCollider,
+    moveDistance);
     if (objectCollider.collider != null)
     {
       if (objectCollider.collider.CompareTag("Henry"))
@@ -87,7 +102,10 @@ public class Player : MonoBehaviour
       {
         transform.position += transform.rotation * (new Vector3(0, 0, movementInput.y)) * moveDistance;
       }
-
+    }
+    else
+    {
+      transform.rotation *= Quaternion.Euler(0, movementInput.x * rotationSpeed * Time.fixedDeltaTime, 0);
     }
 
     cameraTransform.position = transform.position + transform.rotation * new Vector3(0, 0.75f, -(cameraDistance + 1));
