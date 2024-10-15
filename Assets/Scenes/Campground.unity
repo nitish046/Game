@@ -6713,7 +6713,7 @@ MonoBehaviour:
   waypoint_wait_time: 2
   distance: 0
   player: {fileID: 1644694975}
-  skinnedMeshRenderer: {fileID: 0}
+  skinnedMeshRenderer: {fileID: 853174786}
   restart_button: {fileID: 1286039571}
   quit_button: {fileID: 1044201533}
   lose_text: {fileID: 1926314560}
@@ -7619,6 +7619,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &853174786 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3147537679307097228, guid: a053bc7a14d92ce4ebdd02052e4952ad, type: 3}
+  m_PrefabInstance: {fileID: 660809420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &886946563
 GameObject:
   m_ObjectHideFlags: 0
@@ -14926,6 +14931,8 @@ MonoBehaviour:
   gravityScale: 1
   gameInput: {fileID: 187022497}
   laugh: {fileID: 8300000, guid: 1c591977b1df048458f15ffbfd382a59, type: 3}
+  trapPrefab: {fileID: 6431227397451709892, guid: 4f3ea074d5cc1564ba02d16fdd98a9b6, type: 3}
+  maxTraps: 1000
 --- !u!82 &1644694979
 AudioSource:
   m_ObjectHideFlags: 0
