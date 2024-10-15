@@ -22,13 +22,31 @@ public class Player : MonoBehaviour
   public AudioClip laugh;
   private AudioSource audioSource;
 
-  private void Awake()
+    [Header("Trap Placement Settings")]
+    public GameObject trapPrefab;
+    public int maxTraps = 1000;
+    private int currentTrapCount;
+    private bool isSettingTrap = false;
+    private bool canMove = true;
+
+
+    private void Awake()
   {
     cameraTransform = Camera.main.transform;
     audioSource = GetComponent<AudioSource>();
-    
+     currentTrapCount = maxTraps;
     controller = GetComponent<CharacterController>();
   }
+    
+  private void Update()
+{
+    // Check for trap placement input
+    if (Input.GetKeyDown(KeyCode.T) && !isSettingTrap)
+    {
+        StartCoroutine(PlaceTrap());
+    }
+}
+
 
   private void FixedUpdate()
   {
@@ -38,8 +56,11 @@ public class Player : MonoBehaviour
 
   private void playerMovement()
   {
+    if (!canMove)  // Prevent movement during trap setup
+    {
+        return;
+    }
     Vector2 movementInput = gameInput.getMovementInputVectorNormalized();
-
     Vector3 movementDirection = transform.rotation * (new Vector3(0, 0, movementInput.y));
 
     float raccoonRadius = 0.1849963f;
@@ -100,7 +121,7 @@ public class Player : MonoBehaviour
     controller.Move(movementDirection * moveDistance);
     transform.rotation *= Quaternion.Euler(0, movementInput.x * rotationSpeed * Time.fixedDeltaTime, 0);
     
-    Debug.Log(groundcheck());
+    //Debug.Log(groundcheck());
     
     /*Debug.Log(racconColliding);
 
@@ -137,6 +158,10 @@ public class Player : MonoBehaviour
 
   private void playerJump()
   {
+    if (!canMove)  // Prevent jumping during trap setup
+    {
+        return;
+    }
     bool jump = gameInput.getJumpInput();
 
     bool grounded = groundcheck();
@@ -186,4 +211,31 @@ public class Player : MonoBehaviour
 
   }
 
+  IEnumerator PlaceTrap()
+  {
+    if (currentTrapCount > 0)
+    {
+        isSettingTrap = true;
+        canMove = false;  // Disable movement
+
+        // We can add anim here
+        UnityEngine.Debug.Log("Setting up trap...");
+
+        yield return new WaitForSeconds(2f);
+
+        Vector3 spawnPosition = transform.position;
+        Instantiate(trapPrefab, spawnPosition, Quaternion.identity);
+        currentTrapCount--;
+
+        canMove = true;  // Re-enable movement
+        isSettingTrap = false;
+
+        // Debug to make sure it works
+        UnityEngine.Debug.Log("Trap placed. Traps remaining: " + currentTrapCount);
+    }
+    else
+    {
+        UnityEngine.Debug.Log("No traps left!");
+    }
+   }
 }
