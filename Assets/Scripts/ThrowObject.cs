@@ -6,7 +6,7 @@ public class ProjectileLauncher : MonoBehaviour
     public GameObject projectile;
     public float launchSpeed = 10f;
     public AudioSource audioSource;
-  
+
     GameObject _projectile;
     void Update()
     {
@@ -21,10 +21,10 @@ public class ProjectileLauncher : MonoBehaviour
         {
             audioSource.Play();
             _projectile.GetComponent<Rigidbody>().isKinematic = false;
-            _projectile.GetComponent<Rigidbody>().velocity = launchSpeed * launchPoint.up;
+            _projectile.GetComponent<Rigidbody>().velocity = launchSpeed * ((launchPoint.up/2) + launchPoint.forward) ;
         }
-       
+
     }
 
-   
+
 }
