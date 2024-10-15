@@ -17,7 +17,7 @@ public class Reaction : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Terrain")
         {
             Destroy(gameObject);
         }
