@@ -23,11 +23,10 @@ public class BananaTrap : Trap
 
     public override void ActivateTrap(GameObject enemy)
     {
-        // Access the enemy's script to immobilize it
         HenryController henryScript = enemy.GetComponent<HenryController>();
         if (henryScript != null)
         {
-            henryScript.Freeze();
+            henryScript.Freeze(effectDuration, true); // Pass true to indicate it's a trap freeze
         }
     }
 }

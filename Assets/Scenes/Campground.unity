@@ -6723,6 +6723,8 @@ MonoBehaviour:
   allow: 0
   splash: {fileID: 501372522}
   collision_occur: {fileID: 2006850867}
+  loseScreen: {fileID: 1519602321}
+  mainScreen: {fileID: 955010102}
 --- !u!136 &654189011
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14588,8 +14590,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: bbcfafa8bc01a6b44ab20b71aee1849b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -15552,8 +15554,8 @@ Transform:
   m_GameObject: {fileID: 1885941887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.660932, y: 3.2839327, z: 6.113315}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 9.660932, y: 6.53, z: 6.113315}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 525391159}
