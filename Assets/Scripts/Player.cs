@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private bool isSettingTrap = false;
     private bool canMove = true;
 
+  private Animator player_animator;
 
     private void Awake()
   {
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
     audioSource = GetComponent<AudioSource>();
      currentTrapCount = maxTraps;
     controller = GetComponent<CharacterController>();
+    player_animator = transform.GetChild(0).GetComponent<Animator>();
   }
     
   private void Update()
@@ -118,6 +120,7 @@ public class Player : MonoBehaviour
       }
     }
     
+     PlayMovementAnimation(movementInput);
     controller.Move(movementDirection * moveDistance);
     transform.rotation *= Quaternion.Euler(0, movementInput.x * rotationSpeed * Time.fixedDeltaTime, 0);
     
@@ -176,11 +179,13 @@ public class Player : MonoBehaviour
       //Vector3 snappedPosition = new Vector3(transform.position.x, closestPoint.y + offset, transform.position.z);
 
       //transform.position = snappedPosition;
+      PlayJumpingAnimation(false);
     }
 
     if (jump && grounded)
     {
       velocity = Mathf.Sqrt(jumpHeight * -3f * (Physics.gravity.y * gravityScale));
+      PlayJumpingAnimation(true);
     }
     controller.Move(new Vector3(0, velocity, 0) * Time.deltaTime);
 
@@ -238,4 +243,65 @@ public class Player : MonoBehaviour
         UnityEngine.Debug.Log("No traps left!");
     }
    }
+
+    public void PlayMovementAnimation(Vector2 movementInput)
+    {
+        bool isWalking = player_animator.GetBool("isWalking");
+        bool isSprinting = player_animator.GetBool("isSprinting");
+        bool isJumping = player_animator.GetBool("isJumping");
+
+        if (movementInput != Vector2.zero)
+        {
+            player_animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            player_animator.SetBool("isWalking", false);
+        }
+        if(isWalking && gameInput.getSprintInput())
+        {
+            player_animator.SetBool("isSprinting", true);
+        }
+        else if(isWalking && !gameInput.getSprintInput())
+        {
+            player_animator.SetBool("isSprinting", false);
+        }
+    }
+
+
+
+    public void PlayJumpingAnimation(bool started_jumping)
+    {
+        bool isWalking = player_animator.GetBool("isWalking");
+        bool isSprinting = player_animator.GetBool("isSprinting");
+        bool isJumping = player_animator.GetBool("isJumping");
+
+        if (!isWalking && started_jumping)
+        {
+            player_animator.SetBool("isJumping", true);
+            player_animator.SetInteger("previousState", 0);
+        }
+        else if (!isWalking && !started_jumping)
+        {
+            player_animator.SetBool("isJumping", false);
+        }
+        if (!isSprinting && started_jumping)
+        {
+            player_animator.SetBool("isJumping", true);
+            player_animator.SetInteger("previousState", 1);
+        }
+        else if (!isSprinting && !started_jumping)
+        {
+            player_animator.SetBool("isJumping", false);
+        }
+        if (isSprinting && started_jumping)
+        {
+            player_animator.SetBool("isJumping", true);
+            player_animator.SetInteger("previousState", 2);
+        }
+        else if (isSprinting && !started_jumping)
+        {
+            player_animator.SetBool("isJumping", false);
+        }
+    }
 }
