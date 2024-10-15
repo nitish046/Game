@@ -5760,7 +5760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: ' That''s pretty high up. I''m sure I can get up there by jumping with [space]
+  text: ' That''s pretty high up. I''m sure I can get up there by jumping with [space].
     on those boxes.'
   UI_manager: {fileID: 1870910160}
 --- !u!65 &370772593
@@ -7313,7 +7313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Nice, some Marshmallows! I just have to jump up and grab them.
+  text: Nice, some marshmallows! I just have to jump up and grab them.
   UI_manager: {fileID: 1870910160}
 --- !u!65 &886946566
 BoxCollider:
@@ -12942,7 +12942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Ooh, hotdogs! Once I finish these I'll be full.
+  text: Ooh, hot dogs! Once I finish these, I'll be full.
   UI_manager: {fileID: 1870910160}
 --- !u!65 &1229648692
 BoxCollider:
@@ -13482,7 +13482,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Man, I'm so hungry... I wonder if there is any food in that trash can.
+  m_text: Man, I'm so hungry... I wonder if there's any food in that trash can.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -14890,7 +14890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Shh! Someones coming... I'd better hide in the trash can using [f]
+  text: Shh! Someone's coming... I'd better hide in the trash can using [f].
   UI_manager: {fileID: 1870910160}
 --- !u!65 &1914658894
 BoxCollider:
