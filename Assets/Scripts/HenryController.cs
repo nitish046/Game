@@ -66,10 +66,11 @@ public class HenryController : MonoBehaviour
     }
 }
 
-    public void Freeze()
+    public void Freeze(float freezeDuration, bool isTrapFreeze)
     {
-        skinnedMeshRenderer.material = FreezeColor;
-        allow = false;
+        duration = freezeDuration; // Set the freeze duration based on the trap
+        skinnedMeshRenderer.material = FreezeColor; // Change to FreezeColor
+        allow = false; // Stop movement
 
         if (splash != null && splash.clip != null)
         {
@@ -77,22 +78,39 @@ public class HenryController : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");  // Warning added
+            //Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");
         }
 
-        UnityEngine.Debug.Log("Henry has been frozen.");
-        StartCoroutine(delay());
+        // If it's a trap freeze, rotate Henry to make it look like he fell down and pause animation
+        if (isTrapFreeze)
+        {
+            henry_animator.enabled = false; // Pause all animations
+            transform.rotation = Quaternion.Euler(90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Rotate Henry to appear as if he has fallen down
+            //Debug.Log("Henry has been frozen and fallen to the ground.");
+        }
+        else
+        {
+            //Debug.Log("Henry has been frozen by another method (e.g., tomato).");
+        }
+
+        StartCoroutine(delay(isTrapFreeze)); // Pass the freeze type to the delay
     }
 
-    IEnumerator delay()
+    IEnumerator delay(bool isTrapFreeze)
     {
         yield return new WaitForSeconds(duration);
-        movement_speed = 5;  // Reset to normal speed if necessary
-        skinnedMeshRenderer.material = MainColor;
+
+        skinnedMeshRenderer.material = MainColor; // Reset color
         allow = true;
-        UnityEngine.Debug.Log("Henry has unfrozen.");
 
+        if (isTrapFreeze)
+        {
+            henry_animator.enabled = true; // Resume animations
+            transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Reset rotation to stand Henry back up
+            //Debug.Log("Henry has unfrozen and is standing up.");
+        }
 
+        //Debug.Log("Henry has unfrozen.");
     }
 
     IEnumerator patrol(Vector3[] waypoints)
