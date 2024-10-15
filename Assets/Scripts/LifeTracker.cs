@@ -19,7 +19,7 @@ public class LifeTracker : MonoBehaviour
       LoseLife();
     }
 
-    for (int i = 0; i <= hearts.Length; i++)
+    for (int i = 0; i < hearts.Length; i++)
     {
       if (i < lives)
       {
