@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Diagnostics; 
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,76 +50,76 @@ public class HenryController : MonoBehaviour
   }
 
   private void Update()
-{
+  {
     distance = Vector3.Distance(transform.position, player.transform.position);
-    if (distance <= 4 && allow)  // Loss condition is now active
+    // if (distance <= 4 && allow)  // Loss condition is now active
+    // {
+    //     lose_text.text = "You were Caught! You Lose!";
+    //     lose_text.gameObject.SetActive(true);
+    //     restart_button.gameObject.SetActive(true);
+    //     quit_button.gameObject.SetActive(true);
+    // }
+  }
+
+  public void Freeze()
+  {
+    skinnedMeshRenderer.material = FreezeColor;
+    allow = false;
+
+    if (splash != null && splash.clip != null)
     {
-        lose_text.text = "You were Caught! You Lose!";
-        lose_text.gameObject.SetActive(true);
-        restart_button.gameObject.SetActive(true);
-        quit_button.gameObject.SetActive(true);
+      splash.Play();
     }
-}
-
-    public void Freeze()
+    else
     {
-        skinnedMeshRenderer.material = FreezeColor;
-        allow = false;
+      UnityEngine.Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");  // Warning added
+    }
 
-        if (splash != null && splash.clip != null)
+    UnityEngine.Debug.Log("Henry has been frozen.");
+    StartCoroutine(delay());
+  }
+
+  IEnumerator delay()
+  {
+    yield return new WaitForSeconds(duration);
+    movement_speed = 5;  // Reset to normal speed if necessary
+    skinnedMeshRenderer.material = MainColor;
+    allow = true;
+    UnityEngine.Debug.Log("Henry has unfrozen.");
+
+
+  }
+
+  IEnumerator patrol(Vector3[] waypoints)
+  {
+    int waypoint_index = 0;
+    Vector3 waypoint_target = waypoints[waypoint_index];
+
+    while (true)
+    {
+      if (allow)
+      {
+        transform.position = Vector3.MoveTowards(transform.position, waypoint_target, movement_speed * Time.deltaTime);
+        transform.LookAt(waypoint_target);
+
+        if (transform.position == waypoint_target)
         {
-            splash.Play();
+          walkingTransition(false);
+          waypoint_index = (waypoint_index + 1) % waypoints.Length;
+          waypoint_target = waypoints[waypoint_index];
+          yield return new WaitForSeconds(waypoint_wait_time);
+          yield return StartCoroutine(turnTowardsPosition(waypoint_target));
+          walkingTransition(true);
         }
-        else
-        {
-            UnityEngine.Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");  // Warning added
-        }
-
-        UnityEngine.Debug.Log("Henry has been frozen.");
-        StartCoroutine(delay());
+      }
+      yield return null;
     }
-
-    IEnumerator delay()
-    {
-        yield return new WaitForSeconds(duration);
-        movement_speed = 5;  // Reset to normal speed if necessary
-        skinnedMeshRenderer.material = MainColor;
-        allow = true;
-        UnityEngine.Debug.Log("Henry has unfrozen.");
-
-
-    }
-
-    IEnumerator patrol(Vector3[] waypoints)
-    {
-        int waypoint_index = 0;
-        Vector3 waypoint_target = waypoints[waypoint_index];
-
-        while (true)
-        {
-            if (allow)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, waypoint_target, movement_speed * Time.deltaTime);
-                transform.LookAt(waypoint_target);
-
-                if (transform.position == waypoint_target)
-                {
-                    walkingTransition(false);
-                    waypoint_index = (waypoint_index + 1) % waypoints.Length;
-                    waypoint_target = waypoints[waypoint_index];
-                    yield return new WaitForSeconds(waypoint_wait_time);
-                    yield return StartCoroutine(turnTowardsPosition(waypoint_target));
-                    walkingTransition(true);
-                }
-            }
-            yield return null;
-        }
-    }
+  }
 
 
 
 
-    IEnumerator turnTowardsPosition(Vector3 rotation_target)
+  IEnumerator turnTowardsPosition(Vector3 rotation_target)
   {
     Vector3 direction = (rotation_target - transform.position).normalized;
     float target_angle = 90 - Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
@@ -143,19 +143,19 @@ public class HenryController : MonoBehaviour
     return waypoint_array;
   }
 
-    private void walkingTransition(bool walking)
+  private void walkingTransition(bool walking)
+  {
+    if (walking)
     {
-        if (walking)
-        {
-            henry_animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            henry_animator.SetBool("isWalking", false);
-        }
+      henry_animator.SetBool("isWalking", true);
     }
+    else
+    {
+      henry_animator.SetBool("isWalking", false);
+    }
+  }
 
-    private void OnDrawGizmos()
+  private void OnDrawGizmos()
   {
     Vector3 start_waypoint_position = path.GetChild(0).position;
     Vector3 previous_waypoint_position = start_waypoint_position;
