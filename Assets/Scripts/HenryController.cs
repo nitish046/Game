@@ -31,7 +31,10 @@ public class HenryController : MonoBehaviour
   public AudioSource splash;
   [SerializeField] private HideOnCollide collision_occur;
 
-  private Animator henry_animator;
+    public GameObject loseScreen;
+    public GameObject mainScreen;
+
+    private Animator henry_animator;
 
   private void Start()
   {
@@ -58,6 +61,8 @@ public class HenryController : MonoBehaviour
         lose_text.gameObject.SetActive(true);
         restart_button.gameObject.SetActive(true);
         quit_button.gameObject.SetActive(true);
+        mainScreen.SetActive(false);
+        loseScreen.SetActive(true);
     }
 }
 
