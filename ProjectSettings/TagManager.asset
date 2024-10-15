@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectables
   - Henry
+  - Terrain
   layers:
   - Default
   - TransparentFX
