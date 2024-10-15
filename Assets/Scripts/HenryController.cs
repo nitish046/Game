@@ -28,14 +28,10 @@ public class HenryController : MonoBehaviour
   public AudioSource splash;
   [SerializeField] private HideOnCollide collision_occur;
 
-  private Animator henry_animator;
-
   private void Start()
   {
     collision_occur.onRaccoonFirstTimeOnTrash += collisionOccur_onRaccoonFirstTimeOnTrash;
     allow = true;
-
-    henry_animator = transform.GetChild(0).GetComponent<Animator>();
   }
 
 
@@ -43,7 +39,6 @@ public class HenryController : MonoBehaviour
   {
     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     StartCoroutine(patrol(getWaypointArray()));
-    walkingTransition(true);
   }
 
   private void Update()
@@ -89,12 +84,10 @@ public class HenryController : MonoBehaviour
 
       if (transform.position == waypoint_target)
       {
-        walkingTransition(false);
         waypoint_index = (waypoint_index + 1) % waypoints.Length;
         waypoint_target = waypoints[waypoint_index];
         yield return new WaitForSeconds(waypoint_wait_time);
         yield return StartCoroutine(turnTowardsPosition(waypoint_target));
-        walkingTransition(true);
       }
       yield return null;
     }
@@ -123,18 +116,6 @@ public class HenryController : MonoBehaviour
     }
 
     return waypoint_array;
-  }
-
-  private void walkingTransition(bool walking)
-  {
-        if (walking)
-        {
-            henry_animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            henry_animator.SetBool("isWalking", false);
-        }
   }
 
 

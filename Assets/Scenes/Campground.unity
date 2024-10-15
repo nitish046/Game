@@ -6713,7 +6713,7 @@ MonoBehaviour:
   waypoint_wait_time: 2
   distance: 0
   player: {fileID: 1644694975}
-  skinnedMeshRenderer: {fileID: 1738183768}
+  skinnedMeshRenderer: {fileID: 0}
   restart_button: {fileID: 1286039571}
   quit_button: {fileID: 1044201533}
   lose_text: {fileID: 1926314560}
@@ -6772,7 +6772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a053bc7a14d92ce4ebdd02052e4952ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a053bc7a14d92ce4ebdd02052e4952ad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14883,7 +14883,6 @@ GameObject:
   - component: {fileID: 1644694980}
   - component: {fileID: 1644694981}
   - component: {fileID: 1644694982}
-  - component: {fileID: 1644694983}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -15089,18 +15088,6 @@ MonoBehaviour:
   mainScreen: {fileID: 955010102}
   restart_button: {fileID: 1286039571}
   quit_button: {fileID: 1044201533}
---- !u!114 &1644694983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644694975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a15af91bb359a724cb2ea254d097979f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1671717947
 GameObject:
   m_ObjectHideFlags: 0
@@ -15167,11 +15154,6 @@ Transform:
   - {fileID: 1798158567}
   m_Father: {fileID: 1319905115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &1738183768 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -3147537679307097228, guid: a053bc7a14d92ce4ebdd02052e4952ad, type: 3}
-  m_PrefabInstance: {fileID: 660809420}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1761614942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16401,8 +16383,8 @@ SceneRoots:
   - {fileID: 654189008}
   - {fileID: 1319905115}
   - {fileID: 1870910159}
+  - {fileID: 439483255}
   - {fileID: 831114664}
   - {fileID: 501372523}
   - {fileID: 1021217904}
   - {fileID: 955010106}
-  - {fileID: 439483255}
