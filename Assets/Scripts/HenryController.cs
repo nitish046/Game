@@ -57,12 +57,12 @@ public class HenryController : MonoBehaviour
     distance = Vector3.Distance(transform.position, player.transform.position);
     if (distance <= 4 && allow)  // Loss condition is now active
     {
-      lose_text.text = "You were Caught! You Lose!";
-      lose_text.gameObject.SetActive(true);
-      restart_button.gameObject.SetActive(true);
-      quit_button.gameObject.SetActive(true);
-      mainScreen.SetActive(false);
-      loseScreen.SetActive(true);
+      // lose_text.text = "You were Caught! You Lose!";
+      // lose_text.gameObject.SetActive(true);
+      // restart_button.gameObject.SetActive(true);
+      // quit_button.gameObject.SetActive(true);
+      // mainScreen.SetActive(false);
+      // loseScreen.SetActive(true);
     }
   }
 
