@@ -3,32 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace MaskedMischiefNamespace
 {
-  public abstract class StateMachine
-  {
-    protected IState currentState;
+	public abstract class StateMachine
+	{
+		protected IState currentState;
 
-    public void ChangeState(IState newState)
-    {
-      currentState?.Exit();
+		public IState CurrentState { get => currentState; }
 
-      currentState = newState;
+		public void ChangeState(IState newState)
+		{
+			currentState?.Exit();
 
-      currentState.Enter();
-    }
+			currentState = newState;
 
-    public void HandleInput()
-    {
-      currentState?.HandleInput();
-    }
+			currentState.Enter();
+		}
 
-    public void Update()
-    {
-      currentState?.Update();
-    }
+		public void HandleInput()
+		{
+			currentState?.HandleInput();
+		}
 
-    public void PhysicsUpdate()
-    {
-      currentState?.PhysicsUpdate();
-    }
-  }
+		public void Update()
+		{
+			currentState?.Update();
+		}
+
+		public void PhysicsUpdate()
+		{
+			currentState?.PhysicsUpdate();
+		}
+
+
+	}
 }
