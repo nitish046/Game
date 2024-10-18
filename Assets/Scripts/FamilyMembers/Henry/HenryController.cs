@@ -59,10 +59,10 @@ public class HenryController : MonoBehaviour
     {
       // lose_text.text = "You were Caught! You Lose!";
       // lose_text.gameObject.SetActive(true);
-      // restart_button.gameObject.SetActive(true);
-      // quit_button.gameObject.SetActive(true);
-      // mainScreen.SetActive(false);
-      // loseScreen.SetActive(true);
+      restart_button.gameObject.SetActive(true);
+      quit_button.gameObject.SetActive(true);
+      mainScreen.SetActive(false);
+      loseScreen.SetActive(true);
     }
   }
 
