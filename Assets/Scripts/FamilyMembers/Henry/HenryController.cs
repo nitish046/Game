@@ -42,9 +42,6 @@ public class HenryController : FamilyMember
   {
     base.Start();
     collision_occur.onRaccoonFirstTimeOnTrash += collisionOccur_onRaccoonFirstTimeOnTrash;
-    // allow = true;
-
-    // animator = transform.GetChild(0).GetComponent<Animator>();
   }
 
 

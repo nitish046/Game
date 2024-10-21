@@ -8,31 +8,13 @@ using UnityEngine.UI;
 
 public abstract class FamilyMember : MonoBehaviour
 {
-  //[SerializeField] protected Transform path;
   protected abstract float MovementSpeed { get; }
   protected abstract float RotationSpeed { get; }
 
 
   [SerializeField] protected float waypoint_size = .4f;
   [SerializeField] protected float waypoint_wait_time = 2f;
-  // [SerializeField] protected float distance;
-  // [SerializeField] protected GameObject player;
-  // [SerializeField] protected SkinnedMeshRenderer skinnedMeshRenderer;
-
-
-
-  // public Button restart_button;
-  // public Button quit_button;
-  // public TMP_Text lose_text;
-  // public Material MainColor, FreezeColor;
-  // public float duration;
   public bool allow;
-  // public AudioSource splash;
-
-  // [SerializeField] private HideOnCollide collision_occur;
-
-  // public GameObject loseScreen;
-  // public GameObject mainScreen;
 
   protected Animator animator;
 
@@ -44,73 +26,7 @@ public abstract class FamilyMember : MonoBehaviour
   }
 
 
-  // private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
-  // {
-  //   transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-  //   StartCoroutine(patrol(getWaypointArray()));
-  //   walkingTransition(true);
-  // }
-
-  // private void Update()
-  // {
-  //   distance = Vector3.Distance(transform.position, player.transform.position);
-  //   if (distance <= 4 && allow)  // Loss condition is now active
-  //   {
-  //     restart_button.gameObject.SetActive(true);
-  //     quit_button.gameObject.SetActive(true);
-  //     mainScreen.SetActive(false);
-  //     loseScreen.SetActive(true);
-  //   }
-  // }
-
   public abstract void Freeze(float freezeDuration, bool isTrapFreeze);
-
-  // public void Freeze(float freezeDuration, bool isTrapFreeze)
-  // {
-  //   duration = freezeDuration; // Set the freeze duration based on the trap
-  //   skinnedMeshRenderer.material = FreezeColor; // Change to FreezeColor
-  //   allow = false; // Stop movement
-
-  //   if (splash != null && splash.clip != null)
-  //   {
-  //     splash.Play();
-  //   }
-  //   else
-  //   {
-  //     //Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");
-  //   }
-
-  //   // If it's a trap freeze, rotate Henry to make it look like he fell down and pause animation
-  //   if (isTrapFreeze)
-  //   {
-  //     animator.enabled = false; // Pause all animations
-  //     transform.rotation = Quaternion.Euler(90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Rotate Henry to appear as if he has fallen down
-  //                                                                                                                     //Debug.Log("Henry has been frozen and fallen to the ground.");
-  //   }
-  //   else
-  //   {
-  //     //Debug.Log("Henry has been frozen by another method (e.g., tomato).");
-  //   }
-
-  //   StartCoroutine(delay(isTrapFreeze)); // Pass the freeze type to the delay
-  // }
-
-  // IEnumerator delay(bool isTrapFreeze)
-  // {
-  //   yield return new WaitForSeconds(duration);
-
-  //   skinnedMeshRenderer.material = MainColor; // Reset color
-  //   allow = true;
-
-  //   if (isTrapFreeze)
-  //   {
-  //     animator.enabled = true; // Resume animations
-  //     transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Reset rotation to stand Henry back up
-  //                                                                                                                    //Debug.Log("Henry has unfrozen and is standing up.");
-  //   }
-
-  //   //Debug.Log("Henry has unfrozen.");
-  // }
 
   IEnumerator Patrol(Vector3[] waypoints)
   {
