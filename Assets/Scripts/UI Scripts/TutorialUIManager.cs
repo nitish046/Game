@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class TutorialUIManager : MonoBehaviour
 {
-    public TMP_Text tutorial_text;
+		public TMP_Text tutorial_text;
 
-    public void setTutorialText(string text)
-    {
-        tutorial_text.text = text;
-    }
+		public void setTutorialText(string text)
+		{
+				tutorial_text.text = text;
+		}
 }

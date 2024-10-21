@@ -27,7 +27,7 @@ public class Reaction : MonoBehaviour
     if (collision.gameObject.tag == "Henry")
     {
       // Call Freeze with effectDuration and isTrapFreeze = false (since this isn't a trap)
-      collision.gameObject.GetComponent<FamilyMember>().Freeze(effectDuration, false);
+      collision.gameObject.GetComponent<HenryController>().Freeze(effectDuration, false);
       Destroy(gameObject); // Destroy the object (like a tomato) after hitting Henry
     }
   }

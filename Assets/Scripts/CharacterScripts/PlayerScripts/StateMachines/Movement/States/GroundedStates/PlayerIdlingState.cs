@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace MaskedMischiefNamespace
 {
-  public class PlayerIdlingState : PlayerMovementState
-  {
-
-  }
+	public class PlayerIdlingState : PlayerGroundedState
+	{
+		public PlayerIdlingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+		{
+		}
+	}
 }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace MaskedMischiefNamespace
 {
-  public class PlayerHardStoppingState : PlayerStoppingState
-  {
-
-  }
+	public class PlayerHardStoppingState : PlayerStoppingState
+	{
+		public PlayerHardStoppingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+		{
+		}
+	}
 }
