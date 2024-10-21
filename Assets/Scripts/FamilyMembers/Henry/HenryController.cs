@@ -6,16 +6,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HenryController : MonoBehaviour
+public class HenryController : FamilyMember
 {
 
   [SerializeField] Transform path;
-  [SerializeField] float movement_speed = 5f;
-  [SerializeField] float rotation_speed = 90f;
+  [SerializeField] private float movement_speed = 5f;
+  [SerializeField] private float rotation_speed = 90f;
+  protected override float MovementSpeed => movement_speed;
+  protected override float RotationSpeed => rotation_speed;
 
 
-  [SerializeField] float waypoint_size = .4f;
-  [SerializeField] float waypoint_wait_time = 2f;
+  // [SerializeField] float waypoint_size = .4f;
+  // [SerializeField] float waypoint_wait_time = 2f;
   [SerializeField] float distance;
   [SerializeField] GameObject player;
   [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
@@ -27,28 +29,29 @@ public class HenryController : MonoBehaviour
   public TMP_Text lose_text;
   public Material MainColor, FreezeColor;
   public float duration = 5f;
-  public bool allow;
+  // public bool allow;
   public AudioSource splash;
   [SerializeField] private HideOnCollide collision_occur;
 
   public GameObject loseScreen;
   public GameObject mainScreen;
 
-  private Animator henry_animator;
+  // private Animator animator;
 
-  private void Start()
+  protected override void Start()
   {
+    base.Start();
     collision_occur.onRaccoonFirstTimeOnTrash += collisionOccur_onRaccoonFirstTimeOnTrash;
-    allow = true;
+    // allow = true;
 
-    henry_animator = transform.GetChild(0).GetComponent<Animator>();
+    // animator = transform.GetChild(0).GetComponent<Animator>();
   }
 
 
   private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
   {
     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-    StartCoroutine(patrol(getWaypointArray()));
+    StartCoroutine(Patrol(getWaypointArray()));
     walkingTransition(true);
   }
 
@@ -66,7 +69,7 @@ public class HenryController : MonoBehaviour
     }
   }
 
-  public void Freeze(float freezeDuration, bool isTrapFreeze)
+  public override void Freeze(float freezeDuration, bool isTrapFreeze)
   {
     duration = freezeDuration; // Set the freeze duration based on the trap
     skinnedMeshRenderer.material = FreezeColor; // Change to FreezeColor
@@ -84,7 +87,7 @@ public class HenryController : MonoBehaviour
     // If it's a trap freeze, rotate Henry to make it look like he fell down and pause animation
     if (isTrapFreeze)
     {
-      henry_animator.enabled = false; // Pause all animations
+      animator.enabled = false; // Pause all animations
       transform.rotation = Quaternion.Euler(90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Rotate Henry to appear as if he has fallen down
                                                                                                                       //Debug.Log("Henry has been frozen and fallen to the ground.");
     }
@@ -105,7 +108,7 @@ public class HenryController : MonoBehaviour
 
     if (isTrapFreeze)
     {
-      henry_animator.enabled = true; // Resume animations
+      animator.enabled = true; // Resume animations
       transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Reset rotation to stand Henry back up
                                                                                                                      //Debug.Log("Henry has unfrozen and is standing up.");
     }
@@ -113,7 +116,7 @@ public class HenryController : MonoBehaviour
     //Debug.Log("Henry has unfrozen.");
   }
 
-  IEnumerator patrol(Vector3[] waypoints)
+  IEnumerator Patrol(Vector3[] waypoints)
   {
     int waypoint_index = 0;
     Vector3 waypoint_target = waypoints[waypoint_index];
@@ -155,45 +158,26 @@ public class HenryController : MonoBehaviour
     }
   }
 
-  private Vector3[] getWaypointArray()
-  {
-    Vector3[] waypoint_array = new Vector3[path.childCount];
-    for (int i = 0; i < waypoint_array.Length; i++)
-    {
-      waypoint_array[i] = path.GetChild(i).position;
-    }
-
-    return waypoint_array;
-  }
-
   private void walkingTransition(bool walking)
   {
     if (walking)
     {
-      henry_animator.SetBool("isWalking", true);
+      animator.SetBool("isWalking", true);
     }
     else
     {
-      henry_animator.SetBool("isWalking", false);
+      animator.SetBool("isWalking", false);
     }
+  }
+
+  protected Vector3[] getWaypointArray()
+  {
+    return base.getWaypointArray(path);
   }
 
   private void OnDrawGizmos()
   {
-    Vector3 start_waypoint_position = path.GetChild(0).position;
-    Vector3 previous_waypoint_position = start_waypoint_position;
-
-    foreach (Transform waypoint in path)
-    {
-      Gizmos.color = new Color(238f / 255, 130f / 255, 238f / 255, 255f / 255);
-      Gizmos.DrawSphere(waypoint.position, waypoint_size);
-
-      Gizmos.color = Color.white;
-      Gizmos.DrawLine(previous_waypoint_position, waypoint.position);
-
-      previous_waypoint_position = waypoint.position;
-    }
-    Gizmos.DrawLine(previous_waypoint_position, start_waypoint_position);
+    base.OnDrawGizmos(path);
   }
 }
 
