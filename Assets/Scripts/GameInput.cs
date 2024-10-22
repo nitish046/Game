@@ -8,7 +8,7 @@ public class GameInput : MonoBehaviour
 
 	public event EventHandler on_interact_action;
 
-	private PlayerInputActions player_input_actions;
+	public PlayerInputActions player_input_actions;
 
 	private void Awake()
 	{

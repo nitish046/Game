@@ -9,5 +9,7 @@ namespace MaskedMischiefNamespace
 		public PlayerIdlingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
 		{
 		}
+
+		
 	}
 }

@@ -6929,11 +6929,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a573ebc99e12dea4c91945566f57d6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoint_size: 0.2
+  waypoint_wait_time: 2
+  allow: 0
   path: {fileID: 1699224098}
   movement_speed: 5
   rotation_speed: 90
-  waypoint_size: 0.2
-  waypoint_wait_time: 2
   distance: 0
   player: {fileID: 1644694975}
   skinnedMeshRenderer: {fileID: 853174786}
@@ -6943,7 +6944,6 @@ MonoBehaviour:
   MainColor: {fileID: 2100000, guid: 3affc6b9de12d004fb65db86f5e7d93c, type: 2}
   FreezeColor: {fileID: -2381500201381900343, guid: c5e9aa77baf01b442820a3ecae2de376, type: 3}
   duration: 2
-  allow: 0
   splash: {fileID: 501372522}
   collision_occur: {fileID: 2006850867}
   loseScreen: {fileID: 1519602321}
@@ -15251,6 +15251,7 @@ GameObject:
   - component: {fileID: 1644694980}
   - component: {fileID: 1644694982}
   - component: {fileID: 1644694983}
+  - component: {fileID: 1644694984}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -15424,7 +15425,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yVelocity: 0
+  jumpStrength: 0.05
   gravity: 0.00098
+  gameInput: {fileID: 0}
+  isSprinting: 0
+--- !u!114 &1644694984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644694975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dea2f13953d5c4c8d6cc0bd0d51a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1671717947
 GameObject:
   m_ObjectHideFlags: 0

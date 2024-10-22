@@ -7,12 +7,17 @@ namespace MaskedMischiefNamespace
 	public class PlayerRunner : MonoBehaviour
 	{
 		public float yVelocity = 0;
+		public float jumpStrength;
 		public float gravity;
+		public GameInput gameInput;
+		public bool isSprinting;
 
 		private PlayerMovementStateMachine movementStateMachine;
 		private void Awake()
 		{
+			gameInput = GetComponent<GameInput>();
 			movementStateMachine = new PlayerMovementStateMachine(this);
+			isSprinting = false;
 		}
 
 		private void Start()
