@@ -55,10 +55,14 @@ namespace MaskedMischiefNamespace
 		protected override void OnMoveCancel(InputAction.CallbackContext callbackContext)
 		{
 			base.OnMoveCancel(callbackContext);
+			stateMachine.ChangeState(stateMachine.IdlingState);
+			//Will be implemented later
+			/*
 			if (stateMachine.player.isSprinting)
 				stateMachine.ChangeState(stateMachine.HardStoppingState);
 			else
 				stateMachine.ChangeState(stateMachine.SoftStoppingState);
+			*/
 
 		}
 	}

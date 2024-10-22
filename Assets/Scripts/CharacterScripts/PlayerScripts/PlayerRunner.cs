@@ -11,6 +11,9 @@ namespace MaskedMischiefNamespace
 		public float gravity;
 		public GameInput gameInput;
 		public bool isSprinting;
+		public float walkSpeed;
+		public float runSpeed;
+		public Camera mainCamera;
 
 		private PlayerMovementStateMachine movementStateMachine;
 		private void Awake()
@@ -18,6 +21,7 @@ namespace MaskedMischiefNamespace
 			gameInput = GetComponent<GameInput>();
 			movementStateMachine = new PlayerMovementStateMachine(this);
 			isSprinting = false;
+			mainCamera = Camera.main;
 		}
 
 		private void Start()
