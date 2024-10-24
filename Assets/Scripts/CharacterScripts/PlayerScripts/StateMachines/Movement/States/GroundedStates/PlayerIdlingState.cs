@@ -10,6 +10,10 @@ namespace MaskedMischiefNamespace
 		{
 		}
 
-		
+		public override void Enter()
+		{
+			base.Enter();
+			staticMovement = new Vector2(0, 0);
+		}
 	}
 }

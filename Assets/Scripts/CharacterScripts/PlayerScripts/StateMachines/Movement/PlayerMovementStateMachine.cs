@@ -12,6 +12,7 @@ namespace MaskedMischiefNamespace
 		public PlayerRunningState RunningState { get; }
 		public PlayerFallingState FallingState { get; }
 		public PlayerJumpingState JumpingState { get; }
+		public PlayerLandingState LandingState { get; }
 		public PlayerHardStoppingState HardStoppingState { get; }
 		public PlayerSoftStoppingState SoftStoppingState { get; }
 
@@ -23,6 +24,7 @@ namespace MaskedMischiefNamespace
 			RunningState = new PlayerRunningState(this);
 			FallingState = new PlayerFallingState(this);
 			JumpingState = new PlayerJumpingState(this);
+			LandingState = new PlayerLandingState(this);
 			SoftStoppingState = new PlayerSoftStoppingState(this);
 			HardStoppingState = new PlayerHardStoppingState(this);
 		}

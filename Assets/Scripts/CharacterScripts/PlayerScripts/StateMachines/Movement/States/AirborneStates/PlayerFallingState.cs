@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace MaskedMischiefNamespace
 {
@@ -21,13 +22,23 @@ namespace MaskedMischiefNamespace
 			stateMachine.player.yVelocity = 0;
 		}
 
+		protected override void OnSprintStart(InputAction.CallbackContext callbackContext)
+		{
+
+		}
+
+		public override void HandleInput()
+		{
+			movementInput = stateMachine.player.gameInput.getMovementInputVectorNormalized();
+		}
+
 		public override void PhysicsUpdate()
 		{
 			base.PhysicsUpdate();
 			var player = stateMachine.player;
 			if(player.IsGrounded())
 			{
-				stateMachine.ChangeState(stateMachine.IdlingState);
+				stateMachine.ChangeState(stateMachine.LandingState);
 			}
 			else
 			{

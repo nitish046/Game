@@ -9,6 +9,7 @@ namespace MaskedMischiefNamespace
 	{
 		protected PlayerMovementStateMachine stateMachine;
 		protected Vector2 movementInput;
+		protected static Vector2 staticMovement;
 		public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
 		{
 			this.stateMachine = playerMovementStateMachine;
@@ -49,9 +50,27 @@ namespace MaskedMischiefNamespace
 		public virtual void HandleInput() 
 		{
 			movementInput = stateMachine.player.gameInput.getMovementInputVectorNormalized();
+			/*
+			 * The player's movement direction is actually decided by staticMovement
+			 * If staticMovement stops being updated, the player is unable to turn
+			 * This is what happens when the player is airborne
+			 */
+			staticMovement = movementInput;
 		}
 		public virtual void Update() { }
-		public virtual void PhysicsUpdate() { }
+		public virtual void PhysicsUpdate()
+		{
+			Vector3 cameraDir = stateMachine.player.mainCamera.transform.rotation.eulerAngles;
+			Vector3 moveDir = Quaternion.Euler(0, cameraDir.y, 0) * new Vector3(staticMovement.x, 0, staticMovement.y);
+			//stateMachine.player.transform.Translate(moveDir * stateMachine.player.walkSpeed);
+			if(!moveDir.Equals(new Vector3(0, 0, 0)))
+			{
+				Quaternion moveAngle = Quaternion.LookRotation(moveDir);
+				stateMachine.player.transform.rotation = Quaternion.Slerp(stateMachine.player.transform.rotation, moveAngle, 0.2f);
+				stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * stateMachine.player.walkSpeed);
+			}
+
+		}
 		#endregion
 
 		//Each movement state will be using these callbacks in different ways
