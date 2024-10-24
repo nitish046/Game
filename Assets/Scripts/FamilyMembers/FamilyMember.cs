@@ -17,6 +17,7 @@ public abstract class FamilyMember : MonoBehaviour
   public bool allow;
 
   protected Animator animator;
+  [SerializeField] protected GameObject win_lose_controller;
 
   protected virtual void Start()
   {

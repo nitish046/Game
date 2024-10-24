@@ -6,56 +6,58 @@ using UnityEngine.UI;
 
 public class LifeTracker : MonoBehaviour
 {
-	public int lives;
+  public int lives;
 
-	[SerializeField]
-	public UnityEngine.UI.Image[] hearts;
-	public Sprite heartImage;
+  [SerializeField]
+  public UnityEngine.UI.Image[] hearts;
+  public Sprite heartImage;
 
-	public GameObject loseScreen;
-	public GameObject mainScreen;
+  // public GameObject loseScreen;
+  // public GameObject mainScreen;
 
-	public Button restart_button;
-	public Button quit_button;
+  // public Button restart_button;
+  // public Button quit_button;
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Backspace))
-		{
-			LoseLife();
-		}
+  [SerializeField] protected GameObject win_lose_controller;
 
-		for (int i = 0; i < hearts.Length; i++)
-		{
-			if (i < lives)
-			{
-				hearts[i].enabled = true;
-			}
-			else
-			{
-				hearts[i].enabled = false;
-			}
-		}
-	}
+  void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.Backspace))
+    {
+      LoseLife();
+    }
 
-	void LoseLife()
-	{
-		if (lives >= 0)
-		{
-			lives--;
-			if (lives == 0)
-			{
-				LoseGame();
-			}
-		}
-	}
+    for (int i = 0; i < hearts.Length; i++)
+    {
+      if (i < lives)
+      {
+        hearts[i].enabled = true;
+      }
+      else
+      {
+        hearts[i].enabled = false;
+      }
+    }
+  }
 
-	void LoseGame()
-	{
-		mainScreen.SetActive(false);
-		loseScreen.SetActive(true);
-		restart_button.gameObject.SetActive(true);
-		quit_button.gameObject.SetActive(true);
-	}
+  void LoseLife()
+  {
+    if (lives >= 0)
+    {
+      lives--;
+      if (lives == 0)
+      {
+        win_lose_controller.GetComponent<WinLoseControl>().WinGame();
+      }
+    }
+  }
+
+  // void LoseGame()
+  // {
+  //   mainScreen.SetActive(false);
+  //   loseScreen.SetActive(true);
+  //   restart_button.gameObject.SetActive(true);
+  //   quit_button.gameObject.SetActive(true);
+  // }
 
 }

@@ -24,8 +24,10 @@ public class HenryController : FamilyMember
 
 
 
-  public Button restart_button;
-  public Button quit_button;
+  // public GameObject loseScreen;
+  // public GameObject mainScreen;
+  // public Button restart_button;
+  // public Button quit_button;
   public TMP_Text lose_text;
   public Material MainColor, FreezeColor;
   public float duration = 5f;
@@ -33,8 +35,6 @@ public class HenryController : FamilyMember
   public AudioSource splash;
   [SerializeField] private HideOnCollide collision_occur;
 
-  public GameObject loseScreen;
-  public GameObject mainScreen;
 
   // private Animator animator;
 
@@ -57,13 +57,17 @@ public class HenryController : FamilyMember
     distance = Vector3.Distance(transform.position, player.transform.position);
     if (distance <= 4 && allow)  // Loss condition is now active
     {
-      // lose_text.text = "You were Caught! You Lose!";
-      // lose_text.gameObject.SetActive(true);
-      restart_button.gameObject.SetActive(true);
-      quit_button.gameObject.SetActive(true);
-      mainScreen.SetActive(false);
-      loseScreen.SetActive(true);
+      SeesRaccoon();
     }
+  }
+
+  private void SeesRaccoon()
+  {
+    // restart_button.gameObject.SetActive(true);
+    // quit_button.gameObject.SetActive(true);
+    // mainScreen.SetActive(false);
+    // loseScreen.SetActive(true);
+    win_lose_controller.GetComponent<WinLoseControl>().LoseGame();
   }
 
   public override void Freeze(float freezeDuration, bool isTrapFreeze)
