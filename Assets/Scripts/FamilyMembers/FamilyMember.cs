@@ -6,24 +6,73 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public abstract class FamilyMember : MonoBehaviour
 {
+  public enum FamilyMemberState
+  {
+    NORMAL,
+    PATROL,
+    ACTIVATED
+  }
+
   protected abstract float MovementSpeed { get; }
   protected abstract float RotationSpeed { get; }
 
+  [SerializeField] float distance;
 
   [SerializeField] protected float waypoint_size = .4f;
   [SerializeField] protected float waypoint_wait_time = 2f;
   public bool allow;
 
+  [SerializeField] GameObject player;
+
   protected Animator animator;
   [SerializeField] protected GameObject win_lose_controller;
+
+  [SerializeField] protected FamilyMemberState familyMemberState = FamilyMemberState.NORMAL;
+
+  protected FieldOfView fieldOfView;
+  [SerializeField] protected float viewRadius;
+  [Range(0, 360)][SerializeField] protected float viewAngle = 120;
+  [Range(0, 360)][SerializeField] protected float periferalAngle = 190;
+  [SerializeField] protected LayerMask targetMask;
+  [SerializeField] protected LayerMask obstructionMask;
+
+  public bool hasSeenPlayer = false;
 
   protected virtual void Start()
   {
     // collision_occur.onRaccoonFirstTimeOnTrash += collisionOccur_onRaccoonFirstTimeOnTrash;
     allow = true;
     animator = transform.GetChild(0).GetComponent<Animator>();
+    fieldOfView = new FieldOfView(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask);
+    StartCoroutine(fieldOfView.FOVRoutine());
+  }
+
+  private void Update()
+  {
+    distance = Vector3.Distance(transform.position, player.transform.position);
+    CheckForRaccoon();
+  }
+
+  private void CheckForRaccoon()
+  {
+    if (fieldOfView.canSeePlayer)
+    {
+      hasSeenPlayer = true;
+      SeesRaccoon();
+    }
+  }
+  private void SeesRaccoon()
+  {
+    // restart_button.gameObject.SetActive(true);
+    // quit_button.gameObject.SetActive(true);
+    // mainScreen.SetActive(false);
+    // loseScreen.SetActive(true);
+    win_lose_controller.GetComponent<WinLoseControl>().LoseGame();
+
+    familyMemberState = FamilyMemberState.ACTIVATED;
   }
 
 
