@@ -24,10 +24,9 @@ namespace MaskedMischiefNamespace
 		public override void PhysicsUpdate()
 		{
 			base.PhysicsUpdate();
-			var player = stateMachine.player;
-			player.transform.Translate(0, player.yVelocity, 0);
-			player.yVelocity -= player.gravity;
-			if (!player.IsGrounded())
+			PlayerRunner player = stateMachine.player;
+			player.transform.Translate(player.yVelocity * Vector3.up);
+			if (ground.distance > 0.1f)
 			{
 				stateMachine.ChangeState(stateMachine.FallingState);
 			}

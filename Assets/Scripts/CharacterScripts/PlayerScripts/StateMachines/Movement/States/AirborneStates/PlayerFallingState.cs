@@ -19,7 +19,11 @@ namespace MaskedMischiefNamespace
 		public override void Exit()
 		{
 			base.Exit();
-			stateMachine.player.yVelocity = 0;
+			/*Collider other;
+			stateMachine.player.IsGrounded(out other);
+			Vector3 closestPoint = other.ClosestPointOnBounds(stateMachine.player.transform.position);
+			Vector3 snappedPosition = new Vector3(stateMachine.player.transform.position.x, closestPoint.y + 0.1f, stateMachine.player.transform.position.z);
+			stateMachine.player.transform.position = snappedPosition;*/
 		}
 
 		protected override void OnSprintStart(InputAction.CallbackContext callbackContext)
@@ -27,23 +31,18 @@ namespace MaskedMischiefNamespace
 
 		}
 
-		public override void HandleInput()
-		{
-			movementInput = stateMachine.player.gameInput.getMovementInputVectorNormalized();
-		}
-
 		public override void PhysicsUpdate()
 		{
+			PlayerRunner player = stateMachine.player;
 			base.PhysicsUpdate();
-			var player = stateMachine.player;
-			if(player.IsGrounded())
+			if(ground.distance > 0.1f)
 			{
-				stateMachine.ChangeState(stateMachine.LandingState);
+				player.transform.Translate(player.yVelocity * Vector3.up);
+				player.yVelocity += player.gravity;
 			}
 			else
 			{
-				player.transform.Translate(0, player.yVelocity, 0);
-				player.yVelocity -= player.gravity;
+				stateMachine.ChangeState(stateMachine.LandingState);
 			}
 		}
 	}

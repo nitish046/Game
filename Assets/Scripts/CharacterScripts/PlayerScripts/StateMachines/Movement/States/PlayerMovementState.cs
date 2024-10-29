@@ -10,6 +10,10 @@ namespace MaskedMischiefNamespace
 		protected PlayerMovementStateMachine stateMachine;
 		protected Vector2 movementInput;
 		protected static Vector2 staticMovement;
+		protected static bool isGrounded = false;
+		public static RaycastHit ground;
+		protected static bool staticIsGrounded = false;
+		public static RaycastHit collision;
 		public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
 		{
 			this.stateMachine = playerMovementStateMachine;
@@ -57,9 +61,16 @@ namespace MaskedMischiefNamespace
 			 */
 			staticMovement = movementInput;
 		}
-		public virtual void Update() { }
+		public virtual void Update() 
+		{
+			stateMachine.player.FindGround(out ground);
+		}
 		public virtual void PhysicsUpdate()
 		{
+			if(stateMachine.player.yVelocity < stateMachine.player.gravity * 15)
+			{
+				stateMachine.player.yVelocity = stateMachine.player.gravity * 15;
+			}
 			Vector3 cameraDir = stateMachine.player.mainCamera.transform.rotation.eulerAngles;
 			Vector3 moveDir = Quaternion.Euler(0, cameraDir.y, 0) * new Vector3(staticMovement.x, 0, staticMovement.y);
 			//stateMachine.player.transform.Translate(moveDir * stateMachine.player.walkSpeed);
@@ -67,7 +78,6 @@ namespace MaskedMischiefNamespace
 			{
 				Quaternion moveAngle = Quaternion.LookRotation(moveDir);
 				stateMachine.player.transform.rotation = Quaternion.Slerp(stateMachine.player.transform.rotation, moveAngle, 0.2f);
-				stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * stateMachine.player.walkSpeed);
 			}
 
 		}

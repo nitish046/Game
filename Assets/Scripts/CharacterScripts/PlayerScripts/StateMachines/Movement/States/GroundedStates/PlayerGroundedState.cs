@@ -14,15 +14,14 @@ namespace MaskedMischiefNamespace
 		public override void Enter()
 		{
 			base.Enter();
+
 		}
 
 		//Only grounded states need to check for if the player is grounded, so PhysicsUpdate() is overriden to add that logic here only
 		public override void PhysicsUpdate()
 		{
 			base.PhysicsUpdate();
-			var player = stateMachine.player;
-
-			if(!player.IsGrounded())
+			if(ground.distance > 0.1f)
 			{
 				stateMachine.ChangeState(stateMachine.FallingState);
 			}
