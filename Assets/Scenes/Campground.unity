@@ -5130,7 +5130,7 @@ GameObject:
   - component: {fileID: 100992813}
   m_Layer: 7
   m_Name: Box1 (1)
-  m_TagString: Collidable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6839,13 +6839,9 @@ GameObject:
   - component: {fileID: 618716901}
   - component: {fileID: 618716900}
   - component: {fileID: 618716899}
-<<<<<<< Updated upstream
   m_Layer: 7
-=======
-  m_Layer: 6
->>>>>>> Stashed changes
   m_Name: Box2
-  m_TagString: Collidable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7643,11 +7639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a40ed7dc9e83155469e183a2936f375d, type: 3}
       propertyPath: m_Layer
-<<<<<<< Updated upstream
       value: 7
-=======
-      value: 6
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8653,13 +8645,8 @@ PrefabInstance:
       value: GarbageCan
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
-<<<<<<< Updated upstream
       propertyPath: m_Layer
       value: 7
-=======
-      propertyPath: m_TagString
-      value: Collidable
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8858,7 +8845,7 @@ GameObject:
   - component: {fileID: 1099933499}
   m_Layer: 7
   m_Name: foldingTable
-  m_TagString: Collidable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14163,6 +14150,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 28d668d7645eeae4e8fc3f37c422f15c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1268253781}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 28d668d7645eeae4e8fc3f37c422f15c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1268253784}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 28d668d7645eeae4e8fc3f37c422f15c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1268253782}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 28d668d7645eeae4e8fc3f37c422f15c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1268253785}
   m_SourcePrefab: {fileID: 100100000, guid: 28d668d7645eeae4e8fc3f37c422f15c, type: 3}
 --- !u!1 &1268253776 stripped
 GameObject:
@@ -14191,7 +14187,6 @@ MonoBehaviour:
   item_holder: {fileID: 1268253778}
   num_items_held: 0
   y_position: 0
-<<<<<<< Updated upstream
   win_lose_controller: {fileID: 344480905}
 --- !u!136 &1268253782
 CapsuleCollider:
@@ -14269,8 +14264,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
-=======
->>>>>>> Stashed changes
 --- !u!1001 &1283171088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14807,13 +14800,9 @@ GameObject:
   - component: {fileID: 1392942069}
   - component: {fileID: 1392942068}
   - component: {fileID: 1392942067}
-<<<<<<< Updated upstream
   m_Layer: 7
-=======
-  m_Layer: 6
->>>>>>> Stashed changes
   m_Name: Box1
-  m_TagString: Collidable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15231,7 +15220,7 @@ GameObject:
   - component: {fileID: 1601176698}
   m_Layer: 7
   m_Name: Box2 (1)
-  m_TagString: Collidable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15495,13 +15484,7 @@ GameObject:
   - component: {fileID: 1644694983}
   - component: {fileID: 1644694984}
   - component: {fileID: 1644694985}
-<<<<<<< Updated upstream
   m_Layer: 6
-=======
-  - component: {fileID: 1644694986}
-  - component: {fileID: 1644694987}
-  m_Layer: 0
->>>>>>> Stashed changes
   m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15671,17 +15654,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yVelocity: 0
-  jumpStrength: 0.1
-  gravity: -0.01
+  jumpStrength: 0.05
+  gravity: 0.00098
   gameInput: {fileID: 0}
   isSprinting: 0
   walkSpeed: 0.1
   runSpeed: 0.3
   mainCamera: {fileID: 0}
-<<<<<<< Updated upstream
-=======
-  rigidbody: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!114 &1644694984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15707,69 +15686,19 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.75962
   m_Radius: 0.33
-  m_SlopeLimit: 15
+  m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8222382, z: 0}
---- !u!136 &1644694986
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644694975}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.33
-  m_Height: 1.75962
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8222382, z: 0}
---- !u!54 &1644694987
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644694975}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1671717947
 GameObject:
   m_ObjectHideFlags: 0
@@ -16893,7 +16822,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

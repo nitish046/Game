@@ -7,7 +7,6 @@ TagManager:
   - Collectables
   - Henry
   - Terrain
-  - Collidable
   layers:
   - Default
   - TransparentFX
@@ -15,13 +14,8 @@ TagManager:
   - Terrain
   - Water
   - UI
-<<<<<<< Updated upstream
   - Target
   - Obstruction
-=======
-  - Object
-  - 
->>>>>>> Stashed changes
   - 
   - 
   - 
