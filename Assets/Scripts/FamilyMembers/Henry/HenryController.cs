@@ -18,8 +18,6 @@ public class HenryController : FamilyMember
 
   // [SerializeField] float waypoint_size = .4f;
   // [SerializeField] float waypoint_wait_time = 2f;
-  [SerializeField] float distance;
-  [SerializeField] GameObject player;
   [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
 
 
@@ -48,26 +46,9 @@ public class HenryController : FamilyMember
   private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
   {
     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+    familyMemberState = FamilyMemberState.PATROL;
     StartCoroutine(Patrol(getWaypointArray()));
     walkingTransition(true);
-  }
-
-  private void Update()
-  {
-    distance = Vector3.Distance(transform.position, player.transform.position);
-    if (distance <= 4 && allow)  // Loss condition is now active
-    {
-      SeesRaccoon();
-    }
-  }
-
-  private void SeesRaccoon()
-  {
-    // restart_button.gameObject.SetActive(true);
-    // quit_button.gameObject.SetActive(true);
-    // mainScreen.SetActive(false);
-    // loseScreen.SetActive(true);
-    win_lose_controller.GetComponent<WinLoseControl>().LoseGame();
   }
 
   public override void Freeze(float freezeDuration, bool isTrapFreeze)
