@@ -27,24 +27,29 @@ namespace MaskedMischiefNamespace
 
 		}
 
-		public override void HandleInput()
-		{
-			movementInput = stateMachine.player.gameInput.getMovementInputVectorNormalized();
-		}
-
 		public override void PhysicsUpdate()
 		{
 			base.PhysicsUpdate();
 			var player = stateMachine.player;
-			if(player.IsGrounded())
+			if (player.IsGrounded())
 			{
 				stateMachine.ChangeState(stateMachine.LandingState);
 			}
 			else
 			{
-				player.transform.Translate(0, player.yVelocity, 0);
+				player.GetComponent<CharacterController>().Move(new Vector3(0, player.yVelocity, 0));
 				player.yVelocity -= player.gravity;
 			}
 		}
+
+		public override void Update()
+		{
+			base.Update();
+			if(isGrounded())
+			{
+				stateMachine.ChangeState(stateMachine.LandingState);
+			}
+		}
+
 	}
 }

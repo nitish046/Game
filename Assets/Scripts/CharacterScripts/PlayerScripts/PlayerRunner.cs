@@ -14,6 +14,31 @@ namespace MaskedMischiefNamespace
 		public float walkSpeed;
 		public float runSpeed;
 		public Camera mainCamera;
+		private CharacterController CharacterController;
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (!other.CompareTag("Player"))
+				PlayerMovementStateMachine.triggers.Add(other);
+			Debug.Log(other.tag);
+		}
+
+		private void OnTriggerExit(Collider other)
+		{
+			Debug.Log("Uncollide");
+			if (!other.CompareTag("Player"))
+				PlayerMovementStateMachine.triggers.Remove(other);
+		}
+
+		private void OnTriggerStay(Collider other)
+		{
+			
+		}
+
+		private void OnCollisionEnter(Collision collision)
+		{
+			
+		}
 
 		private PlayerMovementStateMachine movementStateMachine;
 		private void Awake()
@@ -22,6 +47,7 @@ namespace MaskedMischiefNamespace
 			movementStateMachine = new PlayerMovementStateMachine(this);
 			isSprinting = false;
 			mainCamera = Camera.main;
+			CharacterController = GetComponent<CharacterController>();
 		}
 
 		private void Start()
@@ -42,7 +68,8 @@ namespace MaskedMischiefNamespace
 		}
 		public bool IsGrounded()
 		{
-			return Physics.Raycast(GetComponentInChildren<Rigidbody>().transform.position, -Vector3.up, 0.1f);
+			//return Physics.Raycast(GetComponentInChildren<Rigidbody>().transform.position, -Vector3.up, 0.1f);
+			return CharacterController.isGrounded;
 		}
 	}
 }

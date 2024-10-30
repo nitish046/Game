@@ -22,8 +22,27 @@ namespace MaskedMischiefNamespace
 		}
 		public virtual void Exit()
 		{
-			Debug.Log("Exiting State: " + GetType().Name);
+			//Debug.Log("Exiting State: " + GetType().Name);
 			RemoveCallbacks();
+		}
+		protected bool isGrounded()
+		{
+			foreach(Collider c in PlayerMovementStateMachine.triggers)
+			{
+				if(c.CompareTag("Terrain") || c.CompareTag("Collidable"))
+				{
+					return true;
+				}
+			}
+			return false;
+			//return stateMachine.player.IsGrounded();
+		}
+
+		protected void snapToGround(Collider c)
+		{
+			Vector3 p = stateMachine.player.transform.position;
+			p.y = c.ClosestPoint(p).y;
+			stateMachine.player.transform.position = p;
 		}
 
 		protected virtual void AddCallbacks() 
@@ -53,7 +72,6 @@ namespace MaskedMischiefNamespace
 			/*
 			 * The player's movement direction is actually decided by staticMovement
 			 * If staticMovement stops being updated, the player is unable to turn
-			 * This is what happens when the player is airborne
 			 */
 			staticMovement = movementInput;
 		}

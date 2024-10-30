@@ -16,6 +16,11 @@ namespace MaskedMischiefNamespace
 		public PlayerHardStoppingState HardStoppingState { get; }
 		public PlayerSoftStoppingState SoftStoppingState { get; }
 
+
+		public static List<Collider> triggers = new List<Collider>();
+		public static List<Collider> colliders = new List<Collider>();
+
+
 		public PlayerMovementStateMachine(PlayerRunner playerRunner)
 		{
 			player = playerRunner;
