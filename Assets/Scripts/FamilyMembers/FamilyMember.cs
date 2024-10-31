@@ -40,6 +40,8 @@ public abstract class FamilyMember : MonoBehaviour
   [SerializeField] protected LayerMask obstructionMask;
 
   public bool hasSeenPlayer = false;
+  public float patrolDuration = 10;
+  public float secondsSinceSeenPlayer = 0;
 
   protected virtual void Start()
   {
@@ -50,21 +52,27 @@ public abstract class FamilyMember : MonoBehaviour
     StartCoroutine(fieldOfView.FOVRoutine());
   }
 
-  private void Update()
+  protected void Update()
   {
     distance = Vector3.Distance(transform.position, player.transform.position);
     CheckForRaccoon();
   }
 
-  private void CheckForRaccoon()
+  protected void CheckForRaccoon()
   {
     if (fieldOfView.canSeePlayer)
     {
       hasSeenPlayer = true;
       SeesRaccoon();
     }
+    else if (hasSeenPlayer)
+    {
+      familyMemberState = FamilyMemberState.PATROL;
+      hasSeenPlayer = false;
+      // Go on Patrol, start timer with secondsSinceSeenPlayer
+    }
   }
-  private void SeesRaccoon()
+  protected void SeesRaccoon()
   {
     // restart_button.gameObject.SetActive(true);
     // quit_button.gameObject.SetActive(true);
@@ -75,10 +83,9 @@ public abstract class FamilyMember : MonoBehaviour
     familyMemberState = FamilyMemberState.ACTIVATED;
   }
 
-
   public abstract void Freeze(float freezeDuration, bool isTrapFreeze);
 
-  IEnumerator Patrol(Vector3[] waypoints)
+  protected IEnumerator Patrol(Vector3[] waypoints)
   {
     int waypoint_index = 0;
     Vector3 waypoint_target = waypoints[waypoint_index];

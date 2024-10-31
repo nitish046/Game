@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,11 +21,28 @@ namespace MaskedMischiefNamespace
 		public override void PhysicsUpdate()
 		{
 			base.PhysicsUpdate();
+			
+		}
+
+		public override void Update()
+		{
+			base.Update();
 			var player = stateMachine.player;
 
-			if(!player.IsGrounded())
+			if (!isGrounded())
 			{
 				stateMachine.ChangeState(stateMachine.FallingState);
+			}
+			else
+			{
+				foreach(Collider c in PlayerMovementStateMachine.triggers)
+				{
+					if(c.CompareTag("Terrain"))
+					{
+						snapToGround(c);
+						break;
+					}
+				}
 			}
 		}
 
