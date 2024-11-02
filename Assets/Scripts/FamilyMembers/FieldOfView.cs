@@ -37,7 +37,7 @@ public class FieldOfView : MonoBehaviour  // The copy of this script included in
 
     while (true)
     {
-      Debug.Log("0.2 second loop");
+      //Debug.Log("0.2 second loop");
       yield return wait;
       FieldOfViewCheck();
     }

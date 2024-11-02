@@ -47,7 +47,8 @@ public class HenryController : FamilyMember
   {
     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     familyMemberState = FamilyMemberState.PATROL;
-    StartCoroutine(Patrol(getWaypointArray()));
+    // StartCoroutine(Patrol(getWaypointArray("Patrol")));
+    patrolCoroutine = StartCoroutine(Patrol(getWaypointArray()));
     walkingTransition(true);
   }
 
@@ -98,31 +99,31 @@ public class HenryController : FamilyMember
     //Debug.Log("Henry has unfrozen.");
   }
 
-  IEnumerator Patrol(Vector3[] waypoints)
-  {
-    int waypoint_index = 0;
-    Vector3 waypoint_target = waypoints[waypoint_index];
+  // IEnumerator Patrol(Vector3[] waypoints)
+  // {
+  //   int waypoint_index = 0;
+  //   Vector3 waypoint_target = waypoints[waypoint_index];
 
-    while (true)
-    {
-      if (allow)
-      {
-        transform.position = Vector3.MoveTowards(transform.position, waypoint_target, movement_speed * Time.deltaTime);
-        transform.LookAt(waypoint_target);
+  //   while (true)
+  //   {
+  //     if (allow)
+  //     {
+  //       transform.position = Vector3.MoveTowards(transform.position, waypoint_target, movement_speed * Time.deltaTime);
+  //       transform.LookAt(waypoint_target);
 
-        if (transform.position == waypoint_target)
-        {
-          walkingTransition(false);
-          waypoint_index = (waypoint_index + 1) % waypoints.Length;
-          waypoint_target = waypoints[waypoint_index];
-          yield return new WaitForSeconds(waypoint_wait_time);
-          yield return StartCoroutine(turnTowardsPosition(waypoint_target));
-          walkingTransition(true);
-        }
-      }
-      yield return null;
-    }
-  }
+  //       if (transform.position == waypoint_target)
+  //       {
+  //         walkingTransition(false);
+  //         waypoint_index = (waypoint_index + 1) % waypoints.Length;
+  //         waypoint_target = waypoints[waypoint_index];
+  //         yield return new WaitForSeconds(waypoint_wait_time);
+  //         yield return StartCoroutine(turnTowardsPosition(waypoint_target));
+  //         walkingTransition(true);
+  //       }
+  //     }
+  //     yield return null;
+  //   }
+  // }
 
 
 
@@ -155,6 +156,10 @@ public class HenryController : FamilyMember
   protected Vector3[] getWaypointArray()
   {
     return base.getWaypointArray(path);
+  }
+  protected Vector3[] getWaypointArray(string type)
+  {
+    return base.getWaypointArray("henry", type);
   }
 
   private void OnDrawGizmos()
