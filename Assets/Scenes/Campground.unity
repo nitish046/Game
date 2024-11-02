@@ -6431,6 +6431,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439857318}
   m_CullTransparentMesh: 1
+--- !u!1 &456105182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456105184}
+  - component: {fileID: 456105183}
+  m_Layer: 0
+  m_Name: PatrolPointOperator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &456105183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456105182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57afd1d840825c3498b814a840e40e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  henryPatrolPoints:
+  - {x: 0, y: 0, z: -5.74}
+  - {x: -7.07, y: 0, z: -5.74}
+  - {x: -7.19, y: 0, z: -0.09}
+  - {x: 0.05, y: 0, z: -0.09}
+  emilyPatrolPoints: []
+  motherDearPatrolPoints: []
+  emilyNormalPoints: []
+  motherDearNormalPoints: []
+--- !u!4 &456105184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456105182}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.7650447, y: -6.84173, z: 2.174033}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501372521
 GameObject:
   m_ObjectHideFlags: 0
@@ -6998,6 +7051,7 @@ MonoBehaviour:
   hasSeenPlayer: 0
   patrolDuration: 10
   secondsSinceSeenPlayer: 0
+  patrolPointOperator: {fileID: 456105182}
   path: {fileID: 1699224098}
   movement_speed: 5
   rotation_speed: 90
@@ -17131,3 +17185,4 @@ SceneRoots:
   - {fileID: 1049013676}
   - {fileID: 283965823}
   - {fileID: 344480907}
+  - {fileID: 456105184}

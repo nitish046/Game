@@ -42,6 +42,13 @@ public abstract class FamilyMember : MonoBehaviour
   public bool hasSeenPlayer = false;
   public float patrolDuration = 10;
   public float secondsSinceSeenPlayer = 0;
+  protected Coroutine timerCoroutine;
+  bool isTimerCoroutineRunning = false;
+
+  public GameObject patrolPointOperator;
+  protected Coroutine patrolCoroutine;
+  bool isPatrolCoroutineRunning = false;
+
 
   protected virtual void Start()
   {
@@ -63,6 +70,11 @@ public abstract class FamilyMember : MonoBehaviour
     if (fieldOfView.canSeePlayer)
     {
       hasSeenPlayer = true;
+      if (isTimerCoroutineRunning)
+      {
+        isTimerCoroutineRunning = false;
+        StopCoroutine(timerCoroutine);
+      }
       SeesRaccoon();
     }
     else if (hasSeenPlayer)
@@ -70,26 +82,30 @@ public abstract class FamilyMember : MonoBehaviour
       familyMemberState = FamilyMemberState.PATROL;
       hasSeenPlayer = false;
       // Go on Patrol, start timer with secondsSinceSeenPlayer
-      StartCoroutine(seePlayerTimer());
-    }
-    else if (secondsSinceSeenPlayer >= 10)
-    {
-      familyMemberState = FamilyMemberState.NORMAL;
-      secondsSinceSeenPlayer = 0;
-      // implement normal behavior
+      timerCoroutine = StartCoroutine(seePlayerTimer());
     }
   }
 
   protected IEnumerator seePlayerTimer()
   {
+    isTimerCoroutineRunning = true;
     WaitForSeconds wait = new WaitForSeconds(1.0f);
     while (!fieldOfView.canSeePlayer)
     {
       yield return wait;
       secondsSinceSeenPlayer++;
       if (secondsSinceSeenPlayer >= 10)
-        yield break; ;
+      {
+        familyMemberState = FamilyMemberState.NORMAL;
+        isPatrolCoroutineRunning = false;
+        StopCoroutine(patrolCoroutine);
+        //call to implement normal behavior
+        isTimerCoroutineRunning = false;
+        yield break;
+      }
     }
+    familyMemberState = FamilyMemberState.ACTIVATED;
+    isTimerCoroutineRunning = false;
     secondsSinceSeenPlayer = 0;
   }
 
@@ -100,7 +116,11 @@ public abstract class FamilyMember : MonoBehaviour
     // mainScreen.SetActive(false);
     // loseScreen.SetActive(true);
     win_lose_controller.GetComponent<WinLoseControl>().LoseGame();
-
+    if (familyMemberState == FamilyMemberState.PATROL && isPatrolCoroutineRunning)
+    {
+      StopCoroutine(patrolCoroutine);
+      isPatrolCoroutineRunning = false;
+    }
     familyMemberState = FamilyMemberState.ACTIVATED;
   }
 
@@ -108,6 +128,8 @@ public abstract class FamilyMember : MonoBehaviour
 
   protected IEnumerator Patrol(Vector3[] waypoints)
   {
+    isPatrolCoroutineRunning = true;
+    familyMemberState = FamilyMemberState.PATROL;
     int waypoint_index = 0;
     Vector3 waypoint_target = waypoints[waypoint_index];
 
@@ -167,6 +189,12 @@ public abstract class FamilyMember : MonoBehaviour
     {
       waypoint_array[i] = path.GetChild(i).position;
     }
+
+    return waypoint_array;
+  }
+  protected virtual Vector3[] getWaypointArray(string name, string type)
+  {
+    Vector3[] waypoint_array = patrolPointOperator.GetComponent<FamilyPatrolPoints>().findPatrolPoints(name, type);
 
     return waypoint_array;
   }
