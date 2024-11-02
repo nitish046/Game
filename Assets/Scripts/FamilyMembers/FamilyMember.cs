@@ -70,8 +70,29 @@ public abstract class FamilyMember : MonoBehaviour
       familyMemberState = FamilyMemberState.PATROL;
       hasSeenPlayer = false;
       // Go on Patrol, start timer with secondsSinceSeenPlayer
+      StartCoroutine(seePlayerTimer());
+    }
+    else if (secondsSinceSeenPlayer >= 10)
+    {
+      familyMemberState = FamilyMemberState.NORMAL;
+      secondsSinceSeenPlayer = 0;
+      // implement normal behavior
     }
   }
+
+  protected IEnumerator seePlayerTimer()
+  {
+    WaitForSeconds wait = new WaitForSeconds(1.0f);
+    while (!fieldOfView.canSeePlayer)
+    {
+      yield return wait;
+      secondsSinceSeenPlayer++;
+      if (secondsSinceSeenPlayer >= 10)
+        yield break; ;
+    }
+    secondsSinceSeenPlayer = 0;
+  }
+
   protected void SeesRaccoon()
   {
     // restart_button.gameObject.SetActive(true);
