@@ -1810,7 +1810,7 @@ GameObject:
   - component: {fileID: 555174963}
   - component: {fileID: 555174962}
   - component: {fileID: 555174961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FrontFloor
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -3139,7 +3139,7 @@ GameObject:
   - component: {fileID: 889772967}
   - component: {fileID: 889772966}
   - component: {fileID: 889772965}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MiddleFloor
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -4537,7 +4537,7 @@ GameObject:
   - component: {fileID: 1348904925}
   - component: {fileID: 1348904924}
   - component: {fileID: 1348904923}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BasementFloor
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -6327,7 +6327,7 @@ GameObject:
   - component: {fileID: 1702756893}
   - component: {fileID: 1702756892}
   - component: {fileID: 1702756891}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BackFloor
   m_TagString: Terrain
   m_Icon: {fileID: 0}
