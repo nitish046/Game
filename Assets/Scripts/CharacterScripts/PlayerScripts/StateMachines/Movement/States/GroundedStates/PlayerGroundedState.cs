@@ -28,21 +28,15 @@ namespace MaskedMischiefNamespace
 		{
 			base.Update();
 			var player = stateMachine.player;
-
-			if (!isGrounded())
+			Collider ground;
+			if (!isGrounded(out ground))
 			{
 				stateMachine.ChangeState(stateMachine.FallingState);
 			}
 			else
 			{
-				foreach(Collider c in PlayerMovementStateMachine.triggers)
-				{
-					if(c.CompareTag("Terrain"))
-					{
-						snapToGround(c);
-						break;
-					}
-				}
+				Debug.Log(ground.ToString());
+				snapToGround(ground);
 			}
 		}
 

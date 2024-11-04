@@ -29,6 +29,8 @@ namespace MaskedMischiefNamespace
 		{
 			foreach(Collider c in PlayerMovementStateMachine.triggers)
 			{
+				if (c == null)
+					continue;
 				if(c.CompareTag("Terrain") || c.CompareTag("Collidable"))
 				{
 					return true;
@@ -38,10 +40,31 @@ namespace MaskedMischiefNamespace
 			//return stateMachine.player.IsGrounded();
 		}
 
+		protected bool isGrounded(out Collider Ground)
+		{
+			foreach (Collider c in PlayerMovementStateMachine.triggers)
+			{
+				if (c == null)
+					continue;
+				if (c.CompareTag("Terrain") || c.CompareTag("Collidable"))
+				{
+					Ground = c;
+					Debug.Log(c);
+					return true;
+				}
+			}
+			Ground = null;
+			return false;
+			//return stateMachine.player.IsGrounded();
+		}
+
 		protected void snapToGround(Collider c)
 		{
 			Vector3 p = stateMachine.player.transform.position;
-			p.y = c.ClosestPoint(p).y;
+			if(c.GetType() == typeof(CapsuleCollider) || c.GetType() == typeof(BoxCollider) || c.GetType() == typeof(SphereCollider) || c.GetType() == typeof(MeshCollider))
+				p.y = c.ClosestPoint(p).y;
+			else
+				p.y = c.ClosestPointOnBounds(p).y;
 			stateMachine.player.transform.position = p;
 		}
 
@@ -53,6 +76,7 @@ namespace MaskedMischiefNamespace
 			actions.Sprint.started += OnSprintStart;
 			actions.Move.started += OnMoveStart;
 			actions.Move.canceled += OnMoveCancel;
+			actions.Win.started += OnWinStart;
 		}
 		protected virtual void RemoveCallbacks() 
 		{
@@ -62,6 +86,7 @@ namespace MaskedMischiefNamespace
 			actions.Sprint.started -= OnSprintStart;
 			actions.Move.started -= OnMoveStart;
 			actions.Move.canceled -= OnMoveCancel;
+			actions.Win.started -= OnWinStart;
 		}
 
 		//These methods can be overridden if any state needs its own logic.
@@ -94,6 +119,10 @@ namespace MaskedMischiefNamespace
 		//Each movement state will be using these callbacks in different ways
 		//Override the functions in each movement state to modify their behavior
 		#region Callbacks
+		protected virtual void OnWinStart(InputAction.CallbackContext callbackContext)
+		{
+			stateMachine.player.Win();
+		}
 		protected virtual void OnJumpStart(InputAction.CallbackContext callbackContext)
 		{
 

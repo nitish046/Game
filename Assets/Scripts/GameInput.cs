@@ -18,15 +18,15 @@ public class GameInput : MonoBehaviour
 		player_input_actions.Player.Interact.performed += Interact_performed;
 	}
 
-		private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-		{
-				on_interact_action?.Invoke(this, EventArgs.Empty);
-		}
+	private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+	{
+		on_interact_action?.Invoke(this, EventArgs.Empty);
+	}
 
-		public bool getJumpInput()
+	public bool getJumpInput()
 	{
 		if (player_input_actions.Player.Jump.ReadValue<float>() == 1)
-				return true;
+			return true;
 
 		return false;
 	}
@@ -34,7 +34,7 @@ public class GameInput : MonoBehaviour
 	public bool getSprintInput()
 	{
 		if (player_input_actions.Player.Sprint.ReadValue<float>() == 1)
-				return true;
+			return true;
 
 		return false;
 	}

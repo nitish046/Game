@@ -15,6 +15,7 @@ namespace MaskedMischiefNamespace
 		public float runSpeed;
 		public Camera mainCamera;
 		private CharacterController CharacterController;
+		[SerializeField] protected GameObject winLoseController;
 
 		private void OnTriggerEnter(Collider other)
 		{
@@ -40,6 +41,11 @@ namespace MaskedMischiefNamespace
 			
 		}
 
+		public void Win()
+		{
+			winLoseController.GetComponent<WinLoseControl>().WinGame();
+		}
+
 		private PlayerMovementStateMachine movementStateMachine;
 		private void Awake()
 		{
@@ -47,14 +53,26 @@ namespace MaskedMischiefNamespace
 			movementStateMachine = new PlayerMovementStateMachine(this);
 			isSprinting = false;
 			mainCamera = Camera.main;
-			CharacterController = GetComponent<CharacterController>();
 		}
 
 		private void Start()
 		{
+			Debug.Log("Start");
+			if (!TryGetComponent<CharacterController>(out CharacterController))
+			{
+				CharacterController = gameObject.AddComponent<CharacterController>();
+
+				CharacterController.center = new Vector3(0, 0.8222382f, 0);
+				CharacterController.radius = 0.33f;
+				CharacterController.height = 1.75962f;
+			}
+			Debug.Log(CharacterController);
 			movementStateMachine.ChangeState(movementStateMachine.IdlingState);
 		}
-
+		private void OnDestroy()
+		{
+			movementStateMachine.ExitState();
+		}
 		private void Update()
 		{
 			movementStateMachine.HandleInput();

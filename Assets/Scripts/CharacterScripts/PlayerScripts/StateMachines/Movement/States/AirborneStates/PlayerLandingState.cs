@@ -13,19 +13,17 @@ namespace MaskedMischiefNamespace
 		public override void Enter()
 		{
 			base.Enter();
-			foreach(Collider c in PlayerMovementStateMachine.triggers)
+			Collider ground;
+			if(isGrounded(out ground))
 			{
-				if(c.CompareTag("Terrain"))
-				{
-					snapToGround(c);
-					break;
-				}
-				stateMachine.player.yVelocity = 0;
-				if(staticMovement == new Vector2(0, 0))
-					stateMachine.ChangeState(stateMachine.IdlingState);
-				else
-					stateMachine.ChangeState(stateMachine.WalkingState);
+				snapToGround(ground);
 			}
+			stateMachine.player.yVelocity = 0;
+			if(staticMovement == new Vector2(0, 0))
+				stateMachine.ChangeState(stateMachine.IdlingState);
+			else
+				stateMachine.ChangeState(stateMachine.WalkingState);
+			
 		}
 
 		public override void PhysicsUpdate()
