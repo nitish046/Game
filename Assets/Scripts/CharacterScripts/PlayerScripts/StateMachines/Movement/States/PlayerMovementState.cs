@@ -49,9 +49,10 @@ namespace MaskedMischiefNamespace
 				if (c.CompareTag("Terrain") || c.CompareTag("Collidable"))
 				{
 					Ground = c;
-					Debug.Log(c);
 					return true;
 				}
+				Debug.Log(c);
+
 			}
 			Ground = null;
 			return false;
