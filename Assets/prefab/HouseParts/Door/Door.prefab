@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1989948234181893722}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d7a4595047eff744a7683ec7f353a23, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -94,6 +98,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d7a4595047eff744a7683ec7f353a23, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9167903921763867628}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d7a4595047eff744a7683ec7f353a23, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1531500734916407884}
   m_SourcePrefab: {fileID: 100100000, guid: 3d7a4595047eff744a7683ec7f353a23, type: 3}
 --- !u!1 &1361734717249261173 stripped
 GameObject:
@@ -142,6 +149,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.741766, y: 1.48056, z: 0.16}
   m_Center: {x: -0.4, y: 0.74028, z: 0}
+--- !u!114 &1531500734916407884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361734717249261173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78268ce833760646b26392bee0e6d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  use_events: 0
+  prompt_message: Open Door
 --- !u!4 &1850427690273068239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d7a4595047eff744a7683ec7f353a23, type: 3}
