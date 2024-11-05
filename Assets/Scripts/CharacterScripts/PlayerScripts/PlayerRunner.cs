@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace MaskedMischiefNamespace
 		public float runSpeed;
 		public Camera mainCamera;
 		private CharacterController CharacterController;
+		private Rigidbody rigidbody;
 		[SerializeField] public GameObject trapPrefab; //This is the trap
 		[SerializeField] protected GameObject winLoseController;
 
@@ -42,6 +44,30 @@ namespace MaskedMischiefNamespace
 			
 		}
 
+		public bool WillCollide(Vector3 dir, float len)
+		{
+			Vector3 center = CharacterController.center;
+			float radius = CharacterController.radius;
+			float height = CharacterController.height;
+
+			float offset = (height / 2) - radius;
+
+			Vector3 a = center;
+			a.y += offset;
+			Vector3 b = center;
+			b.y -= offset;
+
+			LayerMask mask = Convert.ToInt32("10000000", 2);
+			RaycastHit[] hits = rigidbody.SweepTestAll(dir, len);
+
+			foreach(RaycastHit hit in hits)
+			{
+				if (!(hit.collider.CompareTag("Henry") || hit.collider.CompareTag("Terrain")))
+					return true;
+			}
+			return false;
+		}
+
 		public void Win()
 		{
 			winLoseController.GetComponent<WinLoseControl>().WinGame();
@@ -54,6 +80,7 @@ namespace MaskedMischiefNamespace
 			movementStateMachine = new PlayerMovementStateMachine(this);
 			isSprinting = false;
 			mainCamera = Camera.main;
+			rigidbody = GetComponent<Rigidbody>();
 		}
 
 		private void Start()

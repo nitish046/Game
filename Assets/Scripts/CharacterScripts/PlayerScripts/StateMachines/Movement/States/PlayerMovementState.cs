@@ -106,7 +106,10 @@ namespace MaskedMischiefNamespace
 			 */
 			staticMovement = movementInput;
 		}
-		public virtual void Update() { }
+		public virtual void Update() 
+		{
+			//if(Physics.CapsuleCast)
+		}
 		public virtual void PhysicsUpdate()
 		{
 			Vector3 cameraDir = stateMachine.player.mainCamera.transform.rotation.eulerAngles;
@@ -116,7 +119,8 @@ namespace MaskedMischiefNamespace
 			{
 				Quaternion moveAngle = Quaternion.LookRotation(moveDir);
 				stateMachine.player.transform.rotation = Quaternion.Slerp(stateMachine.player.transform.rotation, moveAngle, 0.2f);
-				stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * stateMachine.player.walkSpeed);
+				if(!stateMachine.player.WillCollide(stateMachine.player.transform.forward, stateMachine.player.walkSpeed))
+					stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * stateMachine.player.walkSpeed);
 			}
 
 		}
