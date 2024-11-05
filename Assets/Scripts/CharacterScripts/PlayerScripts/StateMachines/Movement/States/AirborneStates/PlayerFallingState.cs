@@ -31,7 +31,7 @@ namespace MaskedMischiefNamespace
 		{
 			base.PhysicsUpdate();
 			var player = stateMachine.player;
-			if (player.IsGrounded())
+			if (isGrounded())
 			{
 				stateMachine.ChangeState(stateMachine.LandingState);
 			}

@@ -53,34 +53,40 @@ public class HenryController : FamilyMember
   }
 
   public override void Freeze(float freezeDuration, bool isTrapFreeze)
-  {
+{
     duration = freezeDuration; // Set the freeze duration based on the trap
-    skinnedMeshRenderer.material = FreezeColor; // Change to FreezeColor
     allow = false; // Stop movement
+
+    // Only change color if it's not a trap freeze
+    if (!isTrapFreeze)
+    {
+        skinnedMeshRenderer.material = FreezeColor; // Change to FreezeColor
+    }
 
     if (splash != null && splash.clip != null)
     {
-      splash.Play();
+        splash.Play();
     }
     else
     {
-      //Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");
+        UnityEngine.Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");
     }
 
-    // If it's a trap freeze, rotate Henry to make it look like he fell down and pause animation
+    // If it's a trap freeze, make Henry fall and pause animation
     if (isTrapFreeze)
     {
-      animator.enabled = false; // Pause all animations
-      transform.rotation = Quaternion.Euler(90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Rotate Henry to appear as if he has fallen down
-                                                                                                                      //Debug.Log("Henry has been frozen and fallen to the ground.");
+        animator.enabled = false; // Pause all animations
+        transform.rotation = Quaternion.Euler(90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Rotate Henry to appear as if he has fallen down
+        UnityEngine.Debug.Log("Henry has been frozen and fallen to the ground.");
     }
     else
     {
-      //Debug.Log("Henry has been frozen by another method (e.g., tomato).");
+        UnityEngine.Debug.Log("Henry has been frozen by another method.");
     }
 
     StartCoroutine(delay(isTrapFreeze)); // Pass the freeze type to the delay
-  }
+}
+
 
   IEnumerator delay(bool isTrapFreeze)
   {

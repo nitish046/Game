@@ -33,9 +33,14 @@ public class Player : MonoBehaviour
 
 		private void Awake()
 	{
+		gameInput = GetComponent<GameInput>();
+		if (gameInput == null)
+		{
+			Debug.LogError("GameInput component is missing on the Player GameObject.");
+		}
 		cameraTransform = Camera.main.transform;
 		audioSource = GetComponent<AudioSource>();
-		 currentTrapCount = maxTraps;
+		currentTrapCount = maxTraps;
 		controller = GetComponent<CharacterController>();
 		player_animator = transform.GetChild(0).GetComponent<Animator>();
 	}
@@ -194,7 +199,7 @@ public class Player : MonoBehaviour
 
 	public bool groundcheck()
 	{
-		Debug.DrawRay(transform.position + (Vector3.up * .25f), Vector3.down, UnityEngine.Color.green);
+		//Debug.DrawRay(transform.position + (Vector3.up * .25f), Vector3.down, UnityEngine.Color.green);
 		if (Physics.Raycast(transform.position + (Vector3.up * .25f), Vector3.down, out groundCollider, .27f) && !(groundCollider.collider.CompareTag("Henry")))
 		{
 			return true;

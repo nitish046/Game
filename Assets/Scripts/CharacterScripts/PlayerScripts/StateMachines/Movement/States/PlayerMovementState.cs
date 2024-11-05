@@ -17,7 +17,7 @@ namespace MaskedMischiefNamespace
 
 		public virtual void Enter()
 		{
-			Debug.Log("Entering State: " + GetType().Name);
+			//Debug.Log("Entering State: " + GetType().Name);
 			AddCallbacks();
 		}
 		public virtual void Exit()
@@ -29,6 +29,8 @@ namespace MaskedMischiefNamespace
 		{
 			foreach(Collider c in PlayerMovementStateMachine.triggers)
 			{
+				if (c == null)
+					continue;
 				if(c.CompareTag("Terrain") || c.CompareTag("Collidable"))
 				{
 					return true;
@@ -38,10 +40,30 @@ namespace MaskedMischiefNamespace
 			//return stateMachine.player.IsGrounded();
 		}
 
+		protected bool isGrounded(out Collider Ground)
+		{
+			foreach (Collider c in PlayerMovementStateMachine.triggers)
+			{
+				if (c == null)
+					continue;
+				if (c.CompareTag("Terrain") || c.CompareTag("Collidable"))
+				{
+					Ground = c;
+					return true;
+					}
+				}
+			Ground = null;
+			return false;
+			//return stateMachine.player.IsGrounded();
+		}
+
 		protected void snapToGround(Collider c)
 		{
 			Vector3 p = stateMachine.player.transform.position;
-			p.y = c.ClosestPoint(p).y;
+			if(c.GetType() == typeof(CapsuleCollider) || c.GetType() == typeof(BoxCollider) || c.GetType() == typeof(SphereCollider))
+				p.y = c.ClosestPoint(p).y;
+			else
+				p.y = c.ClosestPointOnBounds(p).y;
 			stateMachine.player.transform.position = p;
 		}
 
@@ -53,6 +75,8 @@ namespace MaskedMischiefNamespace
 			actions.Sprint.started += OnSprintStart;
 			actions.Move.started += OnMoveStart;
 			actions.Move.canceled += OnMoveCancel;
+			actions.Win.started += OnWinStart;
+			actions.PlaceTrap.started += OnPlaceTrapStart;
 		}
 		protected virtual void RemoveCallbacks() 
 		{
@@ -62,7 +86,14 @@ namespace MaskedMischiefNamespace
 			actions.Sprint.started -= OnSprintStart;
 			actions.Move.started -= OnMoveStart;
 			actions.Move.canceled -= OnMoveCancel;
+			actions.Win.started -= OnWinStart;
+			actions.PlaceTrap.started -= OnPlaceTrapStart;
 		}
+		protected virtual void OnPlaceTrapStart(InputAction.CallbackContext callbackContext)
+        {
+			
+        }
+
 
 		//These methods can be overridden if any state needs its own logic.
 		#region Universal
@@ -75,7 +106,10 @@ namespace MaskedMischiefNamespace
 			 */
 			staticMovement = movementInput;
 		}
-		public virtual void Update() { }
+		public virtual void Update() 
+		{
+			//if(Physics.CapsuleCast)
+		}
 		public virtual void PhysicsUpdate()
 		{
 			Vector3 cameraDir = stateMachine.player.mainCamera.transform.rotation.eulerAngles;
@@ -85,7 +119,8 @@ namespace MaskedMischiefNamespace
 			{
 				Quaternion moveAngle = Quaternion.LookRotation(moveDir);
 				stateMachine.player.transform.rotation = Quaternion.Slerp(stateMachine.player.transform.rotation, moveAngle, 0.2f);
-				stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * stateMachine.player.walkSpeed);
+				if(!stateMachine.player.WillCollide(stateMachine.player.transform.forward, stateMachine.player.walkSpeed))
+					stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * stateMachine.player.walkSpeed);
 			}
 
 		}
@@ -94,6 +129,10 @@ namespace MaskedMischiefNamespace
 		//Each movement state will be using these callbacks in different ways
 		//Override the functions in each movement state to modify their behavior
 		#region Callbacks
+		protected virtual void OnWinStart(InputAction.CallbackContext callbackContext)
+		{
+			stateMachine.player.Win();
+		}
 		protected virtual void OnJumpStart(InputAction.CallbackContext callbackContext)
 		{
 
@@ -110,6 +149,9 @@ namespace MaskedMischiefNamespace
 		{
 
 		}
+
+
+
 		#endregion
 	}
 }

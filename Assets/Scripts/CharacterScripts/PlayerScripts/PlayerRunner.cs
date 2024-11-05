@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,17 +16,20 @@ namespace MaskedMischiefNamespace
 		public float runSpeed;
 		public Camera mainCamera;
 		private CharacterController CharacterController;
+		private Rigidbody rigidbody;
+		[SerializeField] public GameObject trapPrefab; //This is the trap
+		[SerializeField] protected GameObject winLoseController;
 
 		private void OnTriggerEnter(Collider other)
 		{
 			if (!other.CompareTag("Player"))
 				PlayerMovementStateMachine.triggers.Add(other);
-			Debug.Log(other.tag);
+			//Debug.Log(other.tag);
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			Debug.Log("Uncollide");
+			//Debug.Log("Uncollide");
 			if (!other.CompareTag("Player"))
 				PlayerMovementStateMachine.triggers.Remove(other);
 		}
@@ -40,6 +44,35 @@ namespace MaskedMischiefNamespace
 			
 		}
 
+		public bool WillCollide(Vector3 dir, float len)
+		{
+			Vector3 center = CharacterController.center;
+			float radius = CharacterController.radius;
+			float height = CharacterController.height;
+
+			float offset = (height / 2) - radius;
+
+			Vector3 a = center;
+			a.y += offset;
+			Vector3 b = center;
+			b.y -= offset;
+
+			LayerMask mask = Convert.ToInt32("10000000", 2);
+			RaycastHit[] hits = rigidbody.SweepTestAll(dir, len);
+
+			foreach(RaycastHit hit in hits)
+			{
+				if (!(hit.collider.CompareTag("Henry") || hit.collider.CompareTag("Terrain")))
+					return true;
+			}
+			return false;
+		}
+
+		public void Win()
+		{
+			winLoseController.GetComponent<WinLoseControl>().WinGame();
+		}
+
 		private PlayerMovementStateMachine movementStateMachine;
 		private void Awake()
 		{
@@ -47,14 +80,27 @@ namespace MaskedMischiefNamespace
 			movementStateMachine = new PlayerMovementStateMachine(this);
 			isSprinting = false;
 			mainCamera = Camera.main;
-			CharacterController = GetComponent<CharacterController>();
+			rigidbody = GetComponent<Rigidbody>();
 		}
 
 		private void Start()
 		{
+			//Debug.Log("Start");
+			if (!TryGetComponent<CharacterController>(out CharacterController))
+			{
+				CharacterController = gameObject.AddComponent<CharacterController>();
+
+				CharacterController.center = new Vector3(0, 0.8222382f, 0);
+				CharacterController.radius = 0.33f;
+				CharacterController.height = 1.75962f;
+			}
+			//Debug.Log(CharacterController);
 			movementStateMachine.ChangeState(movementStateMachine.IdlingState);
 		}
-
+		private void OnDestroy()
+		{
+			movementStateMachine.ExitState();
+		}
 		private void Update()
 		{
 			movementStateMachine.HandleInput();

@@ -32,7 +32,10 @@ namespace MaskedMischiefNamespace
 		{
 			currentState?.PhysicsUpdate();
 		}
-
+		public void ExitState()
+		{
+			currentState?.Exit();
+		}
 
 	}
 }

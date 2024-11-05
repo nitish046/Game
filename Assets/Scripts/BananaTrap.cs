@@ -13,7 +13,7 @@ public class BananaTrap : Trap
 {
   private void OnTriggerEnter(Collider other)
   {
-    if (other.CompareTag("Henry"))
+    if (other.CompareTag("Henry")) //If this is triggered
     {
       print("here");
       ActivateTrap(other.gameObject);
