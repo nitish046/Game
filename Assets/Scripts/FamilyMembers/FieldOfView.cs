@@ -30,17 +30,6 @@ public class FieldOfView : MonoBehaviour  // The copy of this script included in
     obstructionMask = oMask;
   }
 
-  public void makeFOV(GameObject player, GameObject member, float viewRadius, float vAngle, float pAngle, LayerMask tMask, LayerMask oMask)
-    {
-		playerRef = player;
-		familyMember = member;
-		radius = viewRadius;
-		viewAngle = vAngle;
-		periferalAngle = pAngle;
-		targetMask = tMask;
-		obstructionMask = oMask;
-	}
-
   public IEnumerator FOVRoutine()
   {
     float delay = 0.2f;

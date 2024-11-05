@@ -908,7 +908,6 @@ MonoBehaviour:
   walkSpeed: 0.1
   runSpeed: 0.3
   mainCamera: {fileID: 0}
-  trapPrefab: {fileID: 6431227397451709892, guid: 4f3ea074d5cc1564ba02d16fdd98a9b6, type: 3}
   winLoseController: {fileID: 0}
 --- !u!114 &2703461568251086569
 MonoBehaviour:

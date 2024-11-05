@@ -14,8 +14,8 @@ public class GameInput : MonoBehaviour
         player_input_actions = new PlayerInputActions();
         player_input_actions.Player.Enable();
 
-        //player_input_actions.Player.Interact.performed += Interact_performed;
-        //player_input_actions.Player.PlaceTrap.performed += PlaceTrap_performed;
+        player_input_actions.Player.Interact.performed += Interact_performed;
+        player_input_actions.Player.PlaceTrap.performed += PlaceTrap_performed;
     }
 
     private void Interact_performed(InputAction.CallbackContext obj)
