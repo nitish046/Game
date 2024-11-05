@@ -15,6 +15,7 @@ namespace MaskedMischiefNamespace
 		public PlayerLandingState LandingState { get; }
 		public PlayerHardStoppingState HardStoppingState { get; }
 		public PlayerSoftStoppingState SoftStoppingState { get; }
+		public PlayerPlaceTrapState PlaceTrapState { get; private set; }
 
 
 		public static List<Collider> triggers = new List<Collider>();
@@ -32,6 +33,7 @@ namespace MaskedMischiefNamespace
 			LandingState = new PlayerLandingState(this);
 			SoftStoppingState = new PlayerSoftStoppingState(this);
 			HardStoppingState = new PlayerHardStoppingState(this);
+			PlaceTrapState = new PlayerPlaceTrapState(this);
 		}
 
 	}
