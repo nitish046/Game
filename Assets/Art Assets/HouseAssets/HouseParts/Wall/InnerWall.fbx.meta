@@ -3,17 +3,7 @@ guid: 904604d1f90bee641a79eaf7c71b4c1d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: SkirtingBoardMat
-    second: {fileID: 2100000, guid: e99ec7798e0813d45b7f596016778272, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: WallMat
-    second: {fileID: 2100000, guid: 8ca9c71d0014bd241b7894778b7b1ffd, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
