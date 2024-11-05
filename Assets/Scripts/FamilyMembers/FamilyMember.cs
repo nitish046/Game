@@ -55,7 +55,8 @@ public abstract class FamilyMember : MonoBehaviour
     // collision_occur.onRaccoonFirstTimeOnTrash += collisionOccur_onRaccoonFirstTimeOnTrash;
     allow = true;
     animator = transform.GetChild(0).GetComponent<Animator>();
-    fieldOfView = new FieldOfView(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask);
+    fieldOfView = gameObject.AddComponent<FieldOfView>();
+    fieldOfView.makeFOV(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask);
     StartCoroutine(fieldOfView.FOVRoutine());
   }
 

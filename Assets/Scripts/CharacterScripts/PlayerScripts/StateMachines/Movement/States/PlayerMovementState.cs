@@ -76,7 +76,7 @@ namespace MaskedMischiefNamespace
 			actions.Move.started += OnMoveStart;
 			actions.Move.canceled += OnMoveCancel;
 			actions.Win.started += OnWinStart;
-			actions.PlaceTrap.started -= OnPlaceTrapStart;
+			actions.PlaceTrap.started += OnPlaceTrapStart;
 		}
 		protected virtual void RemoveCallbacks() 
 		{
