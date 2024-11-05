@@ -47,7 +47,7 @@ public class LifeTracker : MonoBehaviour
       lives--;
       if (lives == 0)
       {
-        win_lose_controller.GetComponent<WinLoseControl>().LoseGame();
+        win_lose_controller.GetComponent<WinLoseControl>().WinGame();
       }
     }
   }
