@@ -46,26 +46,26 @@ public class FieldOfView : MonoBehaviour  // The copy of this script included in
   private void FieldOfViewCheck()
   {
     Transform fTransform = familyMember.transform;
-    Debug.Log(fTransform.ToString());
+    //Debug.Log(fTransform.ToString());
     Collider[] rangeChecks = Physics.OverlapSphere(fTransform.position, radius, targetMask);
-    Debug.Log(".\n\n\n.");
-    Debug.Log("fTransform.position: " + fTransform.position + "\nradius: " + radius + "\ntargetMask: " + targetMask);
-    Debug.Log(Physics.OverlapSphere(fTransform.position, radius, targetMask).Length);
+    //Debug.Log(".\n\n\n.");
+    //Debug.Log("fTransform.position: " + fTransform.position + "\nradius: " + radius + "\ntargetMask: " + targetMask);
+    //Debug.Log(Physics.OverlapSphere(fTransform.position, radius, targetMask).Length);
 
     if (rangeChecks.Length > 0)
     {
-      Debug.Log("1 - rangeChecks.Length > 0");
+      //Debug.Log("1 - rangeChecks.Length > 0");
       Transform target = rangeChecks[0].transform;
       Vector3 directionToTarget = (target.position - fTransform.position).normalized;
 
       if (Vector3.Angle(fTransform.forward, directionToTarget) < viewAngle / 2)
       {
-        Debug.Log("2 - Vector3.Angle(fTransform.forward, directionToTarget) < viewAngle / 2");
+        //Debug.Log("2 - Vector3.Angle(fTransform.forward, directionToTarget) < viewAngle / 2");
         float distanceToTarget = Vector3.Distance(fTransform.position, target.position);
 
         if (!Physics.Raycast(fTransform.position, directionToTarget, distanceToTarget, obstructionMask))
         {
-          Debug.Log("!Physics.Raycast(fTransform.position, directionToTarget, distanceToTarget, obstructionMask)");
+          //Debug.Log("!Physics.Raycast(fTransform.position, directionToTarget, distanceToTarget, obstructionMask)");
           canSeePlayer = true;
         }
         else { canSeePlayer = false; }

@@ -50,10 +50,8 @@ namespace MaskedMischiefNamespace
 				{
 					Ground = c;
 					return true;
+					}
 				}
-				Debug.Log(c);
-
-			}
 			Ground = null;
 			return false;
 			//return stateMachine.player.IsGrounded();
@@ -78,6 +76,7 @@ namespace MaskedMischiefNamespace
 			actions.Move.started += OnMoveStart;
 			actions.Move.canceled += OnMoveCancel;
 			actions.Win.started += OnWinStart;
+			actions.PlaceTrap.started -= OnPlaceTrapStart;
 		}
 		protected virtual void RemoveCallbacks() 
 		{
@@ -88,7 +87,13 @@ namespace MaskedMischiefNamespace
 			actions.Move.started -= OnMoveStart;
 			actions.Move.canceled -= OnMoveCancel;
 			actions.Win.started -= OnWinStart;
+			actions.PlaceTrap.started -= OnPlaceTrapStart;
 		}
+		protected virtual void OnPlaceTrapStart(InputAction.CallbackContext callbackContext)
+        {
+			
+        }
+
 
 		//These methods can be overridden if any state needs its own logic.
 		#region Universal
@@ -140,6 +145,9 @@ namespace MaskedMischiefNamespace
 		{
 
 		}
+
+
+
 		#endregion
 	}
 }

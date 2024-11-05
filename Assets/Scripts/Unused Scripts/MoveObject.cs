@@ -38,7 +38,7 @@ namespace MaskedMischiefNamespace
 			//f.y = 0;
 			//Vector3 r = Vector3.Cross(Vector3.up, f);
 			transform.Rotate(horizontal, 0, 0);
-			Debug.Log(transform.rotation.eulerAngles.y);
+			//Debug.Log(transform.rotation.eulerAngles.y);
 
 			azimuth = transform.rotation.eulerAngles.y;
 

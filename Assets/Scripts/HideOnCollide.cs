@@ -25,7 +25,7 @@ public class HideOnCollide : MonoBehaviour
 
 		private void GameInput_OnInteractAction(object sender, System.EventArgs e)
 		{
-				Debug.Log( " can_hide: " + can_hide + " already_hiding: " + already_hiding);
+				//Debug.Log( " can_hide: " + can_hide + " already_hiding: " + already_hiding);
 				if ((can_hide && !already_hiding) && player_renderers != null)
 				{
 						foreach(Renderer renderer in player_renderers)
@@ -74,6 +74,6 @@ public class HideOnCollide : MonoBehaviour
 				already_hiding = false;
 				player_renderers = null;
 				movement_script = null;
-				Debug.Log("left collison");
+				//Debug.Log("left collison");
 	 }
 }

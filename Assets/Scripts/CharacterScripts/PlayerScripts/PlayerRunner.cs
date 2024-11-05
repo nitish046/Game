@@ -15,18 +15,19 @@ namespace MaskedMischiefNamespace
 		public float runSpeed;
 		public Camera mainCamera;
 		private CharacterController CharacterController;
+		[SerializeField] public GameObject trapPrefab; //This is the trap
 		[SerializeField] protected GameObject winLoseController;
 
 		private void OnTriggerEnter(Collider other)
 		{
 			if (!other.CompareTag("Player"))
 				PlayerMovementStateMachine.triggers.Add(other);
-			Debug.Log(other.tag);
+			//Debug.Log(other.tag);
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			Debug.Log("Uncollide");
+			//Debug.Log("Uncollide");
 			if (!other.CompareTag("Player"))
 				PlayerMovementStateMachine.triggers.Remove(other);
 		}
@@ -57,7 +58,7 @@ namespace MaskedMischiefNamespace
 
 		private void Start()
 		{
-			Debug.Log("Start");
+			//Debug.Log("Start");
 			if (!TryGetComponent<CharacterController>(out CharacterController))
 			{
 				CharacterController = gameObject.AddComponent<CharacterController>();
@@ -66,7 +67,7 @@ namespace MaskedMischiefNamespace
 				CharacterController.radius = 0.33f;
 				CharacterController.height = 1.75962f;
 			}
-			Debug.Log(CharacterController);
+			//Debug.Log(CharacterController);
 			movementStateMachine.ChangeState(movementStateMachine.IdlingState);
 		}
 		private void OnDestroy()
