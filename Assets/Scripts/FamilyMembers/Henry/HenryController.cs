@@ -45,47 +45,48 @@ public class HenryController : FamilyMember
 
   private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
   {
+    UnityEngine.Debug.Log("collisionOccur_onRaccoonFirstTimeOnTrash");
     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     familyMemberState = FamilyMemberState.PATROL;
-    // StartCoroutine(Patrol(getWaypointArray("Patrol")));
-    patrolCoroutine = StartCoroutine(Patrol(getWaypointArray()));
+    // StartCoroutine(Patrol(getWaypointArray()));
+    patrolCoroutine = StartCoroutine(Patrol(getWaypointArray("Patrol")));
     walkingTransition(true);
   }
 
   public override void Freeze(float freezeDuration, bool isTrapFreeze)
-{
+  {
     duration = freezeDuration; // Set the freeze duration based on the trap
     allow = false; // Stop movement
 
     // Only change color if it's not a trap freeze
     if (!isTrapFreeze)
     {
-        skinnedMeshRenderer.material = FreezeColor; // Change to FreezeColor
+      skinnedMeshRenderer.material = FreezeColor; // Change to FreezeColor
     }
 
     if (splash != null && splash.clip != null)
     {
-        splash.Play();
+      splash.Play();
     }
     else
     {
-        UnityEngine.Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");
+      UnityEngine.Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");
     }
 
     // If it's a trap freeze, make Henry fall and pause animation
     if (isTrapFreeze)
     {
-        animator.enabled = false; // Pause all animations
-        transform.rotation = Quaternion.Euler(90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Rotate Henry to appear as if he has fallen down
-        UnityEngine.Debug.Log("Henry has been frozen and fallen to the ground.");
+      animator.enabled = false; // Pause all animations
+      transform.rotation = Quaternion.Euler(90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Rotate Henry to appear as if he has fallen down
+      UnityEngine.Debug.Log("Henry has been frozen and fallen to the ground.");
     }
     else
     {
-        UnityEngine.Debug.Log("Henry has been frozen by another method.");
+      UnityEngine.Debug.Log("Henry has been frozen by another method.");
     }
 
     StartCoroutine(delay(isTrapFreeze)); // Pass the freeze type to the delay
-}
+  }
 
 
   IEnumerator delay(bool isTrapFreeze)
@@ -165,6 +166,7 @@ public class HenryController : FamilyMember
   }
   protected Vector3[] getWaypointArray(string type)
   {
+    UnityEngine.Debug.Log("Henry getWaypointArray type");
     return base.getWaypointArray("henry", type);
   }
 

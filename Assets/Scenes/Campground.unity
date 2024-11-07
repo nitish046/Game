@@ -6524,10 +6524,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   henryPatrolPoints:
-  - {x: 0, y: 0, z: -5.74}
-  - {x: -7.07, y: 0, z: -5.74}
-  - {x: -7.19, y: 0, z: -0.09}
-  - {x: 0.05, y: 0, z: -0.09}
+  - {x: 7, y: 0, z: 8.5}
+  - {x: 7, y: 0, z: 1.5}
+  - {x: -0.5, y: 0, z: 1.5}
+  - {x: -0.5, y: 0, z: 8.5}
   emilyPatrolPoints: []
   motherDearPatrolPoints: []
   emilyNormalPoints: []
@@ -14131,7 +14131,7 @@ Transform:
   m_GameObject: {fileID: 1285360645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.07, y: 0, z: -5.73}
+  m_LocalPosition: {x: -7.5, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14536,7 +14536,7 @@ Transform:
   m_GameObject: {fileID: 1317071054}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.19, y: 0, z: -0.09}
+  m_LocalPosition: {x: -7.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14567,7 +14567,7 @@ Transform:
   m_GameObject: {fileID: 1319905114}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8255, y: 0.29922464, z: 7.1539793}
+  m_LocalPosition: {x: 7, y: 0.29922464, z: 8.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15473,7 +15473,7 @@ Transform:
   m_GameObject: {fileID: 1671717947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.74}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15810,7 +15810,7 @@ Transform:
   m_GameObject: {fileID: 1798158566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0, z: -0.09}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

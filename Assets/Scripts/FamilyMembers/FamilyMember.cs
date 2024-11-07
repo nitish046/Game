@@ -129,6 +129,7 @@ public abstract class FamilyMember : MonoBehaviour
 
   protected IEnumerator Patrol(Vector3[] waypoints)
   {
+    UnityEngine.Debug.Log("Entering Henry Patrol");
     isPatrolCoroutineRunning = true;
     familyMemberState = FamilyMemberState.PATROL;
     int waypoint_index = 0;
@@ -195,6 +196,8 @@ public abstract class FamilyMember : MonoBehaviour
   }
   protected virtual Vector3[] getWaypointArray(string name, string type)
   {
+    UnityEngine.Debug.Log("FamilyMember getWaypointArray type " + name + " " + type);
+    UnityEngine.Debug.Log(patrolPointOperator.GetComponent<FamilyPatrolPoints>());
     Vector3[] waypoint_array = patrolPointOperator.GetComponent<FamilyPatrolPoints>().findPatrolPoints(name, type);
 
     return waypoint_array;
