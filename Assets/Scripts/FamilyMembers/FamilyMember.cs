@@ -25,7 +25,7 @@ public abstract class FamilyMember : MonoBehaviour
   public Vector3[] waypoint_array;
   [SerializeField] protected float waypoint_size = .4f;
   [SerializeField] protected float waypoint_wait_time = 2f;
-  
+
 
   public bool allow;
 
@@ -61,7 +61,7 @@ public abstract class FamilyMember : MonoBehaviour
     animator = transform.GetChild(0).GetComponent<Animator>();
     fieldOfView = gameObject.AddComponent<FieldOfView>();
     fieldOfView.makeFOV(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask);
-    waypoint_array = getWaypointArray(path);
+    // waypoint_array = getWaypointArray(path);
     StartCoroutine(fieldOfView.FOVRoutine());
   }
 
@@ -124,80 +124,80 @@ public abstract class FamilyMember : MonoBehaviour
       isPatrolCoroutineRunning = false;
     }
     familyMemberState = FamilyMemberState.ACTIVATED;
-      
+
   }
-/*
-  public abstract void Freeze(float freezeDuration, bool isTrapFreeze);
+  /*
+    public abstract void Freeze(float freezeDuration, bool isTrapFreeze);
 
-   
-  protected IEnumerator Patrol(Vector3[] waypoints)
-  {
-    UnityEngine.Debug.Log("Entering Henry Patrol");
-    isPatrolCoroutineRunning = true;
-    familyMemberState = FamilyMemberState.PATROL;
-    int waypoint_index = 0;
-    Vector3 waypoint_target = waypoints[waypoint_index];
 
-    while (true)
+    protected IEnumerator Patrol(Vector3[] waypoints)
     {
-      if (allow)
+      UnityEngine.Debug.Log("Entering Henry Patrol");
+      isPatrolCoroutineRunning = true;
+      familyMemberState = FamilyMemberState.PATROL;
+      int waypoint_index = 0;
+      Vector3 waypoint_target = waypoints[waypoint_index];
+
+      while (true)
       {
-        transform.position = Vector3.MoveTowards(transform.position, waypoint_target, MovementSpeed * Time.deltaTime);
-        transform.LookAt(waypoint_target);
-
-        if (transform.position == waypoint_target)
+        if (allow)
         {
-          walkingTransition(false);
-          waypoint_index = (waypoint_index + 1) % waypoints.Length;
-          waypoint_target = waypoints[waypoint_index];
-          yield return new WaitForSeconds(waypoint_wait_time);
-          yield return StartCoroutine(turnTowardsPosition(waypoint_target));
-          walkingTransition(true);
+          transform.position = Vector3.MoveTowards(transform.position, waypoint_target, MovementSpeed * Time.deltaTime);
+          transform.LookAt(waypoint_target);
+
+          if (transform.position == waypoint_target)
+          {
+            walkingTransition(false);
+            waypoint_index = (waypoint_index + 1) % waypoints.Length;
+            waypoint_target = waypoints[waypoint_index];
+            yield return new WaitForSeconds(waypoint_wait_time);
+            yield return StartCoroutine(turnTowardsPosition(waypoint_target));
+            walkingTransition(true);
+          }
         }
+        yield return null;
       }
-      yield return null;
     }
-  }
 
 
 
 
-  IEnumerator turnTowardsPosition(Vector3 rotation_target)
-  {
-    Vector3 direction = (rotation_target - transform.position).normalized;
-    float target_angle = 90 - Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-
-    while (Mathf.DeltaAngle(transform.eulerAngles.y, target_angle) > Mathf.Abs(0.05f))
+    IEnumerator turnTowardsPosition(Vector3 rotation_target)
     {
-      float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, target_angle, RotationSpeed * Time.deltaTime);
-      transform.eulerAngles = Vector3.up * angle;
-      yield return null;
-    }
-  }
+      Vector3 direction = (rotation_target - transform.position).normalized;
+      float target_angle = 90 - Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
 
-  private void walkingTransition(bool walking)
-  {
-    if (walking)
-    {
-      animator.SetBool("isWalking", true);
-    }
-    else
-    {
-      animator.SetBool("isWalking", false);
-    }
-  }
-    */
-  protected virtual Vector3[] getWaypointArray(Transform path)
-  {
-    Vector3[] waypoint_array = new Vector3[path.childCount];
-    for (int i = 0; i < waypoint_array.Length; i++)
-    {
-      waypoint_array[i] = path.GetChild(i).position;
+      while (Mathf.DeltaAngle(transform.eulerAngles.y, target_angle) > Mathf.Abs(0.05f))
+      {
+        float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, target_angle, RotationSpeed * Time.deltaTime);
+        transform.eulerAngles = Vector3.up * angle;
+        yield return null;
+      }
     }
 
-    return waypoint_array;
-  }
-    /*
+    private void walkingTransition(bool walking)
+    {
+      if (walking)
+      {
+        animator.SetBool("isWalking", true);
+      }
+      else
+      {
+        animator.SetBool("isWalking", false);
+      }
+    }
+      */
+  // protected virtual Vector3[] getWaypointArray(Transform path)
+  // {
+  //   Vector3[] waypoint_array = new Vector3[path.childCount];
+  //   for (int i = 0; i < waypoint_array.Length; i++)
+  //   {
+  //     waypoint_array[i] = path.GetChild(i).position;
+  //   }
+
+  //   return waypoint_array;
+  // }
+
   protected virtual Vector3[] getWaypointArray(string name, string type)
   {
     UnityEngine.Debug.Log("FamilyMember getWaypointArray type " + name + " " + type);
@@ -206,23 +206,23 @@ public abstract class FamilyMember : MonoBehaviour
 
     return waypoint_array;
   }
-    */
-  protected void OnDrawGizmos()
-  {
-    Vector3 start_waypoint_position = path.GetChild(0).position;
-    Vector3 previous_waypoint_position = start_waypoint_position;
 
-    foreach (Transform waypoint in path)
-    {
-      Gizmos.color = new Color(238f / 255, 130f / 255, 238f / 255, 255f / 255);
-      Gizmos.DrawSphere(waypoint.position, waypoint_size);
+  // protected void OnDrawGizmos()
+  // {
+  //   Vector3 start_waypoint_position = path.GetChild(0).position;
+  //   Vector3 previous_waypoint_position = start_waypoint_position;
 
-      Gizmos.color = Color.white;
-      Gizmos.DrawLine(previous_waypoint_position, waypoint.position);
+  //   foreach (Transform waypoint in path)
+  //   {
+  //     Gizmos.color = new Color(238f / 255, 130f / 255, 238f / 255, 255f / 255);
+  //     Gizmos.DrawSphere(waypoint.position, waypoint_size);
 
-      previous_waypoint_position = waypoint.position;
-    }
-    Gizmos.DrawLine(previous_waypoint_position, start_waypoint_position);
-  }
+  //     Gizmos.color = Color.white;
+  //     Gizmos.DrawLine(previous_waypoint_position, waypoint.position);
+
+  //     previous_waypoint_position = waypoint.position;
+  //   }
+  //   Gizmos.DrawLine(previous_waypoint_position, start_waypoint_position);
+  // }
 
 }
