@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HenryStateMachine : MonoBehaviour
 {
-    FamilyBaseState current_state;
+    public FamilyBaseState current_state;
     public FamilyBaseState previous_state;
 
     public FamilyPatrolState patrol_state = new FamilyPatrolState();

@@ -48,7 +48,10 @@ public class HenryController : FamilyMember
   protected override void SeesRaccoon()
   {
     base.SeesRaccoon();
-    stateMachine.ChangeState(stateMachine.activated_state);
+    if(stateMachine.current_state != stateMachine.freeze_state)
+    {
+        stateMachine.ChangeState(stateMachine.activated_state);
+    }
   }
   /*
 public override void Freeze(float freezeDuration, bool isTrapFreeze)
