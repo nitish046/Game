@@ -29,7 +29,7 @@ public abstract class FamilyMember : MonoBehaviour
 
   public bool allow;
 
-  [SerializeField] GameObject player;
+  [SerializeField] public GameObject player;
 
   protected Animator animator;
   [SerializeField] protected GameObject win_lose_controller;

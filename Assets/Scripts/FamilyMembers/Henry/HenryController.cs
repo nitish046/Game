@@ -13,6 +13,8 @@ public class HenryController : FamilyMember
   [SerializeField] private float rotation_speed = 90f;
   protected override float MovementSpeed => movement_speed;
   protected override float RotationSpeed => rotation_speed;
+    
+  public GameObject hammer;
 
   public TMP_Text lose_text;
   public Material MainColor, FreezeColor;

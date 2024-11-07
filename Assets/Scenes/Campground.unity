@@ -7078,11 +7078,12 @@ Transform:
   m_GameObject: {fileID: 654189007}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.36, y: -3.46, z: 23.92}
+  m_LocalPosition: {x: 10.78, y: -3.46, z: 25.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 660809421}
+  - {fileID: 1509816417}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &654189009
@@ -7121,6 +7122,7 @@ MonoBehaviour:
   patrolPointOperator: {fileID: 456105182}
   movement_speed: 5
   rotation_speed: 90
+  hammer: {fileID: 7896316181650420045, guid: db251c1d80153224280e4068e962ba81, type: 3}
   lose_text: {fileID: 1926314560}
   MainColor: {fileID: 2100000, guid: 3affc6b9de12d004fb65db86f5e7d93c, type: 2}
   FreezeColor: {fileID: -2381500201381900343, guid: c5e9aa77baf01b442820a3ecae2de376, type: 3}
@@ -7199,7 +7201,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654189007}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -15043,6 +15045,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497602627}
   m_CullTransparentMesh: 1
+--- !u!1 &1509816416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509816417}
+  m_Layer: 0
+  m_Name: ThrowOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1509816417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509816416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.199}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 654189008}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1519602321
 GameObject:
   m_ObjectHideFlags: 0
@@ -15215,7 +15248,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 4369c7ad07699254586fbcbae50131b2, type: 2}
+  m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
 --- !u!4 &1590212300
 Transform:
@@ -17129,7 +17162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524011718075287447, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5727477701504131130, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -17137,7 +17170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6855980514043135309, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6855980514043135309, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
       propertyPath: win_lose_controller

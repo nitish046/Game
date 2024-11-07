@@ -12,7 +12,7 @@ public class FamilyPatrolState : FamilyBaseState
     public override void EnterState(HenryStateMachine henry)
     {
         animator = henry.transform.GetChild(0).GetComponent<Animator>();
-        waypoint_array = henry.GetComponent<HenryController>().waypoint_array;
+        waypoint_array = henry.GetComponent<FamilyMember>().waypoint_array;
         animator.enabled = true;
         henry.StartCoroutine(Patrol(henry,waypoint_array));
     }
