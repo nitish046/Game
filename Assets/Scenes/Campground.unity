@@ -7060,6 +7060,7 @@ GameObject:
   - component: {fileID: 654189009}
   - component: {fileID: 654189011}
   - component: {fileID: 654189012}
+  - component: {fileID: 654189013}
   m_Layer: 0
   m_Name: henry
   m_TagString: Henry
@@ -7172,6 +7173,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   canSeePlayer: 0
+--- !u!114 &654189013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654189007}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c73053ba6658744f8005e816d841184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FreezeColor: {fileID: -2381500201381900343, guid: c5e9aa77baf01b442820a3ecae2de376, type: 3}
+  splash: {fileID: 501372522}
+  player: {fileID: 1644694975}
+  movement_speed: 5
+  rotation_speed: 90
+  waypoint_wait_time: 2
 --- !u!1001 &660809420
 PrefabInstance:
   m_ObjectHideFlags: 0
