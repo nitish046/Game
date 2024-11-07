@@ -40,7 +40,7 @@ public class LifeTracker : MonoBehaviour
     }
   }
 
-  void LoseLife()
+  public void LoseLife()
   {
     if (lives >= 0)
     {

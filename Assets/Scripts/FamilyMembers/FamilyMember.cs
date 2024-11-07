@@ -21,11 +21,15 @@ public abstract class FamilyMember : MonoBehaviour
 
   [SerializeField] float distance;
 
+  [SerializeField] protected Transform path;
+  public Vector3[] waypoint_array;
   [SerializeField] protected float waypoint_size = .4f;
   [SerializeField] protected float waypoint_wait_time = 2f;
+  
+
   public bool allow;
 
-  [SerializeField] GameObject player;
+  [SerializeField] public GameObject player;
 
   protected Animator animator;
   [SerializeField] protected GameObject win_lose_controller;
@@ -57,6 +61,7 @@ public abstract class FamilyMember : MonoBehaviour
     animator = transform.GetChild(0).GetComponent<Animator>();
     fieldOfView = gameObject.AddComponent<FieldOfView>();
     fieldOfView.makeFOV(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask);
+    waypoint_array = getWaypointArray(path);
     StartCoroutine(fieldOfView.FOVRoutine());
   }
 
@@ -110,23 +115,21 @@ public abstract class FamilyMember : MonoBehaviour
     secondsSinceSeenPlayer = 0;
   }
 
-  protected void SeesRaccoon()
+  protected virtual void SeesRaccoon()
   {
-    // restart_button.gameObject.SetActive(true);
-    // quit_button.gameObject.SetActive(true);
-    // mainScreen.SetActive(false);
-    // loseScreen.SetActive(true);
-    win_lose_controller.GetComponent<WinLoseControl>().LoseGame();
+    //win_lose_controller.GetComponent<WinLoseControl>().LoseGame();
     if (familyMemberState == FamilyMemberState.PATROL && isPatrolCoroutineRunning)
     {
       StopCoroutine(patrolCoroutine);
       isPatrolCoroutineRunning = false;
     }
     familyMemberState = FamilyMemberState.ACTIVATED;
+      
   }
-
+/*
   public abstract void Freeze(float freezeDuration, bool isTrapFreeze);
 
+   
   protected IEnumerator Patrol(Vector3[] waypoints)
   {
     UnityEngine.Debug.Log("Entering Henry Patrol");
@@ -183,7 +186,7 @@ public abstract class FamilyMember : MonoBehaviour
       animator.SetBool("isWalking", false);
     }
   }
-
+    */
   protected virtual Vector3[] getWaypointArray(Transform path)
   {
     Vector3[] waypoint_array = new Vector3[path.childCount];
@@ -194,6 +197,7 @@ public abstract class FamilyMember : MonoBehaviour
 
     return waypoint_array;
   }
+    /*
   protected virtual Vector3[] getWaypointArray(string name, string type)
   {
     UnityEngine.Debug.Log("FamilyMember getWaypointArray type " + name + " " + type);
@@ -202,8 +206,8 @@ public abstract class FamilyMember : MonoBehaviour
 
     return waypoint_array;
   }
-
-  protected void OnDrawGizmos(Transform path)
+    */
+  protected void OnDrawGizmos()
   {
     Vector3 start_waypoint_position = path.GetChild(0).position;
     Vector3 previous_waypoint_position = start_waypoint_position;
@@ -220,4 +224,5 @@ public abstract class FamilyMember : MonoBehaviour
     }
     Gizmos.DrawLine(previous_waypoint_position, start_waypoint_position);
   }
+
 }
