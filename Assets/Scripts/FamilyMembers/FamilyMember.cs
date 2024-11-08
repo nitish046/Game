@@ -42,6 +42,7 @@ public abstract class FamilyMember : MonoBehaviour
   [Range(0, 360)][SerializeField] protected float periferalAngle = 190;
   [SerializeField] protected LayerMask targetMask;
   [SerializeField] protected LayerMask obstructionMask;
+  [SerializeField] protected LayerMask interactableObstructionMask;
 
   public bool hasSeenPlayer = false;
   public float patrolDuration = 10;
@@ -60,7 +61,7 @@ public abstract class FamilyMember : MonoBehaviour
     allow = true;
     animator = transform.GetChild(0).GetComponent<Animator>();
     fieldOfView = gameObject.AddComponent<FieldOfView>();
-    fieldOfView.makeFOV(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask);
+    fieldOfView.makeFOV(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask, interactableObstructionMask);
     // waypoint_array = getWaypointArray(path);
     StartCoroutine(fieldOfView.FOVRoutine());
   }

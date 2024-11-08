@@ -16,10 +16,11 @@ public class FieldOfView : MonoBehaviour  // The copy of this script included in
 
   public LayerMask targetMask;
   public LayerMask obstructionMask;
+  public LayerMask interactableObstructionMask;
 
   public bool canSeePlayer;
 
-  public FieldOfView(GameObject player, GameObject member, float viewRadius, float vAngle, float pAngle, LayerMask tMask, LayerMask oMask)
+  public FieldOfView(GameObject player, GameObject member, float viewRadius, float vAngle, float pAngle, LayerMask tMask, LayerMask oMask, LayerMask iMask)
   {
     playerRef = player;
     familyMember = member;
@@ -28,18 +29,20 @@ public class FieldOfView : MonoBehaviour  // The copy of this script included in
     periferalAngle = pAngle;
     targetMask = tMask;
     obstructionMask = oMask;
+    interactableObstructionMask = iMask;
   }
 
-  public void makeFOV(GameObject player, GameObject member, float viewRadius, float vAngle, float pAngle, LayerMask tMask, LayerMask oMask)
-    {
-		playerRef = player;
-		familyMember = member;
-		radius = viewRadius;
-		viewAngle = vAngle;
-		periferalAngle = pAngle;
-		targetMask = tMask;
-		obstructionMask = oMask;
-	}
+  public void makeFOV(GameObject player, GameObject member, float viewRadius, float vAngle, float pAngle, LayerMask tMask, LayerMask oMask, LayerMask iMask)
+  {
+    playerRef = player;
+    familyMember = member;
+    radius = viewRadius;
+    viewAngle = vAngle;
+    periferalAngle = pAngle;
+    targetMask = tMask;
+    obstructionMask = oMask;
+    interactableObstructionMask = iMask;
+  }
 
   public IEnumerator FOVRoutine()
   {
@@ -74,7 +77,7 @@ public class FieldOfView : MonoBehaviour  // The copy of this script included in
         //Debug.Log("2 - Vector3.Angle(fTransform.forward, directionToTarget) < viewAngle / 2");
         float distanceToTarget = Vector3.Distance(fTransform.position, target.position);
 
-        if (!Physics.Raycast(fTransform.position, directionToTarget, distanceToTarget, obstructionMask))
+        if (!(Physics.Raycast(fTransform.position, directionToTarget, distanceToTarget, obstructionMask) || Physics.Raycast(fTransform.position, directionToTarget, distanceToTarget, interactableObstructionMask)))
         {
           //Debug.Log("!Physics.Raycast(fTransform.position, directionToTarget, distanceToTarget, obstructionMask)");
           canSeePlayer = true;
