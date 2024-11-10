@@ -80,6 +80,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleHotbarLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""54e1521c-9593-4afa-a251-2d840d70aa79"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleHotbarRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""6be3260d-f374-4bb1-8cff-f73fdb37e1d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleHotbar"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff5ffcfa-e1c4-4bd7-9e01-e83528a4735c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +219,61 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""PlaceTrap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94b823c1-0ef0-4a65-b2f5-0f9882377f1b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleHotbarLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""490afa07-04a4-44d3-8061-77bb993e8034"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleHotbarRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""fec18ccf-5319-4789-9ffe-0da899c82763"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleHotbar"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""271895e9-15f8-4b5f-9710-d185f2fe7ff6"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleHotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""fa53e40d-73a1-46f9-8618-09a3fa36da03"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleHotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -206,6 +288,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Win = m_Player.FindAction("Win", throwIfNotFound: true);
         m_Player_PlaceTrap = m_Player.FindAction("PlaceTrap", throwIfNotFound: true);
+        m_Player_ToggleHotbarLeft = m_Player.FindAction("ToggleHotbarLeft", throwIfNotFound: true);
+        m_Player_ToggleHotbarRight = m_Player.FindAction("ToggleHotbarRight", throwIfNotFound: true);
+        m_Player_ToggleHotbar = m_Player.FindAction("ToggleHotbar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +358,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Win;
     private readonly InputAction m_Player_PlaceTrap;
+    private readonly InputAction m_Player_ToggleHotbarLeft;
+    private readonly InputAction m_Player_ToggleHotbarRight;
+    private readonly InputAction m_Player_ToggleHotbar;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -283,6 +371,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Win => m_Wrapper.m_Player_Win;
         public InputAction @PlaceTrap => m_Wrapper.m_Player_PlaceTrap;
+        public InputAction @ToggleHotbarLeft => m_Wrapper.m_Player_ToggleHotbarLeft;
+        public InputAction @ToggleHotbarRight => m_Wrapper.m_Player_ToggleHotbarRight;
+        public InputAction @ToggleHotbar => m_Wrapper.m_Player_ToggleHotbar;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +401,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PlaceTrap.started += instance.OnPlaceTrap;
             @PlaceTrap.performed += instance.OnPlaceTrap;
             @PlaceTrap.canceled += instance.OnPlaceTrap;
+            @ToggleHotbarLeft.started += instance.OnToggleHotbarLeft;
+            @ToggleHotbarLeft.performed += instance.OnToggleHotbarLeft;
+            @ToggleHotbarLeft.canceled += instance.OnToggleHotbarLeft;
+            @ToggleHotbarRight.started += instance.OnToggleHotbarRight;
+            @ToggleHotbarRight.performed += instance.OnToggleHotbarRight;
+            @ToggleHotbarRight.canceled += instance.OnToggleHotbarRight;
+            @ToggleHotbar.started += instance.OnToggleHotbar;
+            @ToggleHotbar.performed += instance.OnToggleHotbar;
+            @ToggleHotbar.canceled += instance.OnToggleHotbar;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -332,6 +432,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PlaceTrap.started -= instance.OnPlaceTrap;
             @PlaceTrap.performed -= instance.OnPlaceTrap;
             @PlaceTrap.canceled -= instance.OnPlaceTrap;
+            @ToggleHotbarLeft.started -= instance.OnToggleHotbarLeft;
+            @ToggleHotbarLeft.performed -= instance.OnToggleHotbarLeft;
+            @ToggleHotbarLeft.canceled -= instance.OnToggleHotbarLeft;
+            @ToggleHotbarRight.started -= instance.OnToggleHotbarRight;
+            @ToggleHotbarRight.performed -= instance.OnToggleHotbarRight;
+            @ToggleHotbarRight.canceled -= instance.OnToggleHotbarRight;
+            @ToggleHotbar.started -= instance.OnToggleHotbar;
+            @ToggleHotbar.performed -= instance.OnToggleHotbar;
+            @ToggleHotbar.canceled -= instance.OnToggleHotbar;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,5 +466,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnWin(InputAction.CallbackContext context);
         void OnPlaceTrap(InputAction.CallbackContext context);
+        void OnToggleHotbarLeft(InputAction.CallbackContext context);
+        void OnToggleHotbarRight(InputAction.CallbackContext context);
+        void OnToggleHotbar(InputAction.CallbackContext context);
     }
 }
