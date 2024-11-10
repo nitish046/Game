@@ -7302,6 +7302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 902956392}
   - component: {fileID: 902956391}
+  - component: {fileID: 902956393}
   m_Layer: 0
   m_Name: hotdogPlate
   m_TagString: Untagged
@@ -7321,6 +7322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c826aa69a19491498a1238b2f65a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  already_picked: 0
 --- !u!4 &902956392
 Transform:
   m_ObjectHideFlags: 0
@@ -7337,6 +7339,18 @@ Transform:
   - {fileID: 1529158050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &902956393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902956390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 243cd97f6e310dc4f974de0aca281e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &924230952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7714,6 +7728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1049013676}
   - component: {fileID: 1049013675}
+  - component: {fileID: 1049013677}
   m_Layer: 0
   m_Name: tomato
   m_TagString: Untagged
@@ -7733,6 +7748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c826aa69a19491498a1238b2f65a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  already_picked: 0
 --- !u!4 &1049013676
 Transform:
   m_ObjectHideFlags: 0
@@ -7749,6 +7765,18 @@ Transform:
   - {fileID: 1975329746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1049013677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049013674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59af38cac0c78d944a0fe91ef78ff50d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1099933498
 GameObject:
   m_ObjectHideFlags: 0
@@ -13211,6 +13239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1570888663}
   - component: {fileID: 1570888664}
+  - component: {fileID: 1570888665}
   m_Layer: 0
   m_Name: marshmallowPlate
   m_TagString: Untagged
@@ -13244,6 +13273,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c826aa69a19491498a1238b2f65a203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  already_picked: 0
+--- !u!114 &1570888665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570888662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 243cd97f6e310dc4f974de0aca281e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1590212298
@@ -13623,6 +13665,7 @@ MonoBehaviour:
   win_text: {fileID: 1926314560}
   item_holder: {fileID: 236710243}
   num_items_held: 0
+  num_items_to_win: 0
   y_position: 0
   win_lose_controller: {fileID: 344480905}
 --- !u!1 &1671717947

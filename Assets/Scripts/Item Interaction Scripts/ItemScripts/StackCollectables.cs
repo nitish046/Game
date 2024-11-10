@@ -17,6 +17,7 @@ public class StackCollectables : MonoBehaviour
 
   public Transform item_holder;
   public int num_items_held;
+  public int num_items_to_win;
   public float y_position;
 
   [SerializeField] protected GameObject win_lose_controller;
@@ -46,8 +47,8 @@ public class StackCollectables : MonoBehaviour
 
   public void setScore()
   {
-    score_text.text = "Food Collected: " + num_items_held.ToString() + " /3";
-    if (num_items_held == 3)
+    score_text.text = "Food Collected: " + num_items_held.ToString() + " / " + num_items_to_win.ToString();
+    if (num_items_held == num_items_to_win)
     {
       // win_text.gameObject.SetActive(true);
       // mainScreen.SetActive(false);
