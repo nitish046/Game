@@ -19,24 +19,14 @@ namespace MaskedMischiefNamespace
 		//Only grounded states need to check for if the player is grounded, so PhysicsUpdate() is overriden to add that logic here only
 		public override void PhysicsUpdate()
 		{
+			if (!isGrounded())
+				stateMachine.ChangeState(stateMachine.FallingState);
 			base.PhysicsUpdate();
-			
 		}
 
 		public override void Update()
 		{
 			base.Update();
-			var player = stateMachine.player;
-			Collider ground;
-			if (!isGrounded(out ground))
-			{
-				stateMachine.ChangeState(stateMachine.FallingState);
-			}
-			else
-			{
-				//Debug.Log(ground.ToString());
-				snapToGround(ground);
-			}
 		}
 
 		protected override void AddCallbacks()

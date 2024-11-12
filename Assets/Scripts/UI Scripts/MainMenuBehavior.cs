@@ -8,6 +8,7 @@ public class MainMenuBehavior : MonoBehaviour
 		public void playButton()
 		{
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+				lockCursor();
 		}
 
 		public void quitButton()
@@ -18,5 +19,12 @@ public class MainMenuBehavior : MonoBehaviour
 		public void resetButton()
 		{
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+				lockCursor();
 		}
+
+	private void lockCursor()
+	{
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+	}
 }

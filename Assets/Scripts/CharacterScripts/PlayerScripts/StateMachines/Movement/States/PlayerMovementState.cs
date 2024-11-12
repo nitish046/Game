@@ -17,7 +17,7 @@ namespace MaskedMischiefNamespace
 
 		public virtual void Enter()
 		{
-			//Debug.Log("Entering State: " + GetType().Name);
+			Debug.Log("Entering State: " + GetType().Name);
 			AddCallbacks();
 		}
 		public virtual void Exit()
@@ -27,11 +27,11 @@ namespace MaskedMischiefNamespace
 		}
 		protected bool isGrounded()
 		{
-			foreach(Collider c in PlayerMovementStateMachine.triggers)
+			stateMachine.player.Collisions(Vector3.down, stateMachine.player.yVelocity - 0.1f, new[] {"Terrain", "Collidable"});
+			foreach (RaycastHit r in stateMachine.player.hits)
 			{
-				if (c == null)
-					continue;
-				if(c.CompareTag("Terrain") || c.CompareTag("Collidable"))
+				//Debug.Log(r);
+				if(Vector3.Angle(r.normal, Vector3.up) < 15)
 				{
 					return true;
 				}
@@ -42,16 +42,16 @@ namespace MaskedMischiefNamespace
 
 		protected bool isGrounded(out Collider Ground)
 		{
-			foreach (Collider c in PlayerMovementStateMachine.triggers)
+			stateMachine.player.Collisions(Vector3.down, stateMachine.player.yVelocity - 0.1f, new[] { "Terrain", "Collidable" });
+			foreach (RaycastHit r in stateMachine.player.hits)
 			{
-				if (c == null)
-					continue;
-				if (c.CompareTag("Terrain") || c.CompareTag("Collidable"))
+				Debug.Log(r);
+				if (Vector3.Angle(r.normal, Vector3.up) < 15)
 				{
-					Ground = c;
+					Ground = r.collider;
 					return true;
-					}
 				}
+			}
 			Ground = null;
 			return false;
 			//return stateMachine.player.IsGrounded();
@@ -115,13 +115,16 @@ namespace MaskedMischiefNamespace
 			Vector3 cameraDir = stateMachine.player.mainCamera.transform.rotation.eulerAngles;
 			Vector3 moveDir = Quaternion.Euler(0, cameraDir.y, 0) * new Vector3(staticMovement.x, 0, staticMovement.y);
 			//stateMachine.player.transform.Translate(moveDir * stateMachine.player.walkSpeed);
+			float speed = (stateMachine.player.isSprinting) ? stateMachine.player.runSpeed : stateMachine.player.walkSpeed;
 			if(!moveDir.Equals(new Vector3(0, 0, 0)))
 			{
 				Quaternion moveAngle = Quaternion.LookRotation(moveDir);
 				stateMachine.player.transform.rotation = Quaternion.Slerp(stateMachine.player.transform.rotation, moveAngle, 0.2f);
-				if(!stateMachine.player.WillCollide(stateMachine.player.transform.forward, stateMachine.player.walkSpeed))
-					stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * stateMachine.player.walkSpeed);
+				if(!stateMachine.player.WillCollide(stateMachine.player.transform.forward, speed, new[] {"Collidable"}))
+					stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * speed);
+				
 			}
+			stateMachine.player.GetComponent<CharacterController>().Move(Vector3.down * -stateMachine.player.yVelocity);
 
 		}
 		#endregion

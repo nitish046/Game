@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace MaskedMischiefNamespace
@@ -19,6 +20,7 @@ namespace MaskedMischiefNamespace
 		private Rigidbody rigidbody;
 		[SerializeField] public GameObject trapPrefab; //This is the trap
 		[SerializeField] protected GameObject winLoseController;
+		public List<RaycastHit> hits;
 
 		private void OnTriggerEnter(Collider other)
 		{
@@ -58,7 +60,7 @@ namespace MaskedMischiefNamespace
 			b.y -= offset;
 
 			LayerMask mask = Convert.ToInt32("10000000", 2);
-			RaycastHit[] hits = rigidbody.SweepTestAll(dir, len);
+			RaycastHit[] hits = rigidbody.SweepTestAll(dir, Mathf.Abs(len));
 
 			foreach(RaycastHit hit in hits)
 			{
@@ -67,7 +69,82 @@ namespace MaskedMischiefNamespace
 			}
 			return false;
 		}
+		public bool WillCollide(Vector3 dir, float len, string[] tags)
+		{
+			Vector3 center = CharacterController.center;
+			float radius = CharacterController.radius;
+			float height = CharacterController.height;
 
+			float offset = (height / 2) - radius;
+
+			Vector3 a = center;
+			a.y += offset;
+			Vector3 b = center;
+			b.y -= offset;
+
+			LayerMask mask = Convert.ToInt32("10000000", 2);
+			RaycastHit[] hits = rigidbody.SweepTestAll(dir, Mathf.Abs(len));
+
+			foreach (RaycastHit hit in hits)
+			{
+				foreach (string s in tags)
+				{
+					if (hit.collider.CompareTag(s))
+						return true;
+				}
+			}
+			return false;
+		}
+
+		public void Collisions(Vector3 dir, float len, string[] tags)
+		{
+			hits = new List<RaycastHit>();
+			Vector3 center = CharacterController.center;
+			float radius = CharacterController.radius;
+			float height = CharacterController.height;
+
+			float offset = (height / 2) - radius;
+
+			Vector3 a = center;
+			a.y += offset;
+			Vector3 b = center;
+			b.y -= offset;
+
+			LayerMask mask = Convert.ToInt32("10000000", 2);
+			List<RaycastHit> tempList = rigidbody.SweepTestAll(dir, Mathf.Abs(len)).ToList();
+
+			foreach (RaycastHit hit in tempList)
+			{
+				foreach(string s in tags)
+				{
+					if(hit.collider.CompareTag(s))
+						hits.Add(hit);
+				}
+			}
+		}
+		public void Collisions(Vector3 dir, float len)
+		{
+			hits = new List<RaycastHit>();
+			Vector3 center = CharacterController.center;
+			float radius = CharacterController.radius;
+			float height = CharacterController.height;
+
+			float offset = (height / 2) - radius;
+
+			Vector3 a = center;
+			a.y += offset;
+			Vector3 b = center;
+			b.y -= offset;
+
+			LayerMask mask = Convert.ToInt32("10000000", 2);
+			List<RaycastHit> tempList = rigidbody.SweepTestAll(dir, len).ToList();
+
+			foreach (RaycastHit hit in tempList)
+			{
+				if (!(hit.collider.CompareTag("Henry")))
+					hits.Add(hit);
+			}
+		}
 		public void Win()
 		{
 			winLoseController.GetComponent<WinLoseControl>().WinGame();

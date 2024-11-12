@@ -8,6 +8,7 @@ TagManager:
   - Henry
   - Terrain
   - Collidable
+  - Hidable
   layers:
   - Default
   - TransparentFX

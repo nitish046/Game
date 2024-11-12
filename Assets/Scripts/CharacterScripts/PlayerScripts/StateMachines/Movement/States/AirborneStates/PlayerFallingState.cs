@@ -29,26 +29,20 @@ namespace MaskedMischiefNamespace
 
 		public override void PhysicsUpdate()
 		{
-			base.PhysicsUpdate();
-			var player = stateMachine.player;
 			if (isGrounded())
 			{
 				stateMachine.ChangeState(stateMachine.LandingState);
 			}
 			else
 			{
-				player.GetComponent<CharacterController>().Move(new Vector3(0, player.yVelocity, 0));
-				player.yVelocity -= player.gravity;
+				stateMachine.player.yVelocity -= stateMachine.player.gravity;
 			}
+			base.PhysicsUpdate();
 		}
 
 		public override void Update()
 		{
 			base.Update();
-			if(isGrounded())
-			{
-				stateMachine.ChangeState(stateMachine.LandingState);
-			}
 		}
 
 	}
