@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3391853105199282229}
   - component: {fileID: 2364845674345807422}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HalfWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +105,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7971b4fb039cfbd44b25b82b04a89e95, type: 3}
       propertyPath: m_Name
       value: HalfWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7971b4fb039cfbd44b25b82b04a89e95, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

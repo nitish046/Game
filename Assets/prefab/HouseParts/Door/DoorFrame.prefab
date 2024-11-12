@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5722551781238588799}
   - component: {fileID: 7407839508690425975}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316864010730933016}
   - component: {fileID: 5695911458962810731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collidier1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256807054355629584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +191,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9d2be76dfc8081343bbb64e2461de360, type: 3}
       propertyPath: m_Name
       value: DoorFrame
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9d2be76dfc8081343bbb64e2461de360, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
