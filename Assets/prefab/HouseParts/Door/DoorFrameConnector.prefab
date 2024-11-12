@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043813168419226906}
   - component: {fileID: 5169150306927440525}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1930494386747836510}
   - component: {fileID: 3137945874734435197}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collidier 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5250237842266289860}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorFrameConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 8101067661148859256}
   - component: {fileID: 5171009269555897565}
   - component: {fileID: 6928764668398882839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorFrameConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
