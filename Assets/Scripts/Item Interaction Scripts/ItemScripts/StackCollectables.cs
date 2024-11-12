@@ -20,6 +20,8 @@ public class StackCollectables : MonoBehaviour
   public int num_items_to_win;
   public float y_position;
 
+  private GameObject hotbar;
+
   [SerializeField] protected GameObject win_lose_controller;
 
   private void Start()
@@ -43,6 +45,11 @@ public class StackCollectables : MonoBehaviour
 
     });
 
+  }
+
+  public void AddItemToHotbar(UsableItem uItem)
+  {
+    hotbar.GetComponent<ItemHotbar>().AddItem(uItem);
   }
 
   public void setScore()

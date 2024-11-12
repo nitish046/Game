@@ -5,19 +5,36 @@ using UnityEngine;
 using System.Numerics;
 using UnityEngine.Animations;
 using System;
+using UnityEngine.UI;
 
 public class ItemHotbar : MonoBehaviour
 {
   private List<UsableItem> itemList = new List<UsableItem>();
   private List<int> itemCount = new List<int>();
 
+  private int numBoxes = 8;
+  [SerializeField] private List<Image> hotbarBoxes;
+  [SerializeField] private List<Image> hotbarImages;
+  [SerializeField] private Sprite unselectedBox;
+  [SerializeField] private Sprite selectedBox;
+
   private int currentIndex = 0;
 
-  private PlayerInputActions playerInputAction;
+  public PlayerInputActions playerInputAction;
   private InputAction toggleLeft;
   private InputAction toggleRight;
   private InputAction toggle;
 
+  private void Start()
+  {
+    StartCoroutine(this.DrawHotbar());
+    hotbarBoxes[0].sprite = selectedBox;
+    for (int i = 1; i < numBoxes; i++)
+    {
+      hotbarBoxes[i].sprite = unselectedBox;
+    }
+
+  }
   private void OnEnable()
   {
     toggle = playerInputAction.Player.ToggleHotbar;
@@ -30,25 +47,64 @@ public class ItemHotbar : MonoBehaviour
 
   private void Update()
   {
-    int hotbarToggle = (toggle.ReadValue<Axis>() == 0) ? 0 : (int)((float)toggle.ReadValue<Axis>() / Math.Abs((float)toggle.ReadValue<Axis>()));
-    currentIndex += hotbarToggle;
-    if (currentIndex >= itemList.Count) currentIndex = 0;
-    if (currentIndex < 0) currentIndex = itemList.Count - 1;
+    toggleHotbarValue(toggle.ReadValue<Axis>());
   }
 
-  public void DrawHotbar()
+  private void toggleHotbarValue(Axis toggleAxis)
   {
-    if (itemList.Count == 0)
-    {
+    hotbarBoxes[currentIndex].sprite = unselectedBox;
+    // int hotbarToggle = (toggleAxis == 0) ? 0 : (int)((float)toggleAxis / Math.Abs((float)toggleAxis));
+    int hotbarToggle = (toggleAxis == 0) ? 0 : ((toggleAxis < 0) ? -1 : 1);
+    currentIndex += hotbarToggle;
+    if (currentIndex >= itemList.Count)
+      currentIndex = itemList.Count - 1;
+    else if (currentIndex < 0)
+      currentIndex = 0;
 
+    if (currentIndex < numBoxes)
+    {
+      hotbarBoxes[currentIndex].sprite = selectedBox;
     }
     else
     {
-
+      hotbarBoxes[numBoxes - 1].sprite = selectedBox;
     }
   }
 
-  public void AddItemToHotbar(UsableItem uItem)
+  public IEnumerator DrawHotbar()
+  {
+    float delay = 0.2f;
+    WaitForSeconds wait = new WaitForSeconds(delay);
+    while (true)
+    {
+      if (itemList.Count <= numBoxes || currentIndex < numBoxes)
+      {
+        for (int i = 0; i < numBoxes; i++)
+        {
+          if (i < itemList.Count)
+          {
+            hotbarImages[i] = itemList[i].getItemImage();
+            hotbarImages[i].color = Color.white;
+          }
+          else
+          {
+            hotbarImages[i].color = Color.clear;
+          }
+        }
+      }
+      else
+      {
+        int min_i = currentIndex - numBoxes;
+        for (int i = min_i; i < numBoxes; i++)
+        {
+          hotbarBoxes[i - min_i] = itemList[i].getItemImage();
+          hotbarImages[i - min_i].color = Color.white;
+        }
+      }
+    }
+  }
+
+  public void AddItem(UsableItem uItem)
   {
     for (int i = 0; i < itemList.Count; i++)
     {
@@ -60,5 +116,6 @@ public class ItemHotbar : MonoBehaviour
     }
     itemList.Add(uItem);
     itemCount.Add(1);
+    // hotbarImages.Add(uItem.getItemImage());
   }
 }

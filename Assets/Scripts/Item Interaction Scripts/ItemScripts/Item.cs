@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public class Item : MonoBehaviour
 {
-  bool already_picked = false;
+  protected bool already_picked = false;
 
-  private void FixedUpdate()
+  protected void FixedUpdate()
   {
     Collider[] t = Physics.OverlapSphere(transform.position, 1.5f);
 
@@ -19,7 +19,7 @@ public abstract class Item : MonoBehaviour
     }
   }
 
-  private void tryPick(Collider col)
+  protected virtual void tryPick(Collider col)
   {
     GameObject other = col.gameObject;
     //Debug.Log(other);
@@ -45,7 +45,7 @@ public abstract class Item : MonoBehaviour
     }
   }
   // Start is called before the first frame update
-  private void OnTriggerEnter(Collider other)
+  protected void OnTriggerEnter(Collider other)
   {
 
   }
