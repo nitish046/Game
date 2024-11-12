@@ -1,71 +1,69 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using static FamilyMember;
 using UnityEngine.AI;
 
 public class FamilyPatrolState : FamilyBaseState
 {
-    private Animator animator;
-    private Vector3[] waypoint_array;
+    private readonly FamilyMember member;
+    private Animator member_animator;
+    private NavMeshAgent nav_mesh_member;
+
     private int waypoint_index = 0;
-    public override void EnterState(HenryStateMachine henry)
+    //Vector3 waypoint_target;
+
+    private Coroutine patrolCoroutine;
+
+
+    public FamilyPatrolState(FamilyMember family_member, Animator animator, NavMeshAgent nav_mesh_agent)
     {
-        animator = henry.transform.GetChild(0).GetComponent<Animator>();
-        waypoint_array = henry.GetComponent<FamilyMember>().waypoint_array;
-        animator.enabled = true;
-        henry.StartCoroutine(Patrol(henry,waypoint_array));
+        member = family_member;
+        member_animator = animator;
+        nav_mesh_member = nav_mesh_agent;
+    }
+    public override void EnterState()
+    {
+        member_animator.enabled = true;
+        //waypoint_target = member.waypoint_array[waypoint_index];
+        patrolCoroutine = member.StartCoroutine(Patrol(member.waypoint_array));
     }
 
-    public override void UpdateState(HenryStateMachine henry)
+    public override void UpdateState()
     {
 
     }
 
-    public override void ExitState(HenryStateMachine henry)
+    public override void ExitState()
     {
-        henry.StopAllCoroutines();
-        animator.enabled = false;
+        if (patrolCoroutine != null)
+        {
+            member.StopCoroutine(patrolCoroutine);
+        }
+        member_animator.enabled = false;
+        if (nav_mesh_member != null) nav_mesh_member.ResetPath();
     }
 
-    protected IEnumerator Patrol(HenryStateMachine henry, Vector3[] waypoints)
+    protected IEnumerator Patrol(Vector3[] waypoints)
     {
-        UnityEngine.Debug.Log("Entering Henry Patrol");
-        //int waypoint_index = 0;
         Vector3 waypoint_target = waypoints[waypoint_index];
         while (true)
         {
-                henry.transform.position = Vector3.MoveTowards(henry.transform.position, waypoint_target, henry.movement_speed * Time.deltaTime);
-                henry.transform.LookAt(waypoint_target);
+            //member.transform.position = Vector3.MoveTowards(member.transform.position, waypoint_target, member.MovementSpeed * Time.deltaTime);
+            //member.transform.LookAt(waypoint_target);
+            nav_mesh_member.destination = waypoint_target;
 
-                if (henry.transform.position == waypoint_target)
-                {
-                    walkingTransition(false);
+            if (nav_mesh_member.remainingDistance < 0.2f)
+            {
+                walkingTransition(false);
 
-                    waypoint_index = (waypoint_index + 1) % waypoints.Length;
-                    waypoint_target = waypoints[waypoint_index];
+                waypoint_index = (waypoint_index + 1) % waypoints.Length;
+                waypoint_target = waypoints[waypoint_index];
 
-                    yield return new WaitForSeconds(henry.waypoint_wait_time);
-                    yield return henry.StartCoroutine(turnTowardsPosition(henry, waypoint_target));
+                yield return new WaitForSeconds(member.waypoint_wait_time);
+                //turnTowardsCoroutine = member.StartCoroutine(turnTowardsPosition(waypoint_target));
 
-                    walkingTransition(true);
-                }
-            yield return null;
-        }
-    }
-
-
-
-
-    IEnumerator turnTowardsPosition(HenryStateMachine henry, Vector3 rotation_target)
-    {
-        Vector3 direction = (rotation_target - henry.transform.position).normalized;
-        float target_angle = 90 - Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-
-        while (Mathf.DeltaAngle(henry.transform.eulerAngles.y, target_angle) > Mathf.Abs(0.05f))
-        {
-            float angle = Mathf.MoveTowardsAngle(henry.transform.eulerAngles.y, target_angle, henry.rotation_speed * Time.deltaTime);
-            henry.transform.eulerAngles = Vector3.up * angle;
+                walkingTransition(true);
+            }
             yield return null;
         }
     }
@@ -74,11 +72,11 @@ public class FamilyPatrolState : FamilyBaseState
     {
         if (walking)
         {
-            animator.SetBool("isWalking", true);
+            member_animator.SetBool("isWalking", true);
         }
         else
         {
-            animator.SetBool("isWalking", false);
+            member_animator.SetBool("isWalking", false);
         }
     }
 }

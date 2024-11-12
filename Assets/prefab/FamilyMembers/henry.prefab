@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3953645617807457014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.199}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 2637618866404462243}
   - component: {fileID: 8444187024643857962}
   - component: {fileID: 7319617643645306480}
-  - component: {fileID: 5636040179835622924}
   - component: {fileID: 8912877784886899871}
   m_Layer: 0
   m_Name: henry
@@ -86,10 +85,9 @@ MonoBehaviour:
   waypoint_array: []
   waypoint_size: 0.2
   waypoint_wait_time: 2
-  allow: 0
+  splash: {fileID: 0}
   player: {fileID: 0}
   win_lose_controller: {fileID: 0}
-  familyMemberState: 0
   viewRadius: 10
   viewAngle: 120
   periferalAngle: 190
@@ -99,18 +97,23 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
+  interactableObstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
   hasSeenPlayer: 0
   patrolDuration: 10
   secondsSinceSeenPlayer: 0
   patrolPointOperator: {fileID: 0}
-  movement_speed: 5
-  rotation_speed: 90
-  hammer: {fileID: 7896316181650420045, guid: db251c1d80153224280e4068e962ba81, type: 3}
-  lose_text: {fileID: 0}
   MainColor: {fileID: 2100000, guid: 3affc6b9de12d004fb65db86f5e7d93c, type: 2}
   FreezeColor: {fileID: -2381500201381900343, guid: c5e9aa77baf01b442820a3ecae2de376, type: 3}
+  nav_mesh_agent: {fileID: 0}
+  Throwable_object_array:
+  - {fileID: 7896316181650420045, guid: db251c1d80153224280e4068e962ba81, type: 3}
+  rate_of_fire: 3
+  follow_distance: 5
+  hammer_origin: {fileID: 0}
+  lose_text: {fileID: 0}
   duration: 2
-  splash: {fileID: 0}
   collision_occur: {fileID: 0}
 --- !u!136 &8444187024643857962
 CapsuleCollider:
@@ -158,25 +161,10 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
+  interactableObstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
   canSeePlayer: 0
---- !u!114 &5636040179835622924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735142653411477578}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c73053ba6658744f8005e816d841184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FreezeColor: {fileID: -2381500201381900343, guid: c5e9aa77baf01b442820a3ecae2de376, type: 3}
-  splash: {fileID: 0}
-  player: {fileID: 0}
-  movement_speed: 5
-  rotation_speed: 90
-  waypoint_wait_time: 2
 --- !u!195 &8912877784886899871
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -184,7 +172,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8735142653411477578}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5

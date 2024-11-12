@@ -5,117 +5,53 @@ using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class HenryController : FamilyMember
 {
-
-  [SerializeField] private float movement_speed = 5f;
-  [SerializeField] private float rotation_speed = 90f;
-  protected override float MovementSpeed => movement_speed;
-  protected override float RotationSpeed => rotation_speed;
-
-  public GameObject hammer;
-
-  public TMP_Text lose_text;
-  public Material MainColor, FreezeColor;
-  public float duration = 5f;
-  public AudioSource splash;
-  [SerializeField] private HideOnCollide collision_occur;
-  private HenryStateMachine stateMachine;
-  protected override void Start()
-  {
-    base.Start();
-    stateMachine = GetComponent<HenryStateMachine>();
-    HenryStartInHouse();
-  }
-
-
-  private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
-  {
-    // UnityEngine.Debug.Log("collisionOccur_onRaccoonFirstTimeOnTrash");
-    transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-    stateMachine.enabled = true;
-    //stateMachine.ChangeState(stateMachine.patrol_state);
-    //patrolCoroutine = StartCoroutine(Patrol(getWaypointArray("Patrol")));
-  }
-  private void HenryStartInHouse()
-  {
-    waypoint_array = getWaypointArray("Patrol");
-    transform.position = waypoint_array[0];
-    stateMachine.enabled = true;
-  }
-
-  protected override void SeesRaccoon()
-  {
-    base.SeesRaccoon();
-    if(stateMachine.current_state != stateMachine.freeze_state)
+    public GameObject[] Throwable_object_array;
+    public float rate_of_fire = 3f;
+    public float follow_distance = 5f;
+    public Transform hammer_origin;
+    public TMP_Text lose_text;
+    public float duration = 5f;
+    [SerializeField] private HideOnCollide collision_occur;
+    protected override void Start()
     {
-        stateMachine.ChangeState(stateMachine.activated_state);
+        base.Start();
+
+        FamilyPatrolState patrol = new FamilyPatrolState(this, animator, nav_mesh_agent);
+        HenryActivatedState activated = new HenryActivatedState(this, animator, nav_mesh_agent);
+        FamilyFreezeState freeze = new FamilyFreezeState(this, animator, nav_mesh_agent);
+        FamilySearchState search = new FamilySearchState(this, animator, nav_mesh_agent);
+        stateMachine = new FamilyStateMachine(patrol, activated, freeze, search);
+
+        hammer_origin = transform.GetChild(1);
+
+        waypoint_array = getWaypointArray("Patrol");
+
+        stateMachine.current_state = patrol;
+        stateMachine.current_state.EnterState();
+        //HenryStartInHouse();
     }
-  }
-  /*
-public override void Freeze(float freezeDuration, bool isTrapFreeze)
-{
-  duration = freezeDuration; // Set the freeze duration based on the trap
-  allow = false; // Stop movement
 
-  // Only change color if it's not a trap freeze
-  if (!isTrapFreeze)
-  {
-    skinnedMeshRenderer.material = FreezeColor; // Change to FreezeColor
-  }
+    private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
+    {
+        // UnityEngine.Debug.Log("collisionOccur_onRaccoonFirstTimeOnTrash");
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        //stateMachine.ChangeState(stateMachine.patrol_state);
+        //patrolCoroutine = StartCoroutine(Patrol(getWaypointArray("Patrol")));
+    }
+    private void HenryStartInHouse()
+    {
+        waypoint_array = getWaypointArray("Patrol");
+        transform.position = waypoint_array[0];
+    }
 
-  if (splash != null && splash.clip != null)
-  {
-    splash.Play();
-  }
-  else
-  {
-    UnityEngine.Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");
-  }
-
-  // If it's a trap freeze, make Henry fall and pause animation
-  if (isTrapFreeze)
-  {
-    animator.enabled = false; // Pause all animations
-    transform.rotation = Quaternion.Euler(90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Rotate Henry to appear as if he has fallen down
-    UnityEngine.Debug.Log("Henry has been frozen and fallen to the ground.");
-  }
-  else
-  {
-    UnityEngine.Debug.Log("Henry has been frozen by another method.");
-  }
-
-  StartCoroutine(delay(isTrapFreeze)); // Pass the freeze type to the delay
-}
-
-
-IEnumerator delay(bool isTrapFreeze)
-{
-  yield return new WaitForSeconds(duration);
-
-  skinnedMeshRenderer.material = MainColor; // Reset color
-  allow = true;
-
-  if (isTrapFreeze)
-  {
-    animator.enabled = true; // Resume animations
-    transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); // Reset rotation to stand Henry back up
-                                                                                                                   //Debug.Log("Henry has unfrozen and is standing up.");
-  }
-
-  //Debug.Log("Henry has unfrozen.");
-}
-
-  */
-
-
-
-  protected Vector3[] getWaypointArray(string type)
-  {
-    // UnityEngine.Debug.Log("Henry getWaypointArray type");
-    return base.getWaypointArray("henry", type);
-  }
+    protected Vector3[] getWaypointArray(string type)
+    {
+        // UnityEngine.Debug.Log("Henry getWaypointArray type");
+        return base.getWaypointArray("henry", type);
+    }
 
 }
-
