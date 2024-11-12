@@ -17,7 +17,7 @@ public class Reaction : MonoBehaviour
             if (collision.gameObject.CompareTag("Henry"))
             {
                 // Call Freeze with effectDuration and isTrapFreeze = false (since this isn't a trap)
-                FamilyStateMachine state_machine = collision.gameObject.GetComponent<HenryController>().stateMachine;
+                FamilyStateMachine state_machine = collision.gameObject.GetComponent<FamilyMember>().stateMachine;
                 state_machine.freeze_state.effect_duration = effectDuration;
                 state_machine.freeze_state.is_trap_slip = false;
                 state_machine.ChangeState(state_machine.freeze_state);
