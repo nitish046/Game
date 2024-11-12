@@ -12,7 +12,7 @@ public class ItemHotbar : MonoBehaviour
   private List<UsableItem> itemList = new List<UsableItem>();
   private List<int> itemCount = new List<int>();
 
-  private int numBoxes = 8;
+  [SerializeField] private int numBoxes = 8;
   [SerializeField] private List<Image> hotbarBoxes;
   [SerializeField] private List<Image> hotbarImages;
   [SerializeField] private Sprite unselectedBox;
@@ -77,6 +77,7 @@ public class ItemHotbar : MonoBehaviour
     WaitForSeconds wait = new WaitForSeconds(delay);
     while (true)
     {
+      yield return wait;
       if (itemList.Count <= numBoxes || currentIndex < numBoxes)
       {
         for (int i = 0; i < numBoxes; i++)
