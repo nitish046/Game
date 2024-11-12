@@ -12,7 +12,7 @@ public class EmilyActivatedState : FamilyBaseState
 
     private float distance_to_player;
     private float follow_distance;
-    private float charge_stop_distance = .4f;
+    private float charge_stop_distance = .5f;
 
     private float normal_speed;
     private float charge_speed;
