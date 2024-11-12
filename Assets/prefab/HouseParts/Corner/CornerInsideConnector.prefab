@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2421600326462467389}
   - component: {fileID: 7474434999416571391}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8484412228739255347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CornerInsideConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338298704701536533}
   - component: {fileID: 2122464641058713306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +191,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a4a6c83ba841eba45834c9fba2b424a5, type: 3}
       propertyPath: m_Name
       value: InsideCornerConnector
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a4a6c83ba841eba45834c9fba2b424a5, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

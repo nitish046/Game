@@ -5,225 +5,142 @@ using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 
 public abstract class FamilyMember : MonoBehaviour
 {
-  public enum FamilyMemberState
-  {
-    NORMAL,
-    PATROL,
-    ACTIVATED
-  }
+    //need to remake as public
+    //public abstract float MovementSpeed { get; }
+    //public abstract float RotationSpeed { get; }
 
-  protected abstract float MovementSpeed { get; }
-  protected abstract float RotationSpeed { get; }
+    [SerializeField] float distance;
 
-  [SerializeField] float distance;
+    [SerializeField] protected Transform path;
+    public Vector3[] waypoint_array;
+    [SerializeField] protected float waypoint_size = .4f;
+    [SerializeField] public float waypoint_wait_time = 2f;
 
-  [SerializeField] protected Transform path;
-  public Vector3[] waypoint_array;
-  [SerializeField] protected float waypoint_size = .4f;
-  [SerializeField] protected float waypoint_wait_time = 2f;
+    public AudioSource splash;
 
+    [SerializeField] public GameObject player;
 
-  public bool allow;
-
-  [SerializeField] public GameObject player;
-
-  protected Animator animator;
-  [SerializeField] protected GameObject win_lose_controller;
-
-  [SerializeField] protected FamilyMemberState familyMemberState = FamilyMemberState.NORMAL;
-
-  protected FieldOfView fieldOfView;
-  [SerializeField] protected float viewRadius;
-  [Range(0, 360)][SerializeField] protected float viewAngle = 120;
-  [Range(0, 360)][SerializeField] protected float periferalAngle = 190;
-  [SerializeField] protected LayerMask targetMask;
-  [SerializeField] protected LayerMask obstructionMask;
-  [SerializeField] protected LayerMask interactableObstructionMask;
-
-  public bool hasSeenPlayer = false;
-  public float patrolDuration = 10;
-  public float secondsSinceSeenPlayer = 0;
-  protected Coroutine timerCoroutine;
-  bool isTimerCoroutineRunning = false;
-
-  public GameObject patrolPointOperator;
-  protected Coroutine patrolCoroutine;
-  bool isPatrolCoroutineRunning = false;
+    protected Animator animator;
+    [SerializeField] protected GameObject win_lose_controller;
 
 
-  protected virtual void Start()
-  {
-    // collision_occur.onRaccoonFirstTimeOnTrash += collisionOccur_onRaccoonFirstTimeOnTrash;
-    allow = true;
-    animator = transform.GetChild(0).GetComponent<Animator>();
-    fieldOfView = gameObject.AddComponent<FieldOfView>();
-    fieldOfView.makeFOV(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask, interactableObstructionMask);
-    // waypoint_array = getWaypointArray(path);
-    StartCoroutine(fieldOfView.FOVRoutine());
-  }
+    protected FieldOfView fieldOfView;
+    [SerializeField] protected float viewRadius;
+    [Range(0, 360)][SerializeField] protected float viewAngle = 120;
+    [Range(0, 360)][SerializeField] protected float periferalAngle = 190;
+    [SerializeField] protected LayerMask targetMask;
+    [SerializeField] protected LayerMask obstructionMask;
+    [SerializeField] protected LayerMask interactableObstructionMask;
 
-  protected void Update()
-  {
-    distance = Vector3.Distance(transform.position, player.transform.position);
-    CheckForRaccoon();
-  }
+    public bool hasSeenPlayer = false;
+    public float patrolDuration = 10;
+    public float secondsSinceSeenPlayer = 0;
+    protected Coroutine timerCoroutine;
+    bool isTimerCoroutineRunning = false;
 
-  protected void CheckForRaccoon()
-  {
-    if (fieldOfView.canSeePlayer)
+    public GameObject patrolPointOperator;
+
+    public Material MainColor, FreezeColor;
+
+    protected Vector3 player_last_seen_position;
+
+    public FamilyStateMachine stateMachine;
+    public NavMeshAgent nav_mesh_agent;
+
+    protected virtual void Start()
     {
-      hasSeenPlayer = true;
-      if (isTimerCoroutineRunning)
-      {
-        isTimerCoroutineRunning = false;
-        StopCoroutine(timerCoroutine);
-      }
-      SeesRaccoon();
+        animator = transform.GetChild(0).GetComponent<Animator>();
+        nav_mesh_agent = GetComponent<NavMeshAgent>();
+        fieldOfView = gameObject.AddComponent<FieldOfView>();
+        fieldOfView.makeFOV(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask, interactableObstructionMask);
+        StartCoroutine(fieldOfView.FOVRoutine());
     }
-    else if (hasSeenPlayer)
+
+    protected void Update()
     {
-      familyMemberState = FamilyMemberState.PATROL;
-      hasSeenPlayer = false;
-      // Go on Patrol, start timer with secondsSinceSeenPlayer
-      timerCoroutine = StartCoroutine(seePlayerTimer());
-    }
-  }
-
-  protected IEnumerator seePlayerTimer()
-  {
-    isTimerCoroutineRunning = true;
-    WaitForSeconds wait = new WaitForSeconds(1.0f);
-    while (!fieldOfView.canSeePlayer)
-    {
-      yield return wait;
-      secondsSinceSeenPlayer++;
-      if (secondsSinceSeenPlayer >= 10)
-      {
-        familyMemberState = FamilyMemberState.NORMAL;
-        isPatrolCoroutineRunning = false;
-        StopCoroutine(patrolCoroutine);
-        //call to implement normal behavior
-        isTimerCoroutineRunning = false;
-        yield break;
-      }
-    }
-    familyMemberState = FamilyMemberState.ACTIVATED;
-    isTimerCoroutineRunning = false;
-    secondsSinceSeenPlayer = 0;
-  }
-
-  protected virtual void SeesRaccoon()
-  {
-    //win_lose_controller.GetComponent<WinLoseControl>().LoseGame();
-    if (familyMemberState == FamilyMemberState.PATROL && isPatrolCoroutineRunning)
-    {
-      StopCoroutine(patrolCoroutine);
-      isPatrolCoroutineRunning = false;
-    }
-    familyMemberState = FamilyMemberState.ACTIVATED;
-
-  }
-  /*
-    public abstract void Freeze(float freezeDuration, bool isTrapFreeze);
-
-
-    protected IEnumerator Patrol(Vector3[] waypoints)
-    {
-      UnityEngine.Debug.Log("Entering Henry Patrol");
-      isPatrolCoroutineRunning = true;
-      familyMemberState = FamilyMemberState.PATROL;
-      int waypoint_index = 0;
-      Vector3 waypoint_target = waypoints[waypoint_index];
-
-      while (true)
-      {
-        if (allow)
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        if (stateMachine.current_state != stateMachine.freeze_state)
         {
-          transform.position = Vector3.MoveTowards(transform.position, waypoint_target, MovementSpeed * Time.deltaTime);
-          transform.LookAt(waypoint_target);
-
-          if (transform.position == waypoint_target)
-          {
-            walkingTransition(false);
-            waypoint_index = (waypoint_index + 1) % waypoints.Length;
-            waypoint_target = waypoints[waypoint_index];
-            yield return new WaitForSeconds(waypoint_wait_time);
-            yield return StartCoroutine(turnTowardsPosition(waypoint_target));
-            walkingTransition(true);
-          }
+            CheckForRaccoon();
         }
-        yield return null;
-      }
+        stateMachine.UpdateCurrentState();
     }
 
-
-
-
-    IEnumerator turnTowardsPosition(Vector3 rotation_target)
+    protected void CheckForRaccoon()
     {
-      Vector3 direction = (rotation_target - transform.position).normalized;
-      float target_angle = 90 - Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-
-      while (Mathf.DeltaAngle(transform.eulerAngles.y, target_angle) > Mathf.Abs(0.05f))
-      {
-        float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, target_angle, RotationSpeed * Time.deltaTime);
-        transform.eulerAngles = Vector3.up * angle;
-        yield return null;
-      }
+        if (fieldOfView.canSeePlayer)
+        {
+            hasSeenPlayer = true;
+            if (isTimerCoroutineRunning)
+            {
+                isTimerCoroutineRunning = false;
+                StopCoroutine(timerCoroutine);
+            }
+            player_last_seen_position = player.transform.position;
+            SeesRaccoon();
+        }
+        else if (hasSeenPlayer)
+        {
+            stateMachine.search_state.search_location = player_last_seen_position;
+            if (stateMachine.current_state != stateMachine.freeze_state)
+            {
+                stateMachine.ChangeState(stateMachine.search_state);
+                hasSeenPlayer = false;
+                // Go on Patrol, start timer with secondsSinceSeenPlayer
+                timerCoroutine = StartCoroutine(seePlayerTimer());
+            }
+            else
+            {
+                stateMachine.previous_state = stateMachine.search_state;
+            }
+        }
     }
 
-    private void walkingTransition(bool walking)
+    protected IEnumerator seePlayerTimer()
     {
-      if (walking)
-      {
-        animator.SetBool("isWalking", true);
-      }
-      else
-      {
-        animator.SetBool("isWalking", false);
-      }
+        isTimerCoroutineRunning = true;
+        WaitForSeconds wait = new WaitForSeconds(1.0f);
+        while (!fieldOfView.canSeePlayer)
+        {
+            yield return wait;
+            if (stateMachine.current_state != stateMachine.freeze_state)
+            {
+                secondsSinceSeenPlayer++;
+            }
+            if (secondsSinceSeenPlayer >= 5)
+            {
+                stateMachine.ChangeState(stateMachine.patrol_state);
+                //call to implement normal behavior
+                isTimerCoroutineRunning = false;
+                secondsSinceSeenPlayer = 0;
+                yield break;
+            }
+        }
+        isTimerCoroutineRunning = false;
+        secondsSinceSeenPlayer = 0;
     }
-      */
-  // protected virtual Vector3[] getWaypointArray(Transform path)
-  // {
-  //   Vector3[] waypoint_array = new Vector3[path.childCount];
-  //   for (int i = 0; i < waypoint_array.Length; i++)
-  //   {
-  //     waypoint_array[i] = path.GetChild(i).position;
-  //   }
 
-  //   return waypoint_array;
-  // }
+    protected virtual void SeesRaccoon()
+    {
+        if (stateMachine.current_state != stateMachine.freeze_state)
+        {
+            stateMachine.ChangeState(stateMachine.activated_state);
+        }
+    }
 
-  protected virtual Vector3[] getWaypointArray(string name, string type)
-  {
-    UnityEngine.Debug.Log("FamilyMember getWaypointArray type " + name + " " + type);
-    UnityEngine.Debug.Log(patrolPointOperator.GetComponent<FamilyPatrolPoints>());
-    Vector3[] waypoint_array = patrolPointOperator.GetComponent<FamilyPatrolPoints>().findPatrolPoints(name, type);
+    protected virtual Vector3[] getWaypointArray(string name, string type)
+    {
+        UnityEngine.Debug.Log("FamilyMember getWaypointArray type " + name + " " + type);
+        UnityEngine.Debug.Log(patrolPointOperator.GetComponent<FamilyPatrolPoints>());
+        Vector3[] waypoint_array = patrolPointOperator.GetComponent<FamilyPatrolPoints>().findPatrolPoints(name, type);
 
-    return waypoint_array;
-  }
-
-  // protected void OnDrawGizmos()
-  // {
-  //   Vector3 start_waypoint_position = path.GetChild(0).position;
-  //   Vector3 previous_waypoint_position = start_waypoint_position;
-
-  //   foreach (Transform waypoint in path)
-  //   {
-  //     Gizmos.color = new Color(238f / 255, 130f / 255, 238f / 255, 255f / 255);
-  //     Gizmos.DrawSphere(waypoint.position, waypoint_size);
-
-  //     Gizmos.color = Color.white;
-  //     Gizmos.DrawLine(previous_waypoint_position, waypoint.position);
-
-  //     previous_waypoint_position = waypoint.position;
-  //   }
-  //   Gizmos.DrawLine(previous_waypoint_position, start_waypoint_position);
-  // }
-
+        return waypoint_array;
+    }
 }
+
+

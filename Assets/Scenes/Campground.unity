@@ -5720,6 +5720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BushGroup (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 6509433056626911408, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13334,7 +13338,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4369c7ad07699254586fbcbae50131b2, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1590212300
 Transform:
@@ -15123,7 +15127,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: henry
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8912877784886899871, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5636040179835622924, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

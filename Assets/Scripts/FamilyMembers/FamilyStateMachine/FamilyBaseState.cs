@@ -1,11 +1,11 @@
 using UnityEditor;
 using UnityEngine;
 
-public abstract class FamilyBaseState 
+public abstract class FamilyBaseState
 {
-    public abstract void EnterState(HenryStateMachine henry);
+    public abstract void EnterState();
 
-    public abstract void UpdateState(HenryStateMachine henry);
+    public abstract void UpdateState();
 
-    public abstract void ExitState(HenryStateMachine henry);
+    public abstract void ExitState();
 }

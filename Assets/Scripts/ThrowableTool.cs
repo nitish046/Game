@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hammer : MonoBehaviour
+public class ThrowableTool : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
@@ -13,6 +13,6 @@ public class Hammer : MonoBehaviour
             Debug.Log("Hit Player");
             hit_transform.GetComponentInParent<LifeTracker>().LoseLife();
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
