@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2521071266012005341}
   - component: {fileID: 270871112085898384}
   - component: {fileID: 3358445411988230942}
-  - component: {fileID: -6849720973052711846}
-  m_Layer: 0
+  - component: {fileID: 943701683525266493}
+  m_Layer: 8
   m_Name: WashingMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 42
+  Priority: 25
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -152,7 +152,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-6849720973052711846
+--- !u!114 &943701683525266493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,11 +161,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 352095015113357869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fdebcfc1aab18f4083d066c164059ef, type: 3}
+  m_Script: {fileID: 11500000, guid: d58443d490d61fd44adf89afd841fad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 3358445411988230942}
-  interactionDistance: 20
+  use_events: 0
+  prompt_message: Open Washing Machine
 --- !u!1001 &5781312371309327939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217,6 +217,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4588af46aa360a44ab252fddd070b749, type: 3}
       propertyPath: m_Name
       value: WashingMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4588af46aa360a44ab252fddd070b749, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4588af46aa360a44ab252fddd070b749, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
