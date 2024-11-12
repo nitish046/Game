@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hammer : MonoBehaviour
+public class ThrowableTool : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {

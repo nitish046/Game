@@ -70,7 +70,9 @@ public class HenryActivatedState : FamilyBaseState
         GameObject tool_to_throw = Throwable_object_array[Random.Range(0, Throwable_object_array.Length)];
 
         GameObject thrown_object = GameObject.Instantiate(tool_to_throw, hammer_origin.position, hammer_origin.rotation);
-        thrown_object.GetComponent<Rigidbody>().velocity = 40f * (hammer_origin.forward);
+        Rigidbody object_rigid_body = thrown_object.GetComponent<Rigidbody>();
+        object_rigid_body.velocity = 10f * (hammer_origin.forward);
+        object_rigid_body.angularVelocity = 20f * Vector3.one;
         //Debug.Log("shoot");
     }
 }

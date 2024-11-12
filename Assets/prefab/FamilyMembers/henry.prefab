@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3953645617807457014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.6}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,7 +108,9 @@ MonoBehaviour:
   FreezeColor: {fileID: -2381500201381900343, guid: c5e9aa77baf01b442820a3ecae2de376, type: 3}
   nav_mesh_agent: {fileID: 0}
   Throwable_object_array:
-  - {fileID: 7896316181650420045, guid: db251c1d80153224280e4068e962ba81, type: 3}
+  - {fileID: 8877734736541256384, guid: 72e764f75a4e14b40978e3e819278117, type: 3}
+  - {fileID: 4135993377367927691, guid: a2b2b455aac1e1149a46a97bcd03ffcb, type: 3}
+  - {fileID: 4768483066242909327, guid: d5ac316325bc98640be3b159509c498c, type: 3}
   rate_of_fire: 3
   follow_distance: 5
   hammer_origin: {fileID: 0}
