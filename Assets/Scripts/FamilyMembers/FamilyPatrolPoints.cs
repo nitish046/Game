@@ -6,7 +6,7 @@ using UnityEngine;
 public class FamilyPatrolPoints : MonoBehaviour
 {
   public Vector3[] henryPatrolPoints;
-  [SerializeField] private Vector3[] emilyPatrolPoints;
+  public Vector3[] emilyPatrolPoints;
   [SerializeField] private Vector3[] motherDearPatrolPoints;
   [SerializeField] private Vector3[] emilyNormalPoints;
   [SerializeField] private Vector3[] motherDearNormalPoints;
