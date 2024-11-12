@@ -13,6 +13,6 @@ public class Hammer : MonoBehaviour
             Debug.Log("Hit Player");
             hit_transform.GetComponentInParent<LifeTracker>().LoseLife();
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

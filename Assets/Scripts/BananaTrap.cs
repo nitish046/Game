@@ -28,10 +28,10 @@ public class BananaTrap : Trap
     if (familyMemberScript != null)
     {
       //familyMemberScript.Freeze(effectDuration, true); // Pass true to indicate it's a trap freeze
-      HenryStateMachine state_machine = enemy.gameObject.GetComponent<HenryStateMachine>();
-      state_machine.freeze_state.effect_duration = effectDuration;
-      state_machine.freeze_state.is_trap_slip = true;
-      state_machine.ChangeState(state_machine.freeze_state);
+        FamilyStateMachine state_machine = enemy.gameObject.GetComponent<HenryController>().stateMachine;
+        state_machine.freeze_state.effect_duration = effectDuration;
+        state_machine.freeze_state.is_trap_slip = true;
+        state_machine.ChangeState(state_machine.freeze_state);
     }
   }
 }
