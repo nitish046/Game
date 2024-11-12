@@ -11,27 +11,49 @@ public abstract class Trap : MonoBehaviour
 
 public class BananaTrap : Trap
 {
+    [SerializeField] private AudioSource audioSource;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (other.CompareTag("Henry")) //If this is triggered
+    private void Awake()
     {
-      print("here");
-      ActivateTrap(other.gameObject);
-      Destroy(gameObject); // Destroy the trap after activation
+        // Initialize the audioSource component
+        audioSource = GetComponent<AudioSource>();
     }
-  }
 
-  public override void ActivateTrap(GameObject enemy)
-  {
-    FamilyMember familyMemberScript = enemy.GetComponent<FamilyMember>();
-    if (familyMemberScript != null)
+    private void OnTriggerEnter(Collider other)
     {
-      //familyMemberScript.Freeze(effectDuration, true); // Pass true to indicate it's a trap freeze
-        FamilyStateMachine state_machine = enemy.gameObject.GetComponent<HenryController>().stateMachine;
-        state_machine.freeze_state.effect_duration = effectDuration;
-        state_machine.freeze_state.is_trap_slip = true;
-        state_machine.ChangeState(state_machine.freeze_state);
+      if (other.CompareTag("Henry"))
+      {
+          print("Henry triggered the trap");
+          ActivateTrap(other.gameObject);
+          PlayTrapSound();  // Play the sound effect
+          Destroy(gameObject, 2f);  // Add a 0.5-second delay before destroying
+      }
     }
-  }
+
+
+    public override void ActivateTrap(GameObject enemy)
+    {
+        FamilyMember familyMemberScript = enemy.GetComponent<FamilyMember>();
+        if (familyMemberScript != null)
+        {
+            FamilyStateMachine state_machine = enemy.gameObject.GetComponent<HenryController>().stateMachine;
+            state_machine.freeze_state.effect_duration = effectDuration;
+            state_machine.freeze_state.is_trap_slip = true;
+            state_machine.ChangeState(state_machine.freeze_state);
+        }
+    }
+
+    // Method to play the trap sound
+    private void PlayTrapSound()
+    {
+        if (audioSource != null)
+        {
+            Debug.Log("Playing trap sound effect");  // Debug message to check if it's being triggered
+            audioSource.Play();  // Play the assigned sound
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource is not assigned on the trap prefab.");
+        }
+    }
 }
