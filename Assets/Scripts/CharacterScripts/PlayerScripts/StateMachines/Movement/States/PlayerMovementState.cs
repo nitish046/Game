@@ -115,12 +115,13 @@ namespace MaskedMischiefNamespace
 			Vector3 cameraDir = stateMachine.player.mainCamera.transform.rotation.eulerAngles;
 			Vector3 moveDir = Quaternion.Euler(0, cameraDir.y, 0) * new Vector3(staticMovement.x, 0, staticMovement.y);
 			//stateMachine.player.transform.Translate(moveDir * stateMachine.player.walkSpeed);
+			float speed = (stateMachine.player.isSprinting) ? stateMachine.player.runSpeed : stateMachine.player.walkSpeed;
 			if(!moveDir.Equals(new Vector3(0, 0, 0)))
 			{
 				Quaternion moveAngle = Quaternion.LookRotation(moveDir);
 				stateMachine.player.transform.rotation = Quaternion.Slerp(stateMachine.player.transform.rotation, moveAngle, 0.2f);
-				if(!stateMachine.player.WillCollide(stateMachine.player.transform.forward, stateMachine.player.walkSpeed, new[] {"Collidable"}))
-					stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * stateMachine.player.walkSpeed);
+				if(!stateMachine.player.WillCollide(stateMachine.player.transform.forward, speed, new[] {"Collidable"}))
+					stateMachine.player.GetComponent<CharacterController>().Move(stateMachine.player.transform.forward * speed);
 				
 			}
 			stateMachine.player.GetComponent<CharacterController>().Move(Vector3.down * -stateMachine.player.yVelocity);
