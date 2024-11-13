@@ -24,8 +24,9 @@ public class BananaTrap : Trap
       if (other.CompareTag("Henry"))
       {
           print("Henry triggered the trap");
+          PlayTrapSound();
           ActivateTrap(other.gameObject);
-          PlayTrapSound();  // Play the sound effect
+          //PlayTrapSound();  // Play the sound effect
           Destroy(gameObject, 2f);  // Add a 0.5-second delay before destroying
       }
     }
@@ -36,7 +37,7 @@ public class BananaTrap : Trap
         FamilyMember familyMemberScript = enemy.GetComponent<FamilyMember>();
         if (familyMemberScript != null)
         {
-            FamilyStateMachine state_machine = enemy.gameObject.GetComponent<HenryController>().stateMachine;
+            FamilyStateMachine state_machine = enemy.gameObject.GetComponent<FamilyMember>().stateMachine;
             state_machine.freeze_state.effect_duration = effectDuration;
             state_machine.freeze_state.is_trap_slip = true;
             state_machine.ChangeState(state_machine.freeze_state);
