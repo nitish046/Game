@@ -30,7 +30,8 @@ public class Item : MonoBehaviour
       StackCollectables StackColl;
       if (other.TryGetComponent(out StackColl))
       {
-        Debug.Log("Pick");
+        // Debug.Log("Pick");
+        // Debug.Log("calling AddNewItem from Item");
         StackColl.AddNewItem(this.transform);
 
         // Use GetComponentInParent to find the Player component

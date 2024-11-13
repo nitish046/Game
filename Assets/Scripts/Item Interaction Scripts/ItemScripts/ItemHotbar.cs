@@ -6,6 +6,7 @@ using System.Numerics;
 using UnityEngine.Animations;
 using System;
 using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
 
 public class ItemHotbar : MonoBehaviour
 {
@@ -20,14 +21,14 @@ public class ItemHotbar : MonoBehaviour
 
   private int currentIndex = 0;
 
-  public PlayerInputActions playerInputAction;
+  public GameInput gameInput;
   private InputAction toggleLeft;
   private InputAction toggleRight;
   private InputAction toggle;
 
   private void Start()
   {
-    StartCoroutine(this.DrawHotbar());
+    StartCoroutine(this.DrawHotbarCoroutine());
     hotbarBoxes[0].sprite = selectedBox;
     for (int i = 1; i < numBoxes; i++)
     {
@@ -37,29 +38,47 @@ public class ItemHotbar : MonoBehaviour
   }
   private void OnEnable()
   {
-    toggle = playerInputAction.Player.ToggleHotbar;
-    toggle.Enable();
+    // toggle = gameInput.player_input_actions.Player.ToggleHotbar;
+    // toggle.Enable();
   }
   private void OnDisable()
   {
-    toggle.Disable();
+    // toggle.Disable();
   }
 
   private void Update()
   {
-    toggleHotbarValue(toggle.ReadValue<Axis>());
+    // toggleHotbarValue(toggle.ReadValue<Axis>());
+    toggleHotbarValue();
   }
 
-  private void toggleHotbarValue(Axis toggleAxis)
+  private void toggleHotbarValue(/*Axis toggleAxis*/)
   {
+    // Debug.Log("currentIndex: " + currentIndex);
     hotbarBoxes[currentIndex].sprite = unselectedBox;
     // int hotbarToggle = (toggleAxis == 0) ? 0 : (int)((float)toggleAxis / Math.Abs((float)toggleAxis));
-    int hotbarToggle = (toggleAxis == 0) ? 0 : ((toggleAxis < 0) ? -1 : 1);
+    // int hotbarToggle = (toggleAxis == 0) ? 0 : ((toggleAxis < 0) ? -1 : 1);
+    // int hotbarToggle = gameInput.getHotbarInput();
+    int hotbarToggle = 0;
+    if (Input.GetKeyDown(KeyCode.Q))
+    {
+      hotbarToggle = -1;
+    }
+    else if (Input.GetKeyDown(KeyCode.E))
+    {
+      hotbarToggle = 1;
+    }
+    // Debug.Log("hotbarToggle: " + hotbarToggle);
     currentIndex += hotbarToggle;
-    if (currentIndex >= itemList.Count)
-      currentIndex = itemList.Count - 1;
+    // Debug.Log("new currentIndex: " + currentIndex);
+    if (currentIndex >= numBoxes)
+    {
+      currentIndex = numBoxes - 1;
+    }
     else if (currentIndex < 0)
+    {
       currentIndex = 0;
+    }
 
     if (currentIndex < numBoxes)
     {
@@ -71,52 +90,76 @@ public class ItemHotbar : MonoBehaviour
     }
   }
 
-  public IEnumerator DrawHotbar()
+  public IEnumerator DrawHotbarCoroutine()
   {
     float delay = 0.2f;
     WaitForSeconds wait = new WaitForSeconds(delay);
     while (true)
     {
       yield return wait;
-      if (itemList.Count <= numBoxes || currentIndex < numBoxes)
+      DrawHotbar();
+    }
+  }
+
+  public void DrawHotbar()
+  {
+    // Debug.Log("drawing hotbar");
+    if (itemList.Count <= numBoxes || currentIndex < numBoxes)
+    {
+      // Debug.Log("itemList.Count <= numBoxes || currentIndex < numBoxes");
+      for (int i = 0; i < numBoxes; i++)
       {
-        for (int i = 0; i < numBoxes; i++)
+        // Debug.Log("i = " + i);
+        // Debug.Log("itemList.Count = " + itemList.Count);
+        if (i < itemList.Count)
         {
-          if (i < itemList.Count)
-          {
-            hotbarImages[i] = itemList[i].getItemImage();
-            hotbarImages[i].color = Color.white;
-          }
-          else
-          {
-            hotbarImages[i].color = Color.clear;
-          }
+          // Debug.Log("i < itemList.Count");
+          hotbarImages[i].sprite = itemList[i].getItemSprite();
+          hotbarImages[i].color = Color.white;
+          // Debug.Log(hotbarImages[i].sprite.ToString());
+          // Debug.Log(itemList[i].ToString());
+          // Debug.Log(itemList[i].getItemSprite().ToString());
+        }
+        else
+        {
+          // Debug.Log("NOT i < itemList.Count");
+          hotbarImages[i].color = Color.clear;
         }
       }
-      else
+      // Debug.Log("EXITING itemList.Count <= numBoxes || currentIndex < numBoxes");
+    }
+    else
+    {
+      // Debug.Log("NOT itemList.Count <= numBoxes || currentIndex < numBoxes");
+      int min_i = currentIndex - numBoxes;
+      for (int i = min_i; i < numBoxes; i++)
       {
-        int min_i = currentIndex - numBoxes;
-        for (int i = min_i; i < numBoxes; i++)
-        {
-          hotbarBoxes[i - min_i] = itemList[i].getItemImage();
-          hotbarImages[i - min_i].color = Color.white;
-        }
+        // Debug.Log("i = " + i);
+        hotbarBoxes[i - min_i].sprite = itemList[i].getItemSprite();
+        hotbarImages[i - min_i].color = Color.white;
       }
     }
+
   }
 
   public void AddItem(UsableItem uItem)
   {
+    // Debug.Log("Adding Item");
     for (int i = 0; i < itemList.Count; i++)
     {
+      // Debug.Log("i: " + i);
       if (itemList[i].name == uItem.name)
       {
+        // Debug.Log("itemList[i].name == uItem.name");
         itemCount[i]++;
         return;
       }
     }
+    // Debug.Log("Adding " + uItem.getItemName());
     itemList.Add(uItem);
+    // Debug.Log(itemList.ToString());
     itemCount.Add(1);
+    // Debug.Log(itemCount.ToString());
     // hotbarImages.Add(uItem.getItemImage());
   }
 }

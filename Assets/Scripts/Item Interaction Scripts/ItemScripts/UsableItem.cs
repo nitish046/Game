@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class UsableItem : Item
 {
-  [SerializeField] private StackCollectables stackCollectables;
-  [SerializeField] private Image itemImage;
+  [SerializeField] private Sprite itemSprite;
   private string ItemName;
 
   public string getItemName()
@@ -14,9 +16,9 @@ public class UsableItem : Item
     return ItemName;
   }
 
-  public Image getItemImage()
+  public Sprite getItemSprite()
   {
-    return itemImage;
+    return itemSprite;
   }
 
 
@@ -31,7 +33,8 @@ public class UsableItem : Item
       StackCollectables StackColl;
       if (other.TryGetComponent(out StackColl))
       {
-        Debug.Log("Pick");
+        // Debug.Log("Pick");
+        // Debug.Log("Calling AddNewItem from UsableItem");
         StackColl.AddNewItem(this.transform);
 
         // Use GetComponentInParent to find the Player component
@@ -41,9 +44,9 @@ public class UsableItem : Item
           player.PlayPickupSound();
         }
 
-        stackCollectables.AddItemToHotbar(this);
-
         already_picked = true;
+
+        StackColl.AddItemToHotbar(this);
       }
     }
   }
