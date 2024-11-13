@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   use_events: 0
-  prompt_message: Open Cabinet
+  prompt_message: '[F]<br>Open'
 --- !u!1001 &8629571159269024226
 PrefabInstance:
   m_ObjectHideFlags: 0
