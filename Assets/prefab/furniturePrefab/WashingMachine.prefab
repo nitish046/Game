@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   use_events: 0
-  prompt_message: Open Washing Machine
+  prompt_message: '[F]<br>Start'
 --- !u!1001 &5781312371309327939
 PrefabInstance:
   m_ObjectHideFlags: 0

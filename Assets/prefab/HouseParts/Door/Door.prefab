@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   use_events: 0
-  prompt_message: Open Door
+  prompt_message: '[F]<br>Open'
 --- !u!4 &1850427690273068239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d7a4595047eff744a7683ec7f353a23, type: 3}
