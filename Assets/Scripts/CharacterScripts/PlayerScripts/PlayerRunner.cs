@@ -21,32 +21,62 @@ namespace MaskedMischiefNamespace
     [SerializeField] public GameObject trapPrefab; //This is the trap
     [SerializeField] protected GameObject winLoseController;
     public List<RaycastHit> hits;
+     //hiding
+        public Material[] materials; // Assign your two materials here
 
-    private void OnTriggerEnter(Collider other)
+        private bool isTransparent = false;
+        bool click;
+        private void OnTriggerEnter(Collider other)
     {
       if (!other.CompareTag("Player"))
         PlayerMovementStateMachine.triggers.Add(other);
       //Debug.Log(other.tag);
     }
 
-    private void OnTriggerExit(Collider other)
+        private void ToggleTransparency()
+        {
+            isTransparent = !isTransparent;
+
+            foreach (Material mat in materials)
+            {
+                Color color = mat.color;
+                color.a = isTransparent ? 0f : 1f; // Toggle between fully transparent and opaque
+                mat.color = color;
+            }
+        }
+        private void OnTriggerExit(Collider other)
     {
       //Debug.Log("Uncollide");
       if (!other.CompareTag("Player"))
         PlayerMovementStateMachine.triggers.Remove(other);
-    }
+            if (other.gameObject.tag == "hide")
+            {
+                if (click)
+                {
+                    ToggleTransparency();
+                    click = false;
+                }
+            }
+        }
 
     private void OnTriggerStay(Collider other)
     {
-
-    }
+            if (other.gameObject.tag == "hide")
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    ToggleTransparency();
+                    click = true;
+                }
+            }
+        }
 
     private void OnCollisionEnter(Collision collision)
     {
-
+           
     }
-
-    public bool WillCollide(Vector3 dir, float len)
+        
+        public bool WillCollide(Vector3 dir, float len)
     {
       Vector3 center = CharacterController.center;
       float radius = CharacterController.radius;
@@ -197,3 +227,4 @@ namespace MaskedMischiefNamespace
     }
   }
 }
+
