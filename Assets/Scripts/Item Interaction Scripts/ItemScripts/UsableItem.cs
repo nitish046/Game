@@ -9,7 +9,7 @@ using Image = UnityEngine.UI.Image;
 public class UsableItem : Item
 {
   [SerializeField] private Sprite itemSprite;
-  private string ItemName;
+  [SerializeField] private string ItemName;
 
   public string getItemName()
   {

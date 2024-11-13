@@ -147,10 +147,11 @@ public class ItemHotbar : MonoBehaviour
     // Debug.Log("Adding Item");
     for (int i = 0; i < itemList.Count; i++)
     {
-      // Debug.Log("i: " + i);
-      if (itemList[i].name == uItem.name)
+      Debug.Log("i: " + i);
+      Debug.Log("itemList[i].getItemName(): "+itemList[i].getItemName()+"uItem.getItemName(): "+uItem.getItemName());
+      if (itemList[i].getItemName() == uItem.getItemName())
       {
-        // Debug.Log("itemList[i].name == uItem.name");
+        Debug.Log("itemList[i].getItemName() == uItem.getItemName()");
         itemCount[i]++;
         return;
       }
