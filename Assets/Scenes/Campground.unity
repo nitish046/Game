@@ -7722,7 +7722,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1049013676}
-  - component: {fileID: 1049013675}
   - component: {fileID: 1049013677}
   m_Layer: 0
   m_Name: tomato
@@ -7731,18 +7730,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1049013675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049013674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c826aa69a19491498a1238b2f65a203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1049013676
 Transform:
   m_ObjectHideFlags: 0
