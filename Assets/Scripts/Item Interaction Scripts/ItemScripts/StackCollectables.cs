@@ -17,7 +17,10 @@ public class StackCollectables : MonoBehaviour
 
   public Transform item_holder;
   public int num_items_held;
+  public int num_items_to_win;
   public float y_position;
+
+  public GameObject hotbar;
 
   [SerializeField] protected GameObject win_lose_controller;
 
@@ -30,6 +33,7 @@ public class StackCollectables : MonoBehaviour
 
   public void AddNewItem(Transform _toAdd)
   {
+    // Debug.Log("Adding New Item...");
     _toAdd.DOJump(item_holder.position + new Vector3(0, y_position * num_items_held, 0), 1.5f, 1, 0.35f).OnComplete(() =>
     {
       num_items_held++;
@@ -44,16 +48,23 @@ public class StackCollectables : MonoBehaviour
 
   }
 
+  public void AddItemToHotbar(UsableItem uItem)
+  {
+    hotbar.GetComponent<ItemHotbar>().AddItem(uItem);
+  }
+
   public void setScore()
   {
-    score_text.text = "Food Collected: " + num_items_held.ToString() + " /3";
-    if (num_items_held == 3)
+    // Debug.Log("Setting score: " + num_items_held + " / " + num_items_to_win);
+    score_text.text = "Food Collected: " + num_items_held.ToString() + " / " + num_items_to_win.ToString();
+    if (num_items_held == num_items_to_win)
     {
       // win_text.gameObject.SetActive(true);
       // mainScreen.SetActive(false);
       // winScreen.SetActive(true);
       // restart_button.gameObject.SetActive(true);
       // quit_button.gameObject.SetActive(true);
+      // Debug.Log("Winning from StackCollectibles");
       win_lose_controller.GetComponent<WinLoseControl>().WinGame();
     }
   }

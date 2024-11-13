@@ -29,6 +29,7 @@ public class WinLoseControl : MonoBehaviour
     {
       return;
     }
+    Debug.Log("Winning Game...");
     game_status = 2;
     mainScreen.SetActive(false);
     winScreen.SetActive(true);
@@ -39,7 +40,7 @@ public class WinLoseControl : MonoBehaviour
     restart_button.gameObject.SetActive(true);
     quit_button.gameObject.SetActive(true);
 
-        unlockCursor();
+    unlockCursor();
   }
   public void LoseGame()
   {
@@ -53,11 +54,11 @@ public class WinLoseControl : MonoBehaviour
     mainScreen.SetActive(false);
     loseScreen.SetActive(true);
 
-        unlockCursor();
+    unlockCursor();
   }
-    private void unlockCursor()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
+  private void unlockCursor()
+  {
+    Cursor.visible = true;
+    Cursor.lockState = CursorLockMode.None;
+  }
 }
