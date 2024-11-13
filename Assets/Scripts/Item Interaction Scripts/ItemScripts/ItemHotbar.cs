@@ -7,6 +7,8 @@ using UnityEngine.Animations;
 using System;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
+using Text = TMPro.TextMeshProUGUI;
+using TMPro;
 
 public class ItemHotbar : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class ItemHotbar : MonoBehaviour
   [SerializeField] private int numBoxes = 8;
   [SerializeField] private List<Image> hotbarBoxes;
   [SerializeField] private List<Image> hotbarImages;
+  [SerializeField] private List<GameObject> hotbarCounts;
   [SerializeField] private Sprite unselectedBox;
   [SerializeField] private Sprite selectedBox;
 
@@ -116,6 +119,12 @@ public class ItemHotbar : MonoBehaviour
           // Debug.Log("i < itemList.Count");
           hotbarImages[i].sprite = itemList[i].getItemSprite();
           hotbarImages[i].color = Color.white;
+          // Debug.Log("itemCount " + itemCount[i].ToString());
+          // Debug.Log("hotbarcount " + hotbarCounts[i]);
+          // Debug.Log("hotbarcount " + hotbarCounts[i].GetComponentAtIndex(2));
+          // Debug.Log("hotbarcount " + hotbarCounts[i].GetComponent<Text>());
+          // Debug.Log("hotbarcount " + hotbarCounts[i].GetComponent<Text>().text);
+          hotbarCounts[i].GetComponent<Text>().text = itemCount[i].ToString();
           // Debug.Log(hotbarImages[i].sprite.ToString());
           // Debug.Log(itemList[i].ToString());
           // Debug.Log(itemList[i].getItemSprite().ToString());
@@ -137,6 +146,9 @@ public class ItemHotbar : MonoBehaviour
         // Debug.Log("i = " + i);
         hotbarBoxes[i - min_i].sprite = itemList[i].getItemSprite();
         hotbarImages[i - min_i].color = Color.white;
+        hotbarCounts[i - min_i].GetComponent<Text>().text = itemCount[i].ToString();
+        // Debug.Log("itemCount" + itemCount[i - min_i].ToString());
+        // Debug.Log("hotbarcount" + hotbarCounts[i - min_i].GetComponent<Text>().text);
       }
     }
 
@@ -147,11 +159,11 @@ public class ItemHotbar : MonoBehaviour
     // Debug.Log("Adding Item");
     for (int i = 0; i < itemList.Count; i++)
     {
-      Debug.Log("i: " + i);
-      Debug.Log("itemList[i].getItemName(): "+itemList[i].getItemName()+"uItem.getItemName(): "+uItem.getItemName());
+      // Debug.Log("i: " + i);
+      // Debug.Log("itemList[i].getItemName(): " + itemList[i].getItemName() + "uItem.getItemName(): " + uItem.getItemName());
       if (itemList[i].getItemName() == uItem.getItemName())
       {
-        Debug.Log("itemList[i].getItemName() == uItem.getItemName()");
+        // Debug.Log("itemList[i].getItemName() == uItem.getItemName()");
         itemCount[i]++;
         return;
       }
