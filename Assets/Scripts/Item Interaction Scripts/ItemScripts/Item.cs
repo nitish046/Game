@@ -6,6 +6,8 @@ public class Item : MonoBehaviour
 {
   protected bool already_picked = false;
 
+  [SerializeField] protected int itemPoints;
+
   protected void FixedUpdate()
   {
     Collider[] t = Physics.OverlapSphere(transform.position, 1.5f);
@@ -32,7 +34,7 @@ public class Item : MonoBehaviour
       {
         // Debug.Log("Pick");
         // Debug.Log("calling AddNewItem from Item");
-        StackColl.AddNewItem(this.transform);
+        StackColl.AddNewItem(this.transform, itemPoints);
 
         // Use GetComponentInParent to find the Player component
         Player player = other.GetComponentInParent<Player>(); //This is necessary because the bipead is the one doing the pickups

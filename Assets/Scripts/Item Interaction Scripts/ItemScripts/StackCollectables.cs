@@ -31,12 +31,12 @@ public class StackCollectables : MonoBehaviour
     win_text.gameObject.SetActive(false);
   }
 
-  public void AddNewItem(Transform _toAdd)
+  public void AddNewItem(Transform _toAdd, int points)
   {
     // Debug.Log("Adding New Item...");
     _toAdd.DOJump(item_holder.position + new Vector3(0, y_position * num_items_held, 0), 1.5f, 1, 0.35f).OnComplete(() =>
     {
-      num_items_held++;
+      num_items_held += points;
       setScore();
       _toAdd.SetParent(item_holder, true);
       //_toAdd.localPosition = new Vector3(0, Ypos * NumOfItemsHoldind, 0);

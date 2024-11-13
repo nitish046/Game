@@ -35,7 +35,7 @@ public class UsableItem : Item
       {
         // Debug.Log("Pick");
         // Debug.Log("Calling AddNewItem from UsableItem");
-        StackColl.AddNewItem(this.transform);
+        StackColl.AddNewItem(this.transform, itemPoints);
 
         // Use GetComponentInParent to find the Player component
         Player player = other.GetComponentInParent<Player>(); //This is necessary because the bipead is the one doing the pickups
