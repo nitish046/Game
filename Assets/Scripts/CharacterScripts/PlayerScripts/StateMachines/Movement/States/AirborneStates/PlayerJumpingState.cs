@@ -14,7 +14,8 @@ namespace MaskedMischiefNamespace
 		{
 			base.Enter();
 			stateMachine.player.yVelocity += stateMachine.player.jumpStrength;
-		}
+            stateMachine.player.animator.SetTrigger("isJumping");
+        }
 
 		public override void Exit()
 		{
