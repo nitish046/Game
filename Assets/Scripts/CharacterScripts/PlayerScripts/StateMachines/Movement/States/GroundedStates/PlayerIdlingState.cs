@@ -15,6 +15,7 @@ namespace MaskedMischiefNamespace
         {
             base.Enter();
             staticMovement = new Vector2(0, 0);
+            stateMachine.player.animator.SetTrigger("isIdle");
             //AddCallbacks(); // Ensure callbacks are added when entering the state //No need, the base functions already do that
         }
 
