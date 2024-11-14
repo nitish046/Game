@@ -24,7 +24,8 @@ public class EmilyController : FamilyMember
         EmilyActivatedState activated = new EmilyActivatedState(this, animator, nav_mesh_agent);
         FamilyFreezeState freeze = new FamilyFreezeState(this, animator, nav_mesh_agent);
         FamilySearchState search = new FamilySearchState(this, animator, nav_mesh_agent);
-        stateMachine = new FamilyStateMachine(patrol, activated, freeze, search);
+        EmilyChargeState charge = new EmilyChargeState(this, animator, nav_mesh_agent);
+        stateMachine = new EmilyStateMachine(patrol, activated, freeze, search, charge);
 
 
         waypoint_array = getWaypointArray("Patrol");
