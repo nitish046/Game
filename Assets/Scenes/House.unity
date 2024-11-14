@@ -4997,6 +4997,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabinet (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4941389592120929840, guid: bf6796dfe05424d41a1447e5ce00f2c3, type: 3}
+      propertyPath: m_TagString
+      value: Hidable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
