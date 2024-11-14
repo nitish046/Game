@@ -32,11 +32,12 @@ public class ItemHotbar : MonoBehaviour
   private void Start()
   {
     StartCoroutine(this.DrawHotbarCoroutine());
-    hotbarBoxes[0].sprite = selectedBox;
-    for (int i = 1; i < numBoxes; i++)
+    for (int i = 0; i < numBoxes; i++)
     {
       hotbarBoxes[i].sprite = unselectedBox;
+      hotbarCounts[i].GetComponent<Text>().text = "0";
     }
+    hotbarBoxes[0].sprite = selectedBox;
 
   }
   private void OnEnable()
@@ -74,11 +75,11 @@ public class ItemHotbar : MonoBehaviour
     // Debug.Log("hotbarToggle: " + hotbarToggle);
     currentIndex += hotbarToggle;
     // Debug.Log("new currentIndex: " + currentIndex);
-    if (currentIndex >= numBoxes)
+    if (currentIndex >= itemList.Count && currentIndex >= numBoxes)
     {
-      currentIndex = numBoxes - 1;
+      currentIndex = (itemList.Count > numBoxes) ? itemList.Count - 1 : numBoxes - 1;
     }
-    else if (currentIndex < 0)
+    if (currentIndex < 0)
     {
       currentIndex = 0;
     }
@@ -174,5 +175,34 @@ public class ItemHotbar : MonoBehaviour
     itemCount.Add(1);
     // Debug.Log(itemCount.ToString());
     // hotbarImages.Add(uItem.getItemImage());
+  }
+
+  public bool SelectedBoxIsOccupied()
+  {
+    Debug.Log("Calling SelectedBoxIsOccupied");
+    Debug.Log("itemList.Count: " + itemList.Count);
+    Debug.Log("currentIndex: " + currentIndex);
+    // Debug.Log("itemCount[currentIndex]: " + itemCount[currentIndex]);
+    return itemList.Count > currentIndex && itemCount[currentIndex] > 0;
+  }
+  public string UseSelectedItem()
+  {
+    Debug.Log("Calling UseSelectedItem");
+    string itemName = itemList[currentIndex].getItemName();
+    Debug.Log("Name: " + itemName);
+    Debug.Log("currentIndex: " + currentIndex);
+    Debug.Log("old itemCount[currentIndex]: " + itemCount[currentIndex]);
+
+    itemCount[currentIndex]--;
+    hotbarCounts[currentIndex].GetComponent<Text>().text = itemCount[currentIndex].ToString();
+    Debug.Log("new itemCount[currentIndex]: " + itemCount[currentIndex]);
+    if (itemCount[currentIndex] <= 0)
+    {
+      Debug.Log("itemCount[currentIndex] <= 0");
+      itemList.RemoveAt(currentIndex);
+      itemCount.RemoveAt(currentIndex);
+      currentIndex = (currentIndex == 0) ? 0 : currentIndex - 1;
+    }
+    return itemName;
   }
 }
