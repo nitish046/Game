@@ -77,6 +77,7 @@ namespace MaskedMischiefNamespace
 			actions.Move.canceled += OnMoveCancel;
 			actions.Win.started += OnWinStart;
 			actions.PlaceTrap.started += OnPlaceTrapStart;
+			actions.Pause.started += OnPauseStart;
 		}
 		protected virtual void RemoveCallbacks() 
 		{
@@ -88,6 +89,7 @@ namespace MaskedMischiefNamespace
 			actions.Move.canceled -= OnMoveCancel;
 			actions.Win.started -= OnWinStart;
 			actions.PlaceTrap.started -= OnPlaceTrapStart;
+			actions.Pause.started -= OnPauseStart;
 		}
 		protected virtual void OnPlaceTrapStart(InputAction.CallbackContext callbackContext)
         {
@@ -132,6 +134,10 @@ namespace MaskedMischiefNamespace
 		//Each movement state will be using these callbacks in different ways
 		//Override the functions in each movement state to modify their behavior
 		#region Callbacks
+		protected virtual void OnPauseStart(InputAction.CallbackContext callbackContext)
+		{
+			stateMachine.player.Pause();
+		}
 		protected virtual void OnWinStart(InputAction.CallbackContext callbackContext)
 		{
 			stateMachine.player.Win();

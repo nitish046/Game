@@ -15531,6 +15531,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 955010102}
     - target: {fileID: 3610874276772940996, guid: 2996e6918563ce94bbd7fece6eaa1d5f, type: 3}
+      propertyPath: pauseScreen
+      value: 
+      objectReference: {fileID: 6784729954538686809}
+    - target: {fileID: 3610874276772940996, guid: 2996e6918563ce94bbd7fece6eaa1d5f, type: 3}
       propertyPath: quit_button
       value: 
       objectReference: {fileID: 1044201533}
@@ -15644,6 +15648,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+--- !u!1 &6784729954538686809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2286630544602370694, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+  m_PrefabInstance: {fileID: 6784729954538686808}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
