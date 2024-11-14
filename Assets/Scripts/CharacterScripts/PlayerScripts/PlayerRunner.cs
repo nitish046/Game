@@ -15,6 +15,7 @@ namespace MaskedMischiefNamespace
 		public bool isSprinting;
 		public float walkSpeed;
 		public float runSpeed;
+		public Animator animator;
 		public Camera mainCamera;
 		private CharacterController CharacterController;
 		private Rigidbody rigidbody;
@@ -193,7 +194,8 @@ namespace MaskedMischiefNamespace
 			isSprinting = false;
 			mainCamera = Camera.main;
 			rigidbody = GetComponent<Rigidbody>();
-		}
+            animator = transform.GetChild(0).GetComponent<Animator>();
+        }
 
 		private void Start()
 		{

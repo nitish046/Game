@@ -2177,10 +2177,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1531500734916407884, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1361734717249261173, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 783626880}
   m_SourcePrefab: {fileID: 100100000, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
 --- !u!1 &260192378
 GameObject:
@@ -2755,7 +2759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score_text: {fileID: 6115704025099815531}
-  win_text: {fileID: 0}
+  win_text: {fileID: 1845438572}
   item_holder: {fileID: 895074590}
   num_items_held: 0
   num_items_to_win: 6
@@ -5531,6 +5535,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6541e5e83ec80dc4398c32fe5c1815e1, type: 3}
+--- !u!1 &783626873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1361734717249261173, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
+  m_PrefabInstance: {fileID: 259892783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &783626880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783626873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7105907cbf74c342887685a457454a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  use_events: 0
+  prompt_message: '[F]<br>Open when you have enough food.'
+  winCheck: {fileID: 349689521}
 --- !u!1001 &787238160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11714,6 +11738,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3448482926344229228, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
+      propertyPath: m_margin.w
+      value: -153.20752
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448482926344229228, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
+      propertyPath: m_margin.x
+      value: -284.7492
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448482926344229228, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
+      propertyPath: m_margin.z
+      value: -280.1064
+      objectReference: {fileID: 0}
     - target: {fileID: 4969516549741997689, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
       propertyPath: m_Name
       value: canvas
@@ -12810,6 +12846,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7425184673178891074, guid: 9521305b8c78712438554f45b46eabf6, type: 3}
   m_PrefabInstance: {fileID: 1839535778}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1845438572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4351370275325148309, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
+  m_PrefabInstance: {fileID: 1698701561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1845478949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4597157591633888066, guid: 08fc41018d5a81a43b157d3e73067de5, type: 3}

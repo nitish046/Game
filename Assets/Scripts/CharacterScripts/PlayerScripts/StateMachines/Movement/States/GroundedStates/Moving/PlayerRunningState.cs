@@ -9,5 +9,18 @@ namespace MaskedMischiefNamespace
 		public PlayerRunningState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
 		{
 		}
-	}
+
+        public override void Enter()
+        {
+            base.Enter();
+            stateMachine.player.animator.SetTrigger("isSprinting");
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            stateMachine.player.animator.ResetTrigger("isSprinting");
+        }
+
+    }
 }

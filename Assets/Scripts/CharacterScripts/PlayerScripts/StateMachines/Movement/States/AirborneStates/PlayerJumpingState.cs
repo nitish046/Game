@@ -14,12 +14,14 @@ namespace MaskedMischiefNamespace
 		{
 			base.Enter();
 			stateMachine.player.yVelocity += stateMachine.player.jumpStrength;
-		}
+            stateMachine.player.animator.SetTrigger("isJumping");
+        }
 
 		public override void Exit()
 		{
 			base.Exit();
-		}
+            stateMachine.player.animator.ResetTrigger("isJumping");
+        }
 
 		public override void PhysicsUpdate()
 		{

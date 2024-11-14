@@ -10,7 +10,19 @@ namespace MaskedMischiefNamespace
 		{
 		}
 
-		public override void HandleInput()
+        public override void Enter()
+        {
+            base.Enter();
+            stateMachine.player.animator.SetTrigger("isWalking");
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            stateMachine.player.animator.ResetTrigger("isWalking");
+        }
+
+        public override void HandleInput()
 		{
 			base.HandleInput();
 		}

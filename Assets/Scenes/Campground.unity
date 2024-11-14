@@ -6311,6 +6311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Campfire
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ccf43938007ff3448c1f4c27a823ec6, type: 3}
+      propertyPath: m_TagString
+      value: Collidable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6773,6 +6777,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a40ed7dc9e83155469e183a2936f375d, type: 3}
+      propertyPath: m_TagString
+      value: Collidable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6844,6 +6852,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3db70bc5d2718494e98ee0e1dd82a484, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3db70bc5d2718494e98ee0e1dd82a484, type: 3}
+      propertyPath: m_TagString
+      value: Collidable
       objectReference: {fileID: 0}
     - target: {fileID: 5433939081893486531, guid: 3db70bc5d2718494e98ee0e1dd82a484, type: 3}
       propertyPath: m_Layer
@@ -13475,6 +13487,17 @@ MonoBehaviour:
   y_position: 0
   hotbar: {fileID: 399803416}
   win_lose_controller: {fileID: 344480905}
+--- !u!114 &1649521379 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2127005178828720893, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
+  m_PrefabInstance: {fileID: 4730689202145888571}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1671717947
 GameObject:
   m_ObjectHideFlags: 0
@@ -13552,6 +13575,103 @@ Transform:
   - {fileID: 1798158567}
   m_Father: {fileID: 1319905115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1726704794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1726704795}
+  - component: {fileID: 1726704798}
+  - component: {fileID: 1726704797}
+  - component: {fileID: 1726704799}
+  m_Layer: 0
+  m_Name: CheckWinArea
+  m_TagString: Henry
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1726704795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726704794}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.01, y: 0.7, z: 4.66}
+  m_LocalScale: {x: 1, y: 1.5137849, z: 5.9456697}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870910159}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1726704797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726704794}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.2181683, y: 0.992454, z: 6.2753487}
+  m_Center: {x: -1.0055866, y: 0.0037730038, z: -0.26970816}
+--- !u!54 &1726704798
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726704794}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &1726704799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726704794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b2071c8cb4cc442bd6a629646dc008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '"You do not have enough food to win. Go collect the food and come back."'
+  UI_manager: {fileID: 1870910160}
+  hasStackCollectibles: {fileID: 1644694975}
 --- !u!1 &1746858849
 GameObject:
   m_ObjectHideFlags: 0
@@ -13757,6 +13877,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 370772591}
+  - {fileID: 1726704795}
   - {fileID: 886946564}
   - {fileID: 1229648690}
   - {fileID: 1914658892}
@@ -13775,7 +13896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a263aea16245730499a4db97994108d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorial_text: {fileID: 0}
+  tutorial_text: {fileID: 1649521379}
 --- !u!1001 &1873764406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15095,6 +15216,14 @@ PrefabInstance:
     - target: {fileID: 1971666186182813426, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127005178828720893, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
+      propertyPath: m_text
+      value: Man, I'm so hungry... I wonder if there's any food in that trash can.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127005178828720893, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
+      propertyPath: m_fontSize
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4969516549741997689, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
       propertyPath: m_Name
