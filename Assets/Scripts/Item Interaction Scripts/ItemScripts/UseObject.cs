@@ -6,12 +6,18 @@ public class UseObject : MonoBehaviour
   private ItemHotbar itemHotbar;
   [SerializeField] private GameObject itemHotbarObject;
 
+
+  // Tomato
   public Transform launchPoint;
   public GameObject projectile;
   public float launchSpeed = 10f;
   public AudioSource audioSource;
-
   GameObject _projectile;
+
+  // Banana
+  [SerializeField] private GameObject bananaTrapPrefab;
+  [SerializeField] private Transform placePoint;
+
 
   private void Start()
   {
@@ -62,7 +68,18 @@ public class UseObject : MonoBehaviour
 
   public void UseBanana()
   {
-    Debug.Log("Using Banana...");
+    if (bananaTrapPrefab != null)
+    {
+      Debug.Log("Using Banana...");
+      Vector3 placePosition = placePoint.position + placePoint.forward * 1f;
+      Debug.Log(placePosition);
+      Debug.Log(placePoint.rotation);
+      GameObject.Instantiate(bananaTrapPrefab, placePosition, placePoint.rotation);
+    }
+    else
+    {
+      Debug.LogError("Trap prefab is not assigned in UseObject.");
+    }
   }
 
   public void UseCheesePuffBomb()
