@@ -127,7 +127,7 @@ public abstract class FamilyMember : MonoBehaviour
 
     protected virtual void SeesRaccoon()
     {
-        if (stateMachine.current_state != stateMachine.freeze_state)
+        if (stateMachine.current_state != stateMachine.freeze_state && (stateMachine.current_state.GetType() != typeof(EmilyChargeState)))
         {
             stateMachine.ChangeState(stateMachine.activated_state);
         }

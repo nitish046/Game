@@ -12,12 +12,8 @@ public class EmilyActivatedState : FamilyBaseState
 
     private float distance_to_player;
     private float follow_distance;
-    private float charge_stop_distance = .5f;
 
-    private float normal_speed;
-    private float charge_speed;
-
-    private bool is_charging = false;
+    EmilyStateMachine emily_state_machine;
 
     private readonly EmilyController member;
     private Animator member_animator;
@@ -32,76 +28,41 @@ public class EmilyActivatedState : FamilyBaseState
 
     public override void EnterState()
     {
+        emily_state_machine = (EmilyStateMachine)member.stateMachine;
         charge_cooldown = member.charge_cooldown;
         follow_distance = member.follow_distance;
-        normal_speed = nav_mesh_member.speed;
-        charge_speed = normal_speed * 5;
-        is_charging = false;
         player = member.player;
     }
 
     public override void UpdateState()
     {
-        if(!is_charging)
-        {
-            charge_timer += Time.deltaTime;
-        }
+        charge_timer += Time.deltaTime;
         member.transform.LookAt(player.transform);
-        distance_to_player = Vector3.Distance(member.transform.position, player.transform.position);
         KeepInRange();
-        
-        if (is_charging && distance_to_player <= charge_stop_distance)
+        if (charge_timer > charge_cooldown)
         {
-            EndCharge();
-        }
-
-        if (!is_charging && charge_timer > charge_cooldown)
-        {
-            Charge();
+            emily_state_machine.ChangeState(emily_state_machine.charge_state);
         }
         
     }
 
     public override void ExitState()
     {
-        nav_mesh_member.speed = normal_speed;
         nav_mesh_member.ResetPath();
-    }
-
-    public void Charge()
-    {
-        nav_mesh_member.speed = charge_speed; 
-        nav_mesh_member.destination = player.transform.position;
-        is_charging = true;
         charge_timer = 0;
-        distance_to_player = Vector3.Distance(member.transform.position, player.transform.position);
-
-    }
-
-    public void EndCharge()
-    {
-        nav_mesh_member.velocity = Vector3.zero;
-        nav_mesh_member.speed = normal_speed;
-        is_charging = false;
-        if (distance_to_player <= charge_stop_distance)
-        {
-            player.GetComponent<LifeTracker>().LoseLife();
-
-        }
     }
 
     private void KeepInRange()
     {
-        if(!is_charging)
+
+        if (distance_to_player > follow_distance)
         {
-            if (distance_to_player > follow_distance)
-            {
-                nav_mesh_member.SetDestination(player.transform.position);
-            }
-            else
-            {
-                nav_mesh_member.ResetPath();
-            }
+            nav_mesh_member.SetDestination(player.transform.position);
         }
+        else
+        {
+            nav_mesh_member.ResetPath();
+        }
+
     }
 }

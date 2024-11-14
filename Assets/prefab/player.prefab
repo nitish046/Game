@@ -267,7 +267,9 @@ MonoBehaviour:
   win_text: {fileID: 0}
   item_holder: {fileID: 2193003226205512771}
   num_items_held: 0
+  num_items_to_win: 0
   y_position: 0
+  hotbar: {fileID: 0}
   win_lose_controller: {fileID: 0}
 --- !u!143 &3667516643298581044
 CharacterController:
@@ -910,6 +912,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   trapPrefab: {fileID: 6431227397451709892, guid: 4f3ea074d5cc1564ba02d16fdd98a9b6, type: 3}
   winLoseController: {fileID: 0}
+  materials: []
 --- !u!114 &2703461568251086569
 MonoBehaviour:
   m_ObjectHideFlags: 0

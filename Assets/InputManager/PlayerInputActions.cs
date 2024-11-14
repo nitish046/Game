@@ -107,6 +107,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""431ef6ff-bc8f-4c67-8e7e-087834e689a3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -274,6 +283,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ToggleHotbar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3877b6f3-1367-47b9-a04f-a1761c1125c4"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -291,6 +311,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_ToggleHotbarLeft = m_Player.FindAction("ToggleHotbarLeft", throwIfNotFound: true);
         m_Player_ToggleHotbarRight = m_Player.FindAction("ToggleHotbarRight", throwIfNotFound: true);
         m_Player_ToggleHotbar = m_Player.FindAction("ToggleHotbar", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +382,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ToggleHotbarLeft;
     private readonly InputAction m_Player_ToggleHotbarRight;
     private readonly InputAction m_Player_ToggleHotbar;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -374,6 +396,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @ToggleHotbarLeft => m_Wrapper.m_Player_ToggleHotbarLeft;
         public InputAction @ToggleHotbarRight => m_Wrapper.m_Player_ToggleHotbarRight;
         public InputAction @ToggleHotbar => m_Wrapper.m_Player_ToggleHotbar;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -410,6 +433,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ToggleHotbar.started += instance.OnToggleHotbar;
             @ToggleHotbar.performed += instance.OnToggleHotbar;
             @ToggleHotbar.canceled += instance.OnToggleHotbar;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -441,6 +467,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ToggleHotbar.started -= instance.OnToggleHotbar;
             @ToggleHotbar.performed -= instance.OnToggleHotbar;
             @ToggleHotbar.canceled -= instance.OnToggleHotbar;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -469,5 +498,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnToggleHotbarLeft(InputAction.CallbackContext context);
         void OnToggleHotbarRight(InputAction.CallbackContext context);
         void OnToggleHotbar(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
