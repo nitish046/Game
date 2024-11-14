@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.AI;
 
 public class HenryActivatedState : FamilyBaseState
@@ -13,6 +15,8 @@ public class HenryActivatedState : FamilyBaseState
 
     private float distance_to_player;
     private float follow_distance;
+
+    private Coroutine shotCoroutine;
 
     private readonly HenryController member;
     private Animator member_animator;
@@ -44,9 +48,15 @@ public class HenryActivatedState : FamilyBaseState
         KeepInRange();
         if (shot_timer > rate_of_fire)
         {
-            shoot();
+            if (shotCoroutine != null)
+            {
+
+                member.StopCoroutine(shotCoroutine);
+            }
+            shotCoroutine = member.StartCoroutine(shooter());
             shot_timer = 0;
         }
+        
     }
     public override void ExitState()
     {
@@ -57,22 +67,47 @@ public class HenryActivatedState : FamilyBaseState
     {
         if (distance_to_player > follow_distance)
         {
+            member_animator.ResetTrigger("isIdle");
+            member_animator.SetTrigger("isWalking");
             nav_mesh_member.SetDestination(player.transform.position);
         }
         else
         {
+            member_animator.ResetTrigger("isWalking");
+            member_animator.SetTrigger("isIdle");
             nav_mesh_member.ResetPath();
         }
     }
 
     public void shoot()
     {
+        member_animator.SetBool("isThrowing", true);
         GameObject tool_to_throw = Throwable_object_array[Random.Range(0, Throwable_object_array.Length)];
 
         GameObject thrown_object = GameObject.Instantiate(tool_to_throw, hammer_origin.position, hammer_origin.rotation);
         Rigidbody object_rigid_body = thrown_object.GetComponent<Rigidbody>();
         object_rigid_body.velocity = 10f * (hammer_origin.forward);
         object_rigid_body.angularVelocity = 20f * Vector3.one;
-        //Debug.Log("shoot");
+    }
+
+    private IEnumerator shooter()
+    {
+        member_animator.ResetTrigger("isWalking");
+        member_animator.ResetTrigger("isIdle");
+        member_animator.SetTrigger("isThrowing");
+
+        yield return new WaitUntil(() => member_animator.GetCurrentAnimatorStateInfo(0).IsName("Throwing"));
+        yield return new WaitUntil(() => member_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8f);
+
+        GameObject tool_to_throw = Throwable_object_array[Random.Range(0, Throwable_object_array.Length)];
+
+        GameObject thrown_object = GameObject.Instantiate(tool_to_throw, hammer_origin.position, hammer_origin.rotation);
+        Rigidbody object_rigid_body = thrown_object.GetComponent<Rigidbody>();
+        object_rigid_body.velocity = 10f * (hammer_origin.forward);
+        object_rigid_body.angularVelocity = 20f * Vector3.one;
+
+        member_animator.ResetTrigger("isThrowing");
+        member_animator.SetTrigger("isIdle");
     }
 }
+
