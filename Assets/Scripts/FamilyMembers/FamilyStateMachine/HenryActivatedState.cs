@@ -48,6 +48,11 @@ public class HenryActivatedState : FamilyBaseState
         KeepInRange();
         if (shot_timer > rate_of_fire)
         {
+            if (shotCoroutine != null)
+            {
+
+                member.StopCoroutine(shotCoroutine);
+            }
             shotCoroutine = member.StartCoroutine(shooter());
             shot_timer = 0;
         }
@@ -91,9 +96,9 @@ public class HenryActivatedState : FamilyBaseState
         member_animator.ResetTrigger("isIdle");
         member_animator.SetTrigger("isThrowing");
 
-        yield return new WaitUntil(() => member_animator.GetCurrentAnimatorStateInfo(0).IsName("Throwing") &&
-                                        member_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
-        Debug.Log("done throwing");
+        yield return new WaitUntil(() => member_animator.GetCurrentAnimatorStateInfo(0).IsName("Throwing"));
+        yield return new WaitUntil(() => member_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8f);
+
         GameObject tool_to_throw = Throwable_object_array[Random.Range(0, Throwable_object_array.Length)];
 
         GameObject thrown_object = GameObject.Instantiate(tool_to_throw, hammer_origin.position, hammer_origin.rotation);
