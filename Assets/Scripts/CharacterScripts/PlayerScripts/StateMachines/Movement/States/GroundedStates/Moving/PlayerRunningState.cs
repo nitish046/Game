@@ -15,6 +15,12 @@ namespace MaskedMischiefNamespace
             base.Enter();
             stateMachine.player.animator.SetTrigger("isSprinting");
         }
-        
-	}
+
+        public override void Exit()
+        {
+            base.Exit();
+            stateMachine.player.animator.ResetTrigger("isSprinting");
+        }
+
+    }
 }

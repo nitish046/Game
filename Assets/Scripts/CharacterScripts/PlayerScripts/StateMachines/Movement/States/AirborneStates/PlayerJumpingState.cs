@@ -20,7 +20,8 @@ namespace MaskedMischiefNamespace
 		public override void Exit()
 		{
 			base.Exit();
-		}
+            stateMachine.player.animator.ResetTrigger("isJumping");
+        }
 
 		public override void PhysicsUpdate()
 		{

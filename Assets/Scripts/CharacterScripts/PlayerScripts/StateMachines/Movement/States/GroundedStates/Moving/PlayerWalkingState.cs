@@ -16,6 +16,12 @@ namespace MaskedMischiefNamespace
             stateMachine.player.animator.SetTrigger("isWalking");
         }
 
+        public override void Exit()
+        {
+            base.Exit();
+            stateMachine.player.animator.ResetTrigger("isWalking");
+        }
+
         public override void HandleInput()
 		{
 			base.HandleInput();

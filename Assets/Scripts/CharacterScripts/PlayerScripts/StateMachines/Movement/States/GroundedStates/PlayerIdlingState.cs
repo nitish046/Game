@@ -22,6 +22,7 @@ namespace MaskedMischiefNamespace
         public override void Exit()
         {
             base.Exit();
+            stateMachine.player.animator.ResetTrigger("isIdle");
             //RemoveCallbacks(); // Ensure callbacks are removed when exiting the state //No need, the base functions already do that
         }
 
