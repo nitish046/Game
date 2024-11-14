@@ -199,6 +199,10 @@ public class ItemHotbar : MonoBehaviour
     if (itemCount[currentIndex] <= 0)
     {
       Debug.Log("itemCount[currentIndex] <= 0");
+      if (currentIndex < numBoxes && currentIndex > 0)
+      {
+        hotbarBoxes[currentIndex].sprite = unselectedBox;
+      }
       itemList.RemoveAt(currentIndex);
       itemCount.RemoveAt(currentIndex);
       currentIndex = (currentIndex == 0) ? 0 : currentIndex - 1;

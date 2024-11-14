@@ -6,22 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class UsableItem : Item
+public class UsableItemGroup : UsableItem
 {
-  [SerializeField] protected Sprite itemSprite;
-  [SerializeField] protected string ItemName;
-
-  public string getItemName()
-  {
-    return ItemName;
-  }
-
-  public Sprite getItemSprite()
-  {
-    return itemSprite;
-  }
-
-
+  [SerializeField] protected int quantity;
   protected override void tryPick(Collider col)
   {
     GameObject other = col.gameObject;
@@ -46,7 +33,10 @@ public class UsableItem : Item
 
         already_picked = true;
 
-        StackColl.AddItemToHotbar(this);
+        for (int i = 0; i < quantity; i++)
+        {
+          StackColl.AddItemToHotbar(this);
+        }
       }
     }
   }
