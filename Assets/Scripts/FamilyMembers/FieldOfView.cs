@@ -9,7 +9,7 @@ public class FieldOfView : MonoBehaviour  // The copy of this script included in
 {                                         // to allow the Editor script to show the visible Field of View you can see in the scene view
   public float radius;
   public float viewAngle = 120;
-  public float periferalAngle = 190;
+  public float periferalAngle = 270;
 
   public GameObject playerRef;
   public GameObject familyMember;
