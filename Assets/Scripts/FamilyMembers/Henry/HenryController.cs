@@ -32,7 +32,6 @@ public class HenryController : FamilyMember
 
         stateMachine.current_state = patrol;
         stateMachine.current_state.EnterState();
-        //HenryStartInHouse();
     }
 
     private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)

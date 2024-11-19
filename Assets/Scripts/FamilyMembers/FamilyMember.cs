@@ -133,6 +133,16 @@ public abstract class FamilyMember : MonoBehaviour
         }
     }
 
+    public void RespondToSound(DetectableSound sound)
+    {
+        stateMachine.search_state.search_location = sound.sound_position;
+        if(stateMachine.current_state == stateMachine.search_state || stateMachine.current_state == stateMachine.patrol_state)
+        {
+            stateMachine.ChangeState(stateMachine.search_state);
+        }
+        print("Hear Song");
+    }
+
     protected virtual Vector3[] getWaypointArray(string name, string type)
     {
         UnityEngine.Debug.Log("FamilyMember getWaypointArray type " + name + " " + type);
