@@ -42,6 +42,8 @@ public abstract class FamilyMember : MonoBehaviour
     public float secondsSinceSeenPlayer = 0;
     protected Coroutine timerCoroutine;
 
+    public bool is_charging = false;
+
     public GameObject patrolPointOperator;
 
     public Material MainColor, FreezeColor;
@@ -72,6 +74,11 @@ public abstract class FamilyMember : MonoBehaviour
 
     protected void CheckForRaccoon()
     {
+        if(is_charging)
+        {
+            return;
+        }
+
         if (fieldOfView.canSeePlayer)
         {
             hasSeenPlayer = true;
