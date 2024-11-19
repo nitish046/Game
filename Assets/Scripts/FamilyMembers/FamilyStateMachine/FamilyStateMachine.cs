@@ -15,7 +15,6 @@ public class FamilyStateMachine
     public FamilyFreezeState freeze_state;
     public FamilySearchState search_state;
 
-    //private Dictionary<Type, List>
 
     public FamilyStateMachine(FamilyPatrolState patrol, FamilyBaseState activated, FamilyFreezeState freeze, FamilySearchState search)
     {
@@ -40,18 +39,6 @@ public class FamilyStateMachine
             current_state = state;
             Debug.Log("Changed to state: " + state);
             state.EnterState();
-        }
-    }
-
-    private class transition
-    {
-        public Func<bool> Condition { get; }
-        public FamilyBaseState To { get; }
-
-        public transition(FamilyBaseState to, Func<bool> condition)
-        {
-            To = to;
-            Condition = condition;
         }
     }
 }

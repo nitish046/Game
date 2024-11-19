@@ -29,7 +29,7 @@ public abstract class FamilyMember : MonoBehaviour
     [SerializeField] protected GameObject win_lose_controller;
 
 
-    protected FieldOfView fieldOfView;
+    public FieldOfView fieldOfView;
     [SerializeField] protected float viewRadius;
     [Range(0, 360)][SerializeField] protected float viewAngle = 120;
     [Range(0, 360)][SerializeField] protected float periferalAngle = 190;
@@ -41,7 +41,6 @@ public abstract class FamilyMember : MonoBehaviour
     public float patrolDuration = 10;
     public float secondsSinceSeenPlayer = 0;
     protected Coroutine timerCoroutine;
-    bool isTimerCoroutineRunning = false;
 
     public GameObject patrolPointOperator;
 
@@ -76,11 +75,6 @@ public abstract class FamilyMember : MonoBehaviour
         if (fieldOfView.canSeePlayer)
         {
             hasSeenPlayer = true;
-            if (isTimerCoroutineRunning)
-            {
-                isTimerCoroutineRunning = false;
-                StopCoroutine(timerCoroutine);
-            }
             player_last_seen_position = player.transform.position;
             SeesRaccoon();
         }
@@ -92,7 +86,7 @@ public abstract class FamilyMember : MonoBehaviour
                 stateMachine.ChangeState(stateMachine.search_state);
                 hasSeenPlayer = false;
                 // Go on Patrol, start timer with secondsSinceSeenPlayer
-                timerCoroutine = StartCoroutine(seePlayerTimer());
+                //timerCoroutine = StartCoroutine(seePlayerTimer());
             }
             else
             {
@@ -100,7 +94,7 @@ public abstract class FamilyMember : MonoBehaviour
             }
         }
     }
-
+    /*
     protected IEnumerator seePlayerTimer()
     {
         isTimerCoroutineRunning = true;
@@ -124,6 +118,7 @@ public abstract class FamilyMember : MonoBehaviour
         isTimerCoroutineRunning = false;
         secondsSinceSeenPlayer = 0;
     }
+    */
 
     protected virtual void SeesRaccoon()
     {
