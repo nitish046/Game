@@ -2452,6 +2452,7 @@ MonoBehaviour:
   splash: {fileID: 0}
   player: {fileID: 349689521}
   win_lose_controller: {fileID: 341997849}
+  fieldOfView: {fileID: 0}
   viewRadius: 10
   viewAngle: 120
   periferalAngle: 190
@@ -2467,6 +2468,7 @@ MonoBehaviour:
   hasSeenPlayer: 0
   patrolDuration: 10
   secondsSinceSeenPlayer: 0
+  is_charging: 0
   patrolPointOperator: {fileID: 309958001}
   MainColor: {fileID: 2100000, guid: 3affc6b9de12d004fb65db86f5e7d93c, type: 2}
   FreezeColor: {fileID: -2381500201381900343, guid: c5e9aa77baf01b442820a3ecae2de376, type: 3}
@@ -5351,6 +5353,10 @@ PrefabInstance:
       propertyPath: win_lose_controller
       value: 
       objectReference: {fileID: 341997849}
+    - target: {fileID: 7319617643645306480, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
+      propertyPath: interactableObstructionMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 8659788720011933078, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.75
@@ -12393,6 +12399,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 978747595}
     m_Modifications:
+    - target: {fileID: 270871112085898384, guid: 56e683f3ac20b02419cf31d3236b8092, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 352095015113357869, guid: 56e683f3ac20b02419cf31d3236b8092, type: 3}
       propertyPath: m_Name
       value: WashingMachine (1)
