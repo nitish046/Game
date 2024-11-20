@@ -65,7 +65,7 @@ public class EmilyChargeState : FamilyBaseState
         }
 
         //Debug.Log("Emily collided with " + collider.gameObject.name);
-        member.is_charging = true;
+        member.is_charging = false;
         was_frozen = false;
     }
 

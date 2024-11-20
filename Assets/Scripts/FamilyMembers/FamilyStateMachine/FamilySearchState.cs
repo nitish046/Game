@@ -59,7 +59,6 @@ public class FamilySearchState : FamilyBaseState
         seconds_since_rotated = 0;
         reached_search_location = false;
 
-        // Add this to reset animations
         member_animator.ResetTrigger("isIdle");
         member_animator.ResetTrigger("isWalking");
     }

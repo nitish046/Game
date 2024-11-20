@@ -17,7 +17,7 @@ namespace MaskedMischiefNamespace
 
 		public virtual void Enter()
 		{
-			//Debug.Log("Entering State: " + GetType().Name);
+			Debug.Log("Entering State: " + GetType().Name);
 			AddCallbacks();
 		}
 		public virtual void Exit()
