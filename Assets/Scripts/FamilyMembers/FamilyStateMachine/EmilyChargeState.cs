@@ -29,6 +29,8 @@ public class EmilyChargeState : FamilyBaseState
     public override void EnterState()
     {
         member.is_charging = true;
+        member_animator.ResetTrigger("isIdle");
+        member_animator.SetTrigger("isWalking");
         player = member.player;
         normal_speed = nav_mesh_member.speed;
         charge_speed = normal_speed * 3;
@@ -47,7 +49,7 @@ public class EmilyChargeState : FamilyBaseState
         nav_mesh_member.Move(charge_direction * charge_speed * Time.deltaTime);
 
         RaycastHit hit;
-        Debug.DrawRay(member.transform.position + Vector3.up, charge_direction, Color.green, 1f);
+        //Debug.DrawRay(member.transform.position + Vector3.up, charge_direction, Color.green, 1f);
         if (Physics.Raycast(member.transform.position + Vector3.up, charge_direction, out hit, 1f))
         {
             nav_mesh_member.velocity = Vector3.zero;
