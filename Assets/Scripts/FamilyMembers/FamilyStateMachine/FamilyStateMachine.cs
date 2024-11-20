@@ -15,6 +15,7 @@ public class FamilyStateMachine
     public FamilyFreezeState freeze_state;
     public FamilySearchState search_state;
 
+
     public FamilyStateMachine(FamilyPatrolState patrol, FamilyBaseState activated, FamilyFreezeState freeze, FamilySearchState search)
     {
         patrol_state = patrol;
