@@ -116,6 +116,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ViewControlsScreen"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c8d02fc-9c97-4bd8-be08-04d889a218e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -294,6 +303,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ee4284e-fafd-4d90-8821-2095954a3603"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ViewControlsScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -312,6 +332,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_ToggleHotbarRight = m_Player.FindAction("ToggleHotbarRight", throwIfNotFound: true);
         m_Player_ToggleHotbar = m_Player.FindAction("ToggleHotbar", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_ViewControlsScreen = m_Player.FindAction("ViewControlsScreen", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -383,6 +404,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ToggleHotbarRight;
     private readonly InputAction m_Player_ToggleHotbar;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_ViewControlsScreen;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -397,6 +419,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @ToggleHotbarRight => m_Wrapper.m_Player_ToggleHotbarRight;
         public InputAction @ToggleHotbar => m_Wrapper.m_Player_ToggleHotbar;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @ViewControlsScreen => m_Wrapper.m_Player_ViewControlsScreen;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -436,6 +459,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @ViewControlsScreen.started += instance.OnViewControlsScreen;
+            @ViewControlsScreen.performed += instance.OnViewControlsScreen;
+            @ViewControlsScreen.canceled += instance.OnViewControlsScreen;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -470,6 +496,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @ViewControlsScreen.started -= instance.OnViewControlsScreen;
+            @ViewControlsScreen.performed -= instance.OnViewControlsScreen;
+            @ViewControlsScreen.canceled -= instance.OnViewControlsScreen;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -499,5 +528,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnToggleHotbarRight(InputAction.CallbackContext context);
         void OnToggleHotbar(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnViewControlsScreen(InputAction.CallbackContext context);
     }
 }
