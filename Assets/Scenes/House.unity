@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &15957518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2286630544602370694, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+  m_PrefabInstance: {fileID: 183418604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &17309150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1340,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: menuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 775926653194131454, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807532111320267569, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547729809221874601, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 890296989f9e11e4e9c6014af613ea96, type: 3}
+    - target: {fileID: 2547729809221874601, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547729809221874601, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547729809221874601, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547729809221874601, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3785854286151721066, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1418,7 +1451,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1807532111320267569, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1731061419}
   m_SourcePrefab: {fileID: 100100000, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
 --- !u!114 &183418605 stripped
 MonoBehaviour:
@@ -2690,6 +2726,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4969516548076850816}
     - target: {fileID: 3610874276772940996, guid: 2996e6918563ce94bbd7fece6eaa1d5f, type: 3}
+      propertyPath: pauseScreen
+      value: 
+      objectReference: {fileID: 15957518}
+    - target: {fileID: 3610874276772940996, guid: 2996e6918563ce94bbd7fece6eaa1d5f, type: 3}
       propertyPath: quit_button
       value: 
       objectReference: {fileID: 183418605}
@@ -2861,6 +2901,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5053533995136697032, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
+      propertyPath: winLoseController
+      value: 
+      objectReference: {fileID: 341997849}
     - target: {fileID: 5524011718075287447, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
       propertyPath: m_Name
       value: player
@@ -11990,6 +12034,35 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2521071266012005341, guid: 56e683f3ac20b02419cf31d3236b8092, type: 3}
   m_PrefabInstance: {fileID: 1786331495}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1731061415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1807532111320267569, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+  m_PrefabInstance: {fileID: 183418604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1731061417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 775926653194131454, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+  m_PrefabInstance: {fileID: 183418604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731061415}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1731061419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731061415}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d62d4c61977ca84aa18284b27ad6300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlsScreen: {fileID: 1731061417}
 --- !u!1 &1731424104
 GameObject:
   m_ObjectHideFlags: 0
