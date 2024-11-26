@@ -88,6 +88,7 @@ MonoBehaviour:
   splash: {fileID: 0}
   player: {fileID: 0}
   win_lose_controller: {fileID: 0}
+  fieldOfView: {fileID: 0}
   viewRadius: 10
   viewAngle: 120
   periferalAngle: 190
@@ -99,10 +100,11 @@ MonoBehaviour:
     m_Bits: 128
   interactableObstructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   hasSeenPlayer: 0
   patrolDuration: 10
   secondsSinceSeenPlayer: 0
+  is_charging: 0
   patrolPointOperator: {fileID: 0}
   MainColor: {fileID: 2100000, guid: 3affc6b9de12d004fb65db86f5e7d93c, type: 2}
   FreezeColor: {fileID: -2381500201381900343, guid: c5e9aa77baf01b442820a3ecae2de376, type: 3}

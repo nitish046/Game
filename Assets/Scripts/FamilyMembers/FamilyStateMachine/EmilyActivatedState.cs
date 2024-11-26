@@ -50,6 +50,8 @@ public class EmilyActivatedState : FamilyBaseState
     {
         nav_mesh_member.ResetPath();
         charge_timer = 0;
+        member_animator.ResetTrigger("isWalking");
+        member_animator.SetTrigger("isIdle");
     }
 
     private void KeepInRange()
@@ -57,10 +59,14 @@ public class EmilyActivatedState : FamilyBaseState
 
         if (distance_to_player > follow_distance)
         {
+            member_animator.ResetTrigger("isIdle");
+            member_animator.SetTrigger("isWalking");
             nav_mesh_member.SetDestination(player.transform.position);
         }
         else
         {
+            member_animator.ResetTrigger("isWalking");
+            member_animator.SetTrigger("isIdle");
             nav_mesh_member.ResetPath();
         }
 

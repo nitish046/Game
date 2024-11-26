@@ -102,19 +102,18 @@ public class FamilyFreezeState : FamilyBaseState
             member_animator.enabled = true; // Resume animations
 
             // Reset rotation and position
-            //member.transform.GetChild(0).rotation = Quaternion.Euler(0f, member.transform.rotation.eulerAngles.y, member.transform.rotation.eulerAngles.z);
-
-
-            nav_mesh_member.enabled = false; // Disable NavMeshAgent temporarily
+            member.transform.GetChild(0).rotation = Quaternion.Euler(0f, member.transform.rotation.eulerAngles.y, 0f); // Reset rotation
             member.transform.GetChild(0).position = pre_fall_position;
+
             member_animator.ResetTrigger("isFalling");
             member_animator.SetTrigger("isIdle");
 
             yield return new WaitForSeconds(0.1f); // Add a slight delay to ensure position update takes effect
             nav_mesh_member.enabled = true; // Re-enable NavMeshAgent
         }
-        
+
         member.stateMachine.ChangeState(member.stateMachine.previous_state);
     }
+
 
 }

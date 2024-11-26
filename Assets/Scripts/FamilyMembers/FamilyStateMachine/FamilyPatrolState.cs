@@ -23,6 +23,7 @@ public class FamilyPatrolState : FamilyBaseState
     public override void EnterState()
     {
         member_animator.enabled = true;
+
         patrolCoroutine = member.StartCoroutine(Patrol(member.waypoint_array));
     }
 
@@ -61,18 +62,6 @@ public class FamilyPatrolState : FamilyBaseState
                 member_animator.SetTrigger("isWalking");
             }
             yield return null;
-        }
-    }
-
-    private void walkingTransition(bool walking)
-    {
-        if (walking)
-        {
-            member_animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            member_animator.SetBool("isWalking", false);
         }
     }
 }
