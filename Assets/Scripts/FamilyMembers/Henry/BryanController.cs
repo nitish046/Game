@@ -12,6 +12,7 @@ public class BryanController : MonoBehaviour
 
     [SerializeField] public GameObject player;
     public GameObject guardPosition;
+    public float attack_range = 2;
     private void Start()
     {
         BryanNeutralState neutral = new BryanNeutralState(this, animator);
@@ -26,5 +27,14 @@ public class BryanController : MonoBehaviour
     private void Update()
     {
         stateMachine.UpdateCurrentState();
+    }
+
+    public void RespondToSound(DetectableSound sound)
+    {
+        if (stateMachine.current_state == stateMachine.neutral_state)
+        {
+            Debug.Log("Heard Noise");
+            stateMachine.ChangeState(stateMachine.activated_state);
+        }
     }
 }

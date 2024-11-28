@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class BryanAttackState : FamilyBaseState
 {
@@ -18,16 +19,16 @@ public class BryanAttackState : FamilyBaseState
 
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void ExitState()
-    {
-        throw new System.NotImplementedException();
+        Debug.Log("ATTACKED");
     }
 
     public override void UpdateState()
     {
-        throw new System.NotImplementedException();
+
+    }
+
+    public override void ExitState()
+    {
+        
     }
 }

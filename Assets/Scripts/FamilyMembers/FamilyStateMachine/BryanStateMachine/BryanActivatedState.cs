@@ -9,6 +9,10 @@ public class BryanActivatedState : FamilyBaseState
     private Animator member_animator;
     private NavMeshAgent nav_mesh_member;
 
+    private Vector3 guard_position;
+    private float distance_to_player;
+    private float attack_range;
+
     public BryanActivatedState(BryanController family_member, Animator animator, NavMeshAgent nav_mesh_agent)
     {
         member = family_member;
@@ -18,16 +22,30 @@ public class BryanActivatedState : FamilyBaseState
 
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void ExitState()
-    {
-        throw new System.NotImplementedException();
+        guard_position = member.guardPosition.transform.position;
+        attack_range = member.attack_range;
+        nav_mesh_member.SetDestination(guard_position);
     }
 
     public override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        distance_to_player = Vector3.Distance(member.transform.position, member.player.transform.position);
+        if(nav_mesh_member.remainingDistance <= 0.2f)
+        {
+            InAttackRange();
+        }
+    }
+
+    public override void ExitState()
+    {
+        nav_mesh_member.ResetPath();
+    }
+
+    private void InAttackRange()
+    {
+        if (distance_to_player <= attack_range)
+        {
+            member.stateMachine.ChangeState(member.stateMachine.attack_state);
+        }
     }
 }
