@@ -20,6 +20,7 @@ public class BryanAttackState : FamilyBaseState
     public override void EnterState()
     {
         Debug.Log("ATTACKED");
+        member.stateMachine.ChangeState(member.stateMachine.activated_state);
     }
 
     public override void UpdateState()

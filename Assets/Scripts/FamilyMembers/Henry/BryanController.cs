@@ -22,6 +22,8 @@ public class BryanController : MonoBehaviour
 
         stateMachine.current_state = neutral;
         stateMachine.current_state.EnterState();
+
+        
     }
 
     private void Update()
@@ -29,7 +31,7 @@ public class BryanController : MonoBehaviour
         stateMachine.UpdateCurrentState();
     }
 
-    public void RespondToSound(DetectableSound sound)
+    public void RespondToSteal()
     {
         if (stateMachine.current_state == stateMachine.neutral_state)
         {

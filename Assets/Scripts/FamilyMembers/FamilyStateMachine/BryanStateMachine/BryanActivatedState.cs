@@ -13,6 +13,8 @@ public class BryanActivatedState : FamilyBaseState
     private float distance_to_player;
     private float attack_range;
 
+    private GameObject player;
+
     public BryanActivatedState(BryanController family_member, Animator animator, NavMeshAgent nav_mesh_agent)
     {
         member = family_member;
@@ -24,15 +26,17 @@ public class BryanActivatedState : FamilyBaseState
     {
         guard_position = member.guardPosition.transform.position;
         attack_range = member.attack_range;
+        player = member.player;
         nav_mesh_member.SetDestination(guard_position);
     }
 
     public override void UpdateState()
     {
-        distance_to_player = Vector3.Distance(member.transform.position, member.player.transform.position);
+        distance_to_player = Vector3.Distance(member.transform.position, player.transform.position);
         if(nav_mesh_member.remainingDistance <= 0.2f)
         {
             InAttackRange();
+            member.transform.LookAt(player.transform);
         }
     }
 
