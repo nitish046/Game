@@ -12102,6 +12102,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BryanKatana
       objectReference: {fileID: 0}
+    - target: {fileID: 5797384429611982230, guid: 873218635ada5c94d8a3ec6c771120a4, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 873218635ada5c94d8a3ec6c771120a4, type: 3}
       propertyPath: m_Controller
       value: 
