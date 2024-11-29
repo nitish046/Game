@@ -21,7 +21,7 @@ public class BryanNeutralState : FamilyBaseState
 
     public override void ExitState()
     {
-        
+        member_animator.SetTrigger("isGettingUp");
     }
 
     public override void UpdateState()

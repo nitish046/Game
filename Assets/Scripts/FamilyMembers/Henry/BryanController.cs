@@ -11,10 +11,13 @@ public class BryanController : MonoBehaviour
     protected Animator animator;
 
     [SerializeField] public GameObject player;
+    public GameObject katana;
     public GameObject guardPosition;
     public float attack_range = 2;
     private void Start()
     {
+        nav_mesh_agent = GetComponent<NavMeshAgent>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
         BryanNeutralState neutral = new BryanNeutralState(this, animator);
         BryanActivatedState activated = new BryanActivatedState(this, animator, nav_mesh_agent);
         BryanAttackState attack = new BryanAttackState(this, animator, nav_mesh_agent);

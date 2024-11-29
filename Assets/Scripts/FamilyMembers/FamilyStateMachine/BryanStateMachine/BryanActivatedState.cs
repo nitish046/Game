@@ -13,6 +13,8 @@ public class BryanActivatedState : FamilyBaseState
     private float distance_to_player;
     private float attack_range;
 
+    private bool done_walking = false;
+
     private GameObject player;
 
     public BryanActivatedState(BryanController family_member, Animator animator, NavMeshAgent nav_mesh_agent)
@@ -24,10 +26,12 @@ public class BryanActivatedState : FamilyBaseState
 
     public override void EnterState()
     {
+        member.katana.GetComponent<Renderer>().enabled = true;
         guard_position = member.guardPosition.transform.position;
         attack_range = member.attack_range;
         player = member.player;
         nav_mesh_member.SetDestination(guard_position);
+        member_animator.SetTrigger("isWalking");
     }
 
     public override void UpdateState()
@@ -35,6 +39,12 @@ public class BryanActivatedState : FamilyBaseState
         distance_to_player = Vector3.Distance(member.transform.position, player.transform.position);
         if(nav_mesh_member.remainingDistance <= 0.2f)
         {
+            if(!done_walking)
+            {
+                member_animator.ResetTrigger("isWalking");
+                member_animator.SetTrigger("isIdle");
+                done_walking = true;
+            }
             InAttackRange();
             member.transform.LookAt(player.transform);
         }
@@ -42,6 +52,7 @@ public class BryanActivatedState : FamilyBaseState
 
     public override void ExitState()
     {
+        member_animator.ResetTrigger("isIdle");
         nav_mesh_member.ResetPath();
     }
 

@@ -19,8 +19,10 @@ public class BryanAttackState : FamilyBaseState
 
     public override void EnterState()
     {
+        member_animator.applyRootMotion = true;
+        member_animator.SetTrigger("isAttacking");
         Debug.Log("ATTACKED");
-        member.stateMachine.ChangeState(member.stateMachine.activated_state);
+        //member.stateMachine.ChangeState(member.stateMachine.activated_state);
     }
 
     public override void UpdateState()
@@ -30,6 +32,6 @@ public class BryanAttackState : FamilyBaseState
 
     public override void ExitState()
     {
-        
+        member_animator.applyRootMotion = false;
     }
 }
