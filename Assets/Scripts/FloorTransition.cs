@@ -15,7 +15,10 @@ public class FloorTransition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(TeleportWithFade(other));
+        if(other.CompareTag("Player"))
+        {
+            StartCoroutine(TeleportWithFade(other));
+        }
     }
 
     private IEnumerator TeleportWithFade(Collider other)

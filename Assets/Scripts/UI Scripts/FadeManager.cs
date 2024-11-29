@@ -20,11 +20,13 @@ public class FadeManager : MonoBehaviour
 
     public void PlayFadeIn()
     {
+        fade.ResetTrigger("fadeOutTrigger");
         fade.SetTrigger("fadeInTrigger");
     }
 
     public void PlayFadeOut()
     {
+        fade.ResetTrigger("fadeInTrigger");
         fade.SetTrigger("fadeOutTrigger");
     }
 

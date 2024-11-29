@@ -5668,6 +5668,30 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3465285170408674676, guid: 2996e6918563ce94bbd7fece6eaa1d5f, type: 3}
   m_PrefabInstance: {fileID: 6181722370751746559}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &347673076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5041104259387374889, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
+  m_PrefabInstance: {fileID: 368878669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &347673081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347673076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &368878669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5727,7 +5751,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5041104259387374889, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 347673081}
+    - targetCorrespondingSourceObject: {fileID: 8790996787526245997, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 941623905}
+    - targetCorrespondingSourceObject: {fileID: 7902570026300998851, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1284450067}
   m_SourcePrefab: {fileID: 100100000, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
 --- !u!4 &368878670 stripped
 Transform:
@@ -7312,6 +7345,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6221374114359041157, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
   m_PrefabInstance: {fileID: 924230952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &941623900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8790996787526245997, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
+  m_PrefabInstance: {fileID: 368878669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &941623905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941623900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &954307961
 GameObject:
   m_ObjectHideFlags: 0
@@ -12665,6 +12722,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6221374114359041157, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
   m_PrefabInstance: {fileID: 1283171088}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1284450062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7902570026300998851, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
+  m_PrefabInstance: {fileID: 368878669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1284450067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284450062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1285360645
 GameObject:
   m_ObjectHideFlags: 0
@@ -13165,7 +13246,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 4369c7ad07699254586fbcbae50131b2, type: 2}
-  m_BuildHeightMesh: 0
+  m_BuildHeightMesh: 1
 --- !u!4 &1590212300
 Transform:
   m_ObjectHideFlags: 0
