@@ -5780,8 +5780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: ' That''s pretty high up. I''m sure I can get up there by jumping with [space].
-    on those boxes.'
+  text: ' That''s pretty high up. I''m sure you can get up there by jumping with
+    [space] on those boxes.'
   UI_manager: {fileID: 1870910160}
 --- !u!65 &370772593
 BoxCollider:
@@ -6247,6 +6247,103 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6221374114359041157, guid: 21dc3a6f561e9644aac8030eef24adeb, type: 3}
   m_PrefabInstance: {fileID: 525391158}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &556375741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 556375742}
+  - component: {fileID: 556375745}
+  - component: {fileID: 556375744}
+  - component: {fileID: 556375743}
+  m_Layer: 0
+  m_Name: CampFireDialogueArea (1)
+  m_TagString: Henry
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &556375742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556375741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.34, y: 1.45, z: -3.45}
+  m_LocalScale: {x: 0.22131328, y: 0.33353, z: 0.28594315}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870910159}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &556375743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556375741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Alright, you got all the food! Now dash using [SHIFT] to get back to where
+    you started!
+  UI_manager: {fileID: 1870910160}
+--- !u!65 &556375744
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556375741}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.7009544, y: 1, z: 6.2753487}
+  m_Center: {x: 0.73580647, y: 0, z: -0.26970816}
+--- !u!54 &556375745
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556375741}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
 --- !u!1001 &575324575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7017,7 +7114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Nice, some marshmallows! I just have to jump up and grab them.
+  text: Nice, some marshmallows! You just have to jump up and grab them.
   UI_manager: {fileID: 1870910160}
 --- !u!65 &886946566
 BoxCollider:
@@ -12439,7 +12536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Ooh, hot dogs! Once I finish these, I'll be full.
+  text: Some foods have abilities you can use! Use the tomato to stun Henry so you
+    can grab those hot dogs by the tent!
   UI_manager: {fileID: 1870910160}
 --- !u!65 &1229648692
 BoxCollider:
@@ -12655,7 +12753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Ahh, the campfire looks so nice and warm. And is that a tomato? Yum!
+  text: Each food is worth a certain number of points. Looks like the marshmallows
+    are worth two! </br>Now let's try getting that tomato by the campfire. Make sure
+    not to let Henry see you!
   UI_manager: {fileID: 1870910160}
 --- !u!65 &1300694153
 BoxCollider:
@@ -13017,7 +13117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c826aa69a19491498a1238b2f65a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPoints: 1
+  itemPoints: 2
 --- !u!1 &1590212298
 GameObject:
   m_ObjectHideFlags: 0
@@ -13482,8 +13582,8 @@ MonoBehaviour:
   score_text: {fileID: 262147070}
   win_text: {fileID: 1926314560}
   item_holder: {fileID: 236710243}
-  num_items_held: 0
-  num_items_to_win: 3
+  current_num_points: 0
+  num_points_to_win: 4
   y_position: 0
   hotbar: {fileID: 399803416}
   win_lose_controller: {fileID: 344480905}
@@ -13881,6 +13981,7 @@ Transform:
   - {fileID: 1229648690}
   - {fileID: 1914658892}
   - {fileID: 1300694151}
+  - {fileID: 556375742}
   - {fileID: 1726704795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14148,7 +14249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf452ef4523510b49b666e4c6bb5a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Shh! Someone's coming... I'd better hide in the trash can using [f].
+  text: Hmm... No food. Shh! Someone's coming... It's Henry! You'd better hide in
+    the trash can using [F] </br>until he's no longer looking.
   UI_manager: {fileID: 1870910160}
 --- !u!65 &1914658894
 BoxCollider:
@@ -15219,11 +15321,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2127005178828720893, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
       propertyPath: m_text
-      value: Man, I'm so hungry... I wonder if there's any food in that trash can.
+      value: "Welcome to Masked Mischief! \nIt seems that some campers left some
+        food around...  Let's go get it!\nGo see if there's any food on that trash
+        can."
       objectReference: {fileID: 0}
     - target: {fileID: 2127005178828720893, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
       propertyPath: m_fontSize
-      value: 50
+      value: 29.25
       objectReference: {fileID: 0}
     - target: {fileID: 4969516549741997689, guid: 7e7fa6e0c3ea30f498043dc1daec4172, type: 3}
       propertyPath: m_Name

@@ -16,8 +16,8 @@ public class StackCollectables : MonoBehaviour
   // public Button quit_button;
 
   public Transform item_holder;
-  public int num_items_held;
-  public int num_items_to_win;
+  public int current_num_points;
+  public int num_points_to_win;
   public float y_position;
 
   public GameObject hotbar;
@@ -26,7 +26,7 @@ public class StackCollectables : MonoBehaviour
 
   private void Start()
   {
-    num_items_held = 0;
+    current_num_points = 0;
     setScore();
     win_text.gameObject.SetActive(false);
   }
@@ -34,9 +34,9 @@ public class StackCollectables : MonoBehaviour
   public void AddNewItem(Transform _toAdd, int points)
   {
     // Debug.Log("Adding New Item...");
-    _toAdd.DOJump(item_holder.position + new Vector3(0, y_position * num_items_held, 0), 1.5f, 1, 0.35f).OnComplete(() =>
+    _toAdd.DOJump(item_holder.position + new Vector3(0, y_position * current_num_points, 0), 1.5f, 1, 0.35f).OnComplete(() =>
     {
-      num_items_held += points;
+      current_num_points += points;
       setScore();
       _toAdd.SetParent(item_holder, true);
       //_toAdd.localPosition = new Vector3(0, Ypos * NumOfItemsHoldind, 0);
@@ -56,12 +56,12 @@ public class StackCollectables : MonoBehaviour
   public void setScore()
   {
     // Debug.Log("Setting score: " + num_items_held + " / " + num_items_to_win);
-    score_text.text = "Food Collected: " + num_items_held.ToString() + " / " + num_items_to_win.ToString();
+    score_text.text = "Food Collected: " + current_num_points.ToString() + " / " + num_points_to_win.ToString();
   }
 
   public bool CheckWin()
   {
-    if (num_items_held >= num_items_to_win)
+    if (current_num_points >= num_points_to_win)
     {
       win_lose_controller.GetComponent<WinLoseControl>().WinGame();
       return true;

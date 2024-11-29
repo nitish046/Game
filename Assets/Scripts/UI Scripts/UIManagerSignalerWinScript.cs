@@ -25,7 +25,7 @@ public class UIManagerSignalerWinScript : UIManagerSignalerScript
       {
         break;
       }
-      else if (stackCollectables.num_items_held >= stackCollectables.num_items_to_win)
+      else if (stackCollectables.current_num_points >= stackCollectables.num_points_to_win)
       {
         hasEnoughFood = true;
         UI_manager.setTutorialText("You have enough food! Quick, run back to where you came from!");
