@@ -11,9 +11,13 @@ public class MakeSound : MonoBehaviour
 
         for (int i = 0; i < col.Length; i++)
         {
-            if (col[i].TryGetComponent(out FamilyMember listner))
+            if (col[i].TryGetComponent(out FamilyMember listener))
             {
-                listner.RespondToSound(sound);
+                listener.RespondToSound(sound);
+            }
+            else if(col[i].TryGetComponent(out BryanController bryan_listener))
+            {
+                bryan_listener.RespondToSteal();
             }
         }
     }
