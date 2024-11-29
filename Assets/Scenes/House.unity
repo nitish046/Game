@@ -4393,11 +4393,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3749795603324684206, guid: bf6796dfe05424d41a1447e5ce00f2c3, type: 3}
   m_PrefabInstance: {fileID: 917899594}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &549148884 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2193003226205512771, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
-  m_PrefabInstance: {fileID: 398375547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &555174960
 GameObject:
   m_ObjectHideFlags: 0
@@ -5978,8 +5973,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 895074590}
-  m_Follow: {fileID: 549148884}
+  m_LookAt: {fileID: 1183593077}
+  m_Follow: {fileID: 1183593077}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 10
@@ -8649,6 +8644,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7425184673178891074, guid: 9521305b8c78712438554f45b46eabf6, type: 3}
   m_PrefabInstance: {fileID: 1165377392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1183593077 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2089710252483138242, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
+  m_PrefabInstance: {fileID: 398375547}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1190351751
 PrefabInstance:
