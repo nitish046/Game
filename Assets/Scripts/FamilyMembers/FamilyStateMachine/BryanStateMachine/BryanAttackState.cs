@@ -22,6 +22,7 @@ public class BryanAttackState : FamilyBaseState
     public override void EnterState()
     {
         member_animator.applyRootMotion = true;
+        member.katana.GetComponent<KatanaDamage>().SetCanDamage(true);
         member_animator.SetTrigger("isAttacking");
         player = member.player;
     }
@@ -38,6 +39,7 @@ public class BryanAttackState : FamilyBaseState
     public override void ExitState()
     {
         member_animator.applyRootMotion = false;
+        member.katana.GetComponent<KatanaDamage>().SetCanDamage(false);
         member_animator.ResetTrigger("isAttacking");
         member_animator.SetTrigger("isIdle");
     }
