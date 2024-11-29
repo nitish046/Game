@@ -38,7 +38,6 @@ public class BryanController : MonoBehaviour
     {
         if (stateMachine.current_state == stateMachine.neutral_state)
         {
-            Debug.Log("Heard Noise");
             stateMachine.ChangeState(stateMachine.activated_state);
         }
     }

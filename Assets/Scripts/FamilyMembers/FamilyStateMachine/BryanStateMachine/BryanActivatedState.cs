@@ -39,7 +39,7 @@ public class BryanActivatedState : FamilyBaseState
         distance_to_player = Vector3.Distance(member.transform.position, player.transform.position);
         if(nav_mesh_member.remainingDistance <= 0.2f)
         {
-            if(!done_walking)
+            if(!done_walking && nav_mesh_member.hasPath)
             {
                 member_animator.ResetTrigger("isWalking");
                 member_animator.SetTrigger("isIdle");
