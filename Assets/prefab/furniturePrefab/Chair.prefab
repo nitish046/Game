@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4597157591633888066}
   - component: {fileID: 5692169474710547589}
-  m_Layer: 0
+  - component: {fileID: 7684082090467964865}
+  - component: {fileID: 6216171100841239703}
+  m_Layer: 8
   m_Name: Chair
-  m_TagString: Untagged
+  m_TagString: Collidable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,10 +52,46 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.25, y: 0.5, z: 0.25}
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!64 &7684082090467964865
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4269283014769636596}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6264831526926562434, guid: 14fb75187e6f9c3449fd6b4de31a96df, type: 3}
+--- !u!114 &6216171100841239703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4269283014769636596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84421748bab06ae4abb484bf99ee03d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  use_events: 0
+  prompt_message: '[F]: Move Chair'
 --- !u!1001 &4038671285394730092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,6 +143,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 14fb75187e6f9c3449fd6b4de31a96df, type: 3}
       propertyPath: m_Name
       value: Chair
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 14fb75187e6f9c3449fd6b4de31a96df, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
