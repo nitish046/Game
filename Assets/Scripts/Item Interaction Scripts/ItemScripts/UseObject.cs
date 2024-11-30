@@ -18,6 +18,9 @@ public class UseObject : MonoBehaviour
   [SerializeField] private GameObject bananaTrapPrefab;
   [SerializeField] private Transform placePoint;
 
+  // Cheese Puff
+  [SerializeField] private GameObject cheesePuffSmokeBomb;
+
 
   private void Start()
   {
@@ -43,13 +46,7 @@ public class UseObject : MonoBehaviour
       Debug.Log("Mouse Down");
       if (itemHotbar.SelectedBoxIsOccupied())
       {
-        // Debug.Log("Selected Box Is Occupied");
         string itemName = itemHotbar.UseSelectedItem();
-        // Debug.Log(itemName);
-        // Debug.Log("Use" + itemName);
-        // Debug.Log(this.GetType());
-        // Debug.Log(this.GetType().GetMethod("Use" + itemName));
-        // Debug.Log(this.GetType().GetMethod("UseTomato"));
         MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
         useMethod.Invoke(this, null);
       }
@@ -85,6 +82,9 @@ public class UseObject : MonoBehaviour
   public void UseCheesePuffBomb()
   {
     Debug.Log("Using CheesePuffBomb...");
+    Vector3 placePosition = placePoint.position + placePoint.forward * 1f;
+    GameObject bomb = GameObject.Instantiate(cheesePuffSmokeBomb, placePosition, placePoint.rotation);
+    bomb.GetComponent<CPSmokeBomb>().ActivateTrap(null);
   }
 
 }
