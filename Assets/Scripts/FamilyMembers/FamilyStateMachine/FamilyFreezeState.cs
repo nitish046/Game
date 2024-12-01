@@ -6,8 +6,8 @@ using UnityEngine.AI;
 
 public class FamilyFreezeState : FamilyBaseState
 {
-    private SkinnedMeshRenderer skinned_mesh_renderer;
-    private Material MainColor;
+    private SkinnedMeshRenderer[] skinned_mesh_renderers;
+    private Material[][] original_colors;
 
     public float effect_duration;
     public bool is_trap_slip;
@@ -29,8 +29,8 @@ public class FamilyFreezeState : FamilyBaseState
     public override void EnterState()
     {
         member_animator.enabled = false;
-        skinned_mesh_renderer = member.transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>();
-        MainColor = skinned_mesh_renderer.material;
+        skinned_mesh_renderers = member.renderers;
+        original_colors = member.colors;
         pre_fall_position = member.transform.GetChild(0).GetComponent<Transform>().position;
         pre_fall_y = pre_fall_position.y;
         Freeze(effect_duration, is_trap_slip);
@@ -57,7 +57,7 @@ public class FamilyFreezeState : FamilyBaseState
         // Only change color if it's not a trap freeze
         if (!slip)
         {
-            skinned_mesh_renderer.material = member.FreezeColor; // Change to FreezeColor
+            ApplyFreezeMaterial();
         }
 
         if (member.splash != null && member.splash.clip != null)
@@ -94,7 +94,10 @@ public class FamilyFreezeState : FamilyBaseState
     {
         yield return new WaitForSeconds(duration);
 
-        skinned_mesh_renderer.material = MainColor; // Reset color
+        for (int i = 0; i < skinned_mesh_renderers.Length; i++)
+        {
+            skinned_mesh_renderers[i].materials = original_colors[i];
+        }
 
         if (slip)
         {
@@ -115,5 +118,21 @@ public class FamilyFreezeState : FamilyBaseState
         member.stateMachine.ChangeState(member.stateMachine.previous_state);
     }
 
+
+    private void ApplyFreezeMaterial()
+    {
+        for (int i = 0; i < skinned_mesh_renderers.Length; i++)
+        {
+            Renderer skinned_renderer = skinned_mesh_renderers[i];
+            Material[] freeze_materials = new Material[skinned_renderer.materials.Length];
+
+            for (int j = 0; j < freeze_materials.Length; j++)
+            {
+                freeze_materials[j] = member.FreezeColor;
+            }
+
+            skinned_renderer.materials = freeze_materials;
+        }
+    }
 
 }
