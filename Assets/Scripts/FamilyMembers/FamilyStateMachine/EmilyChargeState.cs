@@ -30,7 +30,8 @@ public class EmilyChargeState : FamilyBaseState
     {
         member.is_charging = true;
         member_animator.ResetTrigger("isIdle");
-        member_animator.SetTrigger("isWalking");
+        member_animator.ResetTrigger("isWalking");
+        member_animator.SetTrigger("isCharging");
         player = member.player;
         normal_speed = nav_mesh_member.speed;
         charge_speed = normal_speed * 3;
@@ -77,6 +78,8 @@ public class EmilyChargeState : FamilyBaseState
         nav_mesh_member.velocity = Vector3.zero;
         nav_mesh_member.speed = normal_speed;
         nav_mesh_member.ResetPath();
+        member_animator.ResetTrigger("isCharging");
+        member_animator.SetTrigger("isDoneCharging");
     }
 
 }
