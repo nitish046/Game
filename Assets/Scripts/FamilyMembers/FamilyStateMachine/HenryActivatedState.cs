@@ -107,7 +107,7 @@ public class HenryActivatedState : FamilyBaseState
         object_rigid_body.angularVelocity = 20f * Vector3.one;
 
         member_animator.ResetTrigger("isThrowing");
-        member_animator.SetTrigger("isIdle");
+        member_animator.SetTrigger("isDoneThrowing");
     }
 }
 
