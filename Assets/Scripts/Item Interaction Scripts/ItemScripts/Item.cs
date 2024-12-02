@@ -32,6 +32,7 @@ public class Item : MonoBehaviour
     StackCollectables StackColl;
     if (tryPickItemCheck(other, out StackColl))
     {
+      // Debug.Log("this, " + base.name + " other: " + other.name);
       // Debug.Log("Pick");
       // Debug.Log("calling AddNewItem from Item");
       StackColl.AddNewItem(this.transform, itemPoints);
@@ -51,7 +52,12 @@ public class Item : MonoBehaviour
   protected bool tryPickItemCheck(GameObject other, out StackCollectables StackColl)
   {
     Transform thisTransform = base.transform;
-    return (other.TryGetComponent(out StackColl) && thisTransform.position.y < other.transform.position.y);
+    // if (other.name == "player")
+    // {
+    //   Debug.Log("this, " + base.name + " other: " + other);
+    //   Debug.Log(thisTransform.position.y + " " + other.transform.position.y + 1);
+    // }
+    return (other.TryGetComponent(out StackColl) && thisTransform.position.y < other.transform.position.y + 1);
   }
 
   // Start is called before the first frame update

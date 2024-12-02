@@ -410,7 +410,7 @@ PrefabInstance:
     - target: {fileID: 865560803452614117, guid: 47cac5314b8e58147a5ab7c70906036c, type: 3}
       propertyPath: cheesePuffSmokeBomb
       value: 
-      objectReference: {fileID: 336229310}
+      objectReference: {fileID: 1347569301464538123, guid: baf1bc0cdd649064aacfe169ce328e2c, type: 3}
     - target: {fileID: 2646754123465569439, guid: 47cac5314b8e58147a5ab7c70906036c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 739.0324
@@ -3147,11 +3147,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 256807054355629584, guid: d4a1bde9f915d0b49be2d32179d89958, type: 3}
   m_PrefabInstance: {fileID: 2611481561602995568}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &336229310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1347569301464538123, guid: baf1bc0cdd649064aacfe169ce328e2c, type: 3}
-  m_PrefabInstance: {fileID: 9195462454113421380}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &336387723
 PrefabInstance:

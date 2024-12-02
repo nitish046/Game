@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.LowLevel;
+using System;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -49,37 +51,50 @@ public class PlayerInteract : MonoBehaviour
 
   private void detectInteraction()
   {
-    Collider[] rangeChecks = Physics.OverlapSphere(base.transform.position, radius, mask);
-    Debug.Log(rangeChecks.Length);
+    Collider[] rangeChecks = Physics.OverlapSphere((base.transform.position + base.transform.up * 2f), radius, mask);
     if (rangeChecks.Length > 0)
     {
-      for (int i = 0; i < rangeChecks.Length; i++)
+      Debug.Log(rangeChecks.Length);
+      Array.Sort(rangeChecks, (colliderA, colliderB) =>
+        {
+          Transform targetA = colliderA.transform;
+          Transform targetB = colliderB.transform;
+
+          Vector3 directionToTargetA = (targetA.position - base.transform.position).normalized;
+          Vector3 directionToTargetB = (targetB.position - base.transform.position).normalized;
+
+          float angleA = XZPlaneAngle(base.transform.forward, directionToTargetA);
+          float angleB = XZPlaneAngle(base.transform.forward, directionToTargetB);
+
+          return angleA.CompareTo(angleB); // Sort by ascending angle
+        });
+
+      Transform target = rangeChecks[0].transform;
+      Vector3 directionToTarget = (target.position - base.transform.position).normalized;
+
+      if (XZPlaneAngle(base.transform.forward, directionToTarget) < viewAngle / 2)
       {
-        Debug.Log("i = " + i);
-        Transform target = rangeChecks[i].transform;
-        Debug.Log(target.parent);
-        Vector3 directionToTarget = (target.position - base.transform.position).normalized;
+        Debug.Log("in angle");
+        float distanceToTarget = Vector3.Distance(base.transform.position, target.position);
 
-        if (Vector3.Angle(base.transform.forward, directionToTarget) < viewAngle / 2)
+        if (Physics.Raycast(base.transform.position, directionToTarget, out RaycastHit hitInfo, distance, mask))
         {
-          Debug.Log("in angle");
-          float distanceToTarget = Vector3.Distance(base.transform.position, target.position);
-
-          RaycastHit hitInfo;
-
-          if (Physics.Raycast(base.transform.position, directionToTarget, out hitInfo, distance, mask))
-          {
-            Debug.Log("raycast hit");
-            promptInteraction(hitInfo);
-            i = rangeChecks.Length;
-          }
-        }
-        else
-        {
-          interaction_UI.updatePromptText("");
+          Debug.Log("raycast hit");
+          promptInteraction(hitInfo); // Use PromptInteraction on the most aligned collider
         }
       }
+      else
+      {
+        interaction_UI.updatePromptText("");
+      }
     }
+  }
+
+  private float XZPlaneAngle(Vector3 vecOne, Vector3 vecTwo)
+  {
+    Vector3 vecone = new Vector3(vecOne.x, 0, vecOne.z);
+    Vector3 vectwo = new Vector3(vecTwo.x, 0, vecTwo.z);
+    return Vector3.Angle(vecone, vectwo);
   }
 
 
