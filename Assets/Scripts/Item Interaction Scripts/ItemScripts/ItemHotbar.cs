@@ -29,6 +29,8 @@ public class ItemHotbar : MonoBehaviour
   private InputAction toggleRight;
   private InputAction toggle;
 
+
+
   private void Start()
   {
     StartCoroutine(this.DrawHotbarCoroutine());
@@ -38,6 +40,11 @@ public class ItemHotbar : MonoBehaviour
       hotbarCounts[i].GetComponent<Text>().text = "0";
     }
     hotbarBoxes[0].sprite = selectedBox;
+
+    gameInput.on_hotbar_toggle_left += (_, __) => toggleHotbarValue(-1);
+    gameInput.on_hotbar_toggle_right += (_, __) => toggleHotbarValue(1);
+    // gameInput.on_hotbar_toggle_left += (_, __) => Debug.Log("Toggle Left!");
+    // gameInput.on_hotbar_toggle_right += (_, __) => Debug.Log("Toggle Right!");
 
   }
   private void OnEnable()
@@ -53,27 +60,32 @@ public class ItemHotbar : MonoBehaviour
   private void Update()
   {
     // toggleHotbarValue(toggle.ReadValue<Axis>());
-    toggleHotbarValue();
+
+    // toggleHotbarValue();
   }
 
-  private void toggleHotbarValue(/*Axis toggleAxis*/)
+  public void toggleHotbarValue(int direction)
   {
     // Debug.Log("currentIndex: " + currentIndex);
     hotbarBoxes[currentIndex].sprite = unselectedBox;
     // int hotbarToggle = (toggleAxis == 0) ? 0 : (int)((float)toggleAxis / Math.Abs((float)toggleAxis));
     // int hotbarToggle = (toggleAxis == 0) ? 0 : ((toggleAxis < 0) ? -1 : 1);
     // int hotbarToggle = gameInput.getHotbarInput();
-    int hotbarToggle = 0;
-    if (Input.GetKeyDown(KeyCode.Q))
-    {
-      hotbarToggle = -1;
-    }
-    else if (Input.GetKeyDown(KeyCode.E))
-    {
-      hotbarToggle = 1;
-    }
-    // Debug.Log("hotbarToggle: " + hotbarToggle);
-    currentIndex += hotbarToggle;
+
+    // int hotbarToggle = 0;
+    // if (Input.GetKeyDown(KeyCode.Q))
+    // {
+    //   hotbarToggle = -1;
+    // }
+    // else if (Input.GetKeyDown(KeyCode.E))
+    // {
+    //   hotbarToggle = 1;
+    // }
+
+
+    // currentIndex += hotbarToggle;
+    currentIndex += direction;
+
     // Debug.Log("new currentIndex: " + currentIndex);
     if (currentIndex >= itemList.Count && currentIndex >= numBoxes)
     {

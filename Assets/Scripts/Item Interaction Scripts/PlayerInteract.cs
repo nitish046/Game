@@ -22,6 +22,7 @@ public class PlayerInteract : MonoBehaviour
   private void Awake()
   {
     interaction_UI = GetComponent<InteractionUI>();
+    interaction_UI.updatePromptText("");
     game_input.on_interact_action += GameInput_OnInteractAction;
   }
 

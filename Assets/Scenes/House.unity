@@ -445,6 +445,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 865560803452614117, guid: 47cac5314b8e58147a5ab7c70906036c, type: 3}
+      propertyPath: gameInput
+      value: 
+      objectReference: {fileID: 398375555}
+    - target: {fileID: 865560803452614117, guid: 47cac5314b8e58147a5ab7c70906036c, type: 3}
       propertyPath: placePoint
       value: 
       objectReference: {fileID: 1391236187}
@@ -3859,6 +3863,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7462225088416243281, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
   m_PrefabInstance: {fileID: 398375547}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &398375555 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2703461568251086569, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
+  m_PrefabInstance: {fileID: 398375547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349689521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dea2f13953d5c4c8d6cc0bd0d51a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &401793157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17948,6 +17963,10 @@ PrefabInstance:
       value: InventoryHotbar
       objectReference: {fileID: 0}
     - target: {fileID: 2995715893681209279, guid: b0dc7e3f908854e4e9c65e70ddfd9811, type: 3}
+      propertyPath: gameInput
+      value: 
+      objectReference: {fileID: 398375555}
+    - target: {fileID: 2995715893681209279, guid: b0dc7e3f908854e4e9c65e70ddfd9811, type: 3}
       propertyPath: hotbarCounts.Array.size
       value: 8
       objectReference: {fileID: 0}
@@ -20513,6 +20532,10 @@ PrefabInstance:
     - target: {fileID: 1347569301464538123, guid: baf1bc0cdd649064aacfe169ce328e2c, type: 3}
       propertyPath: m_Name
       value: CheesePuffSmokeBomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347569301464538123, guid: baf1bc0cdd649064aacfe169ce328e2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5567937031356589502, guid: baf1bc0cdd649064aacfe169ce328e2c, type: 3}
       propertyPath: m_LocalPosition.x

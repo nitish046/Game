@@ -6,6 +6,9 @@ public class UseObject : MonoBehaviour
   private ItemHotbar itemHotbar;
   [SerializeField] private GameObject itemHotbarObject;
 
+  [SerializeField] private GameInput gameInput;
+  private bool useItem = false;
+
 
   // Tomato
   public Transform launchPoint;
@@ -25,6 +28,7 @@ public class UseObject : MonoBehaviour
   private void Start()
   {
     itemHotbar = itemHotbarObject.GetComponent<ItemHotbar>();
+    gameInput.on_use_item += (_, __) => UseItemCalled();
   }
   private void Update()
   {
@@ -41,17 +45,30 @@ public class UseObject : MonoBehaviour
     //   _projectile.GetComponent<Rigidbody>().isKinematic = false;
     //   _projectile.GetComponent<Rigidbody>().velocity = launchSpeed * ((launchPoint.up / 2) + launchPoint.forward);
     // }
-    if (Input.GetMouseButtonDown(0))
-    {
-      Debug.Log("Mouse Down");
-      if (itemHotbar.SelectedBoxIsOccupied())
-      {
-        string itemName = itemHotbar.UseSelectedItem();
-        MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
-        useMethod.Invoke(this, null);
-      }
-    }
 
+    // useItem = gameInput.getUseItemInput();
+    // if (useItem)
+    // {
+    //   Debug.Log("Mouse Down");
+    //   if (itemHotbar.SelectedBoxIsOccupied())
+    //   {
+    //     string itemName = itemHotbar.UseSelectedItem();
+    //     MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
+    //     useMethod.Invoke(this, null);
+    //   }
+    // }
+
+  }
+
+  public void UseItemCalled()
+  {
+    Debug.Log("Calling UseItem");
+    if (itemHotbar.SelectedBoxIsOccupied())
+    {
+      string itemName = itemHotbar.UseSelectedItem();
+      MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
+      useMethod.Invoke(this, null);
+    }
   }
 
   public void UseTomato()
