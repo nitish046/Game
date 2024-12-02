@@ -58,11 +58,8 @@ public class FamilySearchState : FamilyBaseState
         nav_mesh_member.ResetPath();
         seconds_since_seen_player = 0;
         seconds_since_rotated = 0;
-        reached_search_location = false;
         nav_mesh_member.stoppingDistance = 0f;
-
-        member_animator.ResetTrigger("isIdle");
-        member_animator.ResetTrigger("isWalking");
+        reached_search_location = false;
     }
 
     protected void SeePlayerTimer()
@@ -70,6 +67,8 @@ public class FamilySearchState : FamilyBaseState
             seconds_since_seen_player += Time.deltaTime;
             if (seconds_since_seen_player >= search_time)
             {
+                member_animator.ResetTrigger("isIdle");
+                member_animator.SetTrigger("isWalking");
                 member.stateMachine.ChangeState(member.stateMachine.patrol_state);
             }
     }
@@ -78,7 +77,6 @@ public class FamilySearchState : FamilyBaseState
     {
         if (!nav_mesh_member.pathPending && nav_mesh_member.remainingDistance <= nav_mesh_member.stoppingDistance)
         {
-            Debug.Log("at Destination");
             reached_search_location = true;
             member_animator.ResetTrigger("isWalking");
             member_animator.SetTrigger("isIdle");

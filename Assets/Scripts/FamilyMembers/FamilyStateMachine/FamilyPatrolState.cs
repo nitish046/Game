@@ -50,15 +50,22 @@ public class FamilyPatrolState : FamilyBaseState
 
             if (nav_mesh_member.remainingDistance < 0.2f)
             {
-                member_animator.ResetTrigger("isWalking");
-                member_animator.SetTrigger("isIdle");
+                if (!member_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                {
+                    member_animator.SetTrigger("isIdle");
+                    member_animator.ResetTrigger("isWalking");
+                }
 
                 waypoint_index = (waypoint_index + 1) % waypoints.Length;
                 waypoint_target = waypoints[waypoint_index];
 
-                yield return new WaitForSeconds(member.waypoint_wait_time);
+                yield return new WaitForSeconds(.1f);
 
                 member_animator.ResetTrigger("isIdle");
+
+                yield return new WaitForSeconds(member.waypoint_wait_time);
+
+                
                 member_animator.SetTrigger("isWalking");
             }
             yield return null;
