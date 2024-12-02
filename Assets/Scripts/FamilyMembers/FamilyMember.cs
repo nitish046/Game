@@ -28,6 +28,7 @@ public abstract class FamilyMember : MonoBehaviour
     protected Animator animator;
     [SerializeField] protected GameObject win_lose_controller;
 
+    public string patrol_path_name;
 
     public FieldOfView fieldOfView;
     [SerializeField] protected float viewRadius;

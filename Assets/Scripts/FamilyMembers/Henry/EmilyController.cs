@@ -36,6 +36,6 @@ public class EmilyController : FamilyMember
 
     protected Vector3[] getWaypointArray(string type)
     {
-        return base.getWaypointArray("emily", type);
+        return base.getWaypointArray(patrol_path_name, type);
     }
 }
