@@ -50,7 +50,7 @@ public class PlayerInteract : MonoBehaviour
   private void detectInteraction()
   {
     Collider[] rangeChecks = Physics.OverlapSphere(base.transform.position, radius, mask);
-    Debug.Log(rangeChecks.Length);
+    // Debug.Log(rangeChecks.Length);
     if (rangeChecks.Length > 0)
     {
       for (int i = 0; i < rangeChecks.Length; i++)
