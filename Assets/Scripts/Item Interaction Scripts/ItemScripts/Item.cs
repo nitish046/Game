@@ -27,26 +27,33 @@ public class Item : MonoBehaviour
     //Debug.Log(other);
     if (already_picked) return;
     //if (other.CompareTag("Player"))
+    //{
+    //Debug.Log("TUCH");	
+    StackCollectables StackColl;
+    if (tryPickItemCheck(other, out StackColl))
     {
-      //Debug.Log("TUCH");	
-      StackCollectables StackColl;
-      if (other.TryGetComponent(out StackColl))
+      // Debug.Log("Pick");
+      // Debug.Log("calling AddNewItem from Item");
+      StackColl.AddNewItem(this.transform, itemPoints);
+
+      // Use GetComponentInParent to find the Player component
+      Player player = other.GetComponentInParent<Player>(); //This is necessary because the bipead is the one doing the pickups
+      if (player != null)
       {
-        // Debug.Log("Pick");
-        // Debug.Log("calling AddNewItem from Item");
-        StackColl.AddNewItem(this.transform, itemPoints);
-
-        // Use GetComponentInParent to find the Player component
-        Player player = other.GetComponentInParent<Player>(); //This is necessary because the bipead is the one doing the pickups
-        if (player != null)
-        {
-          player.PlayPickupSound();
-        }
-
-        already_picked = true;
+        player.PlayPickupSound();
       }
+
+      already_picked = true;
     }
+    //}
   }
+
+  protected bool tryPickItemCheck(GameObject other, out StackCollectables StackColl)
+  {
+    Transform thisTransform = base.transform;
+    return (other.TryGetComponent(out StackColl) && thisTransform.position.y < other.transform.position.y);
+  }
+
   // Start is called before the first frame update
   protected void OnTriggerEnter(Collider other)
   {

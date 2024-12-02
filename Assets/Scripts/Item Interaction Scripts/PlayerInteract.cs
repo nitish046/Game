@@ -33,49 +33,54 @@ public class PlayerInteract : MonoBehaviour
     detectInteraction();
   }
 
-  private void detectInteraction()
-  {
-    RaycastHit hitInfo;
-    Ray ray = new Ray(transform.position + transform.up, transform.forward);
-
-    interaction_UI.updatePromptText(string.Empty);
-
-    Debug.DrawRay(ray.origin, ray.direction * distance);
-    if (Physics.Raycast(ray, out hitInfo, distance, mask))
-    {
-      promptInteraction(hitInfo);
-    }
-  }
-
   // private void detectInteraction()
   // {
-  //   Collider[] rangeChecks = Physics.OverlapSphere(base.transform.position, radius, mask);
-  //   Debug.Log(rangeChecks.Length);
-  //   if (rangeChecks.Length > 0)
+  //   RaycastHit hitInfo;
+  //   Ray ray = new Ray(transform.position + transform.up, transform.forward);
+
+  //   interaction_UI.updatePromptText(string.Empty);
+
+  //   Debug.DrawRay(ray.origin, ray.direction * distance);
+  //   if (Physics.Raycast(ray, out hitInfo, distance, mask))
   //   {
-  //     for (int i = 0; i < rangeChecks.Length; i++)
-  //     {
-  //       Debug.Log("i = " + i);
-  //       Transform target = rangeChecks[i].transform;
-  //       Vector3 directionToTarget = (target.position - base.transform.position).normalized;
-
-  //       if (Vector3.Angle(base.transform.forward, directionToTarget) < viewAngle / 2)
-  //       {
-  //         Debug.Log("in angle");
-  //         float distanceToTarget = Vector3.Distance(base.transform.position, target.position);
-
-  //         RaycastHit hitInfo;
-
-  //         if (Physics.Raycast(base.transform.position, directionToTarget, out hitInfo, distance, mask))
-  //         {
-  //           Debug.Log("raycast hit");
-  //           promptInteraction(hitInfo);
-  //           i = rangeChecks.Length;
-  //         }
-  //       }
-  //     }
+  //     promptInteraction(hitInfo);
   //   }
   // }
+
+  private void detectInteraction()
+  {
+    Collider[] rangeChecks = Physics.OverlapSphere(base.transform.position, radius, mask);
+    Debug.Log(rangeChecks.Length);
+    if (rangeChecks.Length > 0)
+    {
+      for (int i = 0; i < rangeChecks.Length; i++)
+      {
+        Debug.Log("i = " + i);
+        Transform target = rangeChecks[i].transform;
+        Debug.Log(target.parent);
+        Vector3 directionToTarget = (target.position - base.transform.position).normalized;
+
+        if (Vector3.Angle(base.transform.forward, directionToTarget) < viewAngle / 2)
+        {
+          Debug.Log("in angle");
+          float distanceToTarget = Vector3.Distance(base.transform.position, target.position);
+
+          RaycastHit hitInfo;
+
+          if (Physics.Raycast(base.transform.position, directionToTarget, out hitInfo, distance, mask))
+          {
+            Debug.Log("raycast hit");
+            promptInteraction(hitInfo);
+            i = rangeChecks.Length;
+          }
+        }
+        else
+        {
+          interaction_UI.updatePromptText("");
+        }
+      }
+    }
+  }
 
 
   private void promptInteraction(RaycastHit hitInfo)

@@ -31,7 +31,7 @@ public class UsableItem : Item
     {
       //Debug.Log("TUCH");	
       StackCollectables StackColl;
-      if (other.TryGetComponent(out StackColl))
+      if (tryPickItemCheck(other, out StackColl))
       {
         // Debug.Log("Pick");
         // Debug.Log("Calling AddNewItem from UsableItem");
