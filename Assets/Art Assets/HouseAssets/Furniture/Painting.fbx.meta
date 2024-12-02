@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c49e408a4bee9a144ac8e4a3582d0951
+guid: f1e4e830ad589c24eba7c2bcd5243beb
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: StairMat
-    second: {fileID: 2100000, guid: 3b09be458d3532f48b3167059cb7a557, type: 2}
+      name: PaintingMat
+    second: {fileID: 2100000, guid: fdedda4ca5e41614a8cf252b34d40d7f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
