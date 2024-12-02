@@ -50,7 +50,7 @@ public class HenryController : FamilyMember
     protected Vector3[] getWaypointArray(string type)
     {
         // UnityEngine.Debug.Log("Henry getWaypointArray type");
-        return base.getWaypointArray("henry", type);
+        return base.getWaypointArray(patrol_path_name, type);
     }
 
 }
