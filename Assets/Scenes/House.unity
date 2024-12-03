@@ -23222,7 +23222,7 @@ MonoBehaviour:
   lose_text: {fileID: 0}
   duration: 5
   collision_occur: {fileID: 0}
-  houseMusic: {fileID: 0}
+  houseMusic: {fileID: 398375564}
 --- !u!1001 &2068172080
 PrefabInstance:
   m_ObjectHideFlags: 0
