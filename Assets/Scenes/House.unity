@@ -1928,10 +1928,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: menuCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1161724570360476910, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.49987793
-      objectReference: {fileID: 0}
     - target: {fileID: 3785854286151721066, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2010,6 +2006,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3785854286151721066, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497825179962550834, guid: 2d1e3cad152208942823c756f65e5f53, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8192,7 +8192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 392
   m_IgnoreTag: Player
   m_TransparentLayers:
     serializedVersion: 2
