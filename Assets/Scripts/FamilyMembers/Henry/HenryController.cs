@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class HenryController : FamilyMember
@@ -16,6 +13,9 @@ public class HenryController : FamilyMember
     public TMP_Text lose_text;
     public float duration = 5f;
     [SerializeField] private HideOnCollide collision_occur;
+
+    public HouseMusic houseMusic; // Reference to the HouseMusic script
+
     protected override void Start()
     {
         base.Start();
@@ -34,23 +34,34 @@ public class HenryController : FamilyMember
         stateMachine.current_state.EnterState();
     }
 
-    private void collisionOccur_onRaccoonFirstTimeOnTrash(object sender, System.EventArgs e)
-    {
-        // UnityEngine.Debug.Log("collisionOccur_onRaccoonFirstTimeOnTrash");
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-        //stateMachine.ChangeState(stateMachine.patrol_state);
-        //patrolCoroutine = StartCoroutine(Patrol(getWaypointArray("Patrol")));
-    }
-    private void HenryStartInHouse()
-    {
-        waypoint_array = getWaypointArray("Patrol");
-        transform.position = waypoint_array[0];
-    }
-
     protected Vector3[] getWaypointArray(string type)
     {
-        // UnityEngine.Debug.Log("Henry getWaypointArray type");
         return base.getWaypointArray(patrol_path_name, type);
     }
 
+    // Call this method when Henry is activated
+    public void OnActivated()
+    {
+        if (houseMusic != null)
+        {
+            houseMusic.SetFamilyMemberActivated(true);
+        }
+        else
+        {
+            Debug.LogWarning("HouseMusic is not assigned in HenryController.");
+        }
+    }
+
+    // Call this method when Henry stops chasing the player
+    public void OnDeactivated()
+    {
+        if (houseMusic != null)
+        {
+            houseMusic.SetFamilyMemberActivated(false);
+        }
+        else
+        {
+            Debug.LogWarning("HouseMusic is not assigned in HenryController.");
+        }
+    }
 }

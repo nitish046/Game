@@ -54,7 +54,7 @@ public class PlayerInteract : MonoBehaviour
     Collider[] rangeChecks = Physics.OverlapSphere((base.transform.position + base.transform.up * 2f), radius, mask);
     if (rangeChecks.Length > 0)
     {
-      Debug.Log(rangeChecks.Length);
+      //Debug.Log(rangeChecks.Length);
       Array.Sort(rangeChecks, (colliderA, colliderB) =>
         {
           Transform targetA = colliderA.transform;
@@ -74,12 +74,12 @@ public class PlayerInteract : MonoBehaviour
 
       if (XZPlaneAngle(base.transform.forward, directionToTarget) < viewAngle / 2)
       {
-        Debug.Log("in angle");
+        //Debug.Log("in angle");
         float distanceToTarget = Vector3.Distance(base.transform.position, target.position);
 
         if (Physics.Raycast(base.transform.position, directionToTarget, out RaycastHit hitInfo, distance, mask))
         {
-          Debug.Log("raycast hit");
+          //Debug.Log("raycast hit");
           promptInteraction(hitInfo); // Use PromptInteraction on the most aligned collider
         }
       }

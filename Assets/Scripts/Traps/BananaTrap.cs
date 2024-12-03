@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public abstract class Trap : MonoBehaviour
 {
@@ -24,41 +25,34 @@ public class BananaTrap : Trap
         if (other.CompareTag("Henry"))
         {
             print("Henry triggered the trap");
-            PlayTrapSound();
+            audioSource.Play(); // Play the sound immediately
             ActivateTrap(other.gameObject);
-            //PlayTrapSound();  // Play the sound effect
-            Destroy(gameObject, 2f);  // Add a 0.5-second delay before destroying
+            Destroy(gameObject, 2f);  // Destroy the trap after 2 seconds
+        }
+    }
+
+    public override void ActivateTrap(GameObject enemy)
+    {
+        FamilyMember familyMemberScript = enemy.GetComponent<FamilyMember>();
+        if (familyMemberScript != null)
+        {
+            StartCoroutine(DelayedTrapEffect(enemy));
         }
     }
 
 
 
-     public override void ActivateTrap(GameObject enemy)
-     {
-         FamilyMember familyMemberScript = enemy.GetComponent<FamilyMember>();
-         if (familyMemberScript != null)
-         {
-             FamilyStateMachine state_machine = enemy.gameObject.GetComponent<FamilyMember>().stateMachine;
-             state_machine.freeze_state.effect_duration = effectDuration;
-             state_machine.freeze_state.is_trap_slip = true;
-             state_machine.ChangeState(state_machine.freeze_state);
-         }
-     }
+     private IEnumerator DelayedTrapEffect(GameObject enemy)
+    {
+        audioSource.Play(); // Play the sound
+        yield return new WaitForSeconds(0.3f); // Slight delay to sync with the sound
 
-     // Method to play the trap sound
-     private void PlayTrapSound()
-     {
-         if (audioSource != null)
-         {
-             Debug.Log("Playing trap sound effect");  // Debug message to check if it's being triggered
-             audioSource.Play();  // Play the assigned sound
-         }
-         else
-         {
-             Debug.LogWarning("AudioSource is not assigned on the trap prefab.");
-         }
-     }
- }
+        FamilyStateMachine state_machine = enemy.gameObject.GetComponent<FamilyMember>().stateMachine;
+        state_machine.freeze_state.effect_duration = effectDuration;
+        state_machine.freeze_state.is_trap_slip = true;
+        state_machine.ChangeState(state_machine.freeze_state);
+    }
+}
 
 /*
 public class BananaTrap : Trap

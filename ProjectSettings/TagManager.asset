@@ -9,6 +9,7 @@ TagManager:
   - Terrain
   - Collidable
   - Hidable
+  - Hide
   layers:
   - Default
   - TransparentFX

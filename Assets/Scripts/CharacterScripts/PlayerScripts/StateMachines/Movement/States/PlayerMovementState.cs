@@ -9,7 +9,15 @@ namespace MaskedMischiefNamespace
 		protected PlayerMovementStateMachine stateMachine;
 		protected Vector2 movementInput;
 		protected static Vector2 staticMovement;
-		public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
+
+        public float current_sprint_time;
+        public float cooldown_timer;      
+        public float sprint_time = 5f;
+        public float sprint_cooldown = 3f;
+
+		public float speed;
+
+        public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
 		{
 			this.stateMachine = playerMovementStateMachine;
 		}
@@ -18,7 +26,8 @@ namespace MaskedMischiefNamespace
 		{
 			Debug.Log("Entering State: " + GetType().Name);
 			AddCallbacks();
-		}
+            speed = (stateMachine.player.isSprinting) ? stateMachine.player.runSpeed : stateMachine.player.walkSpeed;
+        }
 		public virtual void Exit()
 		{
 			//Debug.Log("Exiting State: " + GetType().Name);
@@ -124,7 +133,15 @@ namespace MaskedMischiefNamespace
 			Vector3 cameraDir = stateMachine.player.mainCamera.transform.rotation.eulerAngles;
 			Vector3 moveDir = Quaternion.Euler(0, cameraDir.y, 0) * new Vector3(staticMovement.x, 0, staticMovement.y);
 			//stateMachine.player.transform.Translate(moveDir * stateMachine.player.walkSpeed);
-			float speed = (stateMachine.player.isSprinting) ? stateMachine.player.runSpeed : stateMachine.player.walkSpeed;
+            if (stateMachine.player.is_cooldown && stateMachine.CurrentState != stateMachine.RunningState)
+			{
+                if (cooldown_timer >= sprint_cooldown)
+                {
+                    stateMachine.player.is_cooldown = false;
+                    cooldown_timer = 0f;
+                }
+                cooldown_timer += Time.deltaTime;
+            }
 			if (!moveDir.Equals(new Vector3(0, 0, 0)))
 			{
 				Quaternion moveAngle = Quaternion.LookRotation(moveDir);
