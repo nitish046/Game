@@ -39,12 +39,12 @@ public class FloorTransition : MonoBehaviour
             if (isBryanRoom)
             {
                 Debug.Log("Entering Bryan's Room");
-                houseMusic.PlayBryanRoomMusic();
+                houseMusic.OnEnterBryansRoom(); // Use the new method
             }
             else
             {
                 Debug.Log("Exiting Bryan's Room");
-                houseMusic.PlayMainMusic();
+                houseMusic.OnExitBryansRoom(); // Use the new method
             }
         }
         else
