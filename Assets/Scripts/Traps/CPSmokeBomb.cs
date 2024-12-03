@@ -51,7 +51,7 @@ public class CPSmokeBomb : Trap
     {
       bombAlphaValue -= increment;
       bombRenderer.material.color = new Color(bombRenderer.material.color.r, bombRenderer.material.color.g, bombRenderer.material.color.b, bombAlphaValue);
-      Debug.Log(bombTransform.GetComponent<Renderer>().material.color);
+      // Debug.Log(bombTransform.GetComponent<Renderer>().material.color);
       yield return waitForIt;
     }
     Destroy(this.gameObject);

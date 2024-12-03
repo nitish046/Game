@@ -7,7 +7,7 @@ public class FamilyPatrolPoints : MonoBehaviour
 {
   public Vector3[] henryPatrolPoints;
   public Vector3[] emilyPatrolPoints;
-  [SerializeField] private Vector3[] motherDearPatrolPoints;
+  public Vector3[] alicePatrolPoints;
   [SerializeField] private Vector3[] emilyNormalPoints;
   [SerializeField] private Vector3[] motherDearNormalPoints;
 

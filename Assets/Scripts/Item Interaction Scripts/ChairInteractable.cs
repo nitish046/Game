@@ -39,16 +39,16 @@ public class ChairInteractable : Interactable
     pulling_chair = true;
     Debug.Log("Pulling chair " + (out_or_in < 0 ? "out" : "in"));
     WaitForEndOfFrame wait = new WaitForEndOfFrame();
-    float rate = 0.01f * out_or_in;
+    float rate = 0.02f * out_or_in;
 
-    Debug.Log(rate);
-    Debug.Log(chair_transform.forward);
-    Debug.Log(chair_transform.forward * rate);
-    for (int i = 0; i < 100; i++)
+    // Debug.Log(rate);
+    // Debug.Log(chair_transform.forward);
+    // Debug.Log(chair_transform.forward * rate);
+    for (int i = 0; i < 50; i++)
     {
       chair_transform.position = chair_transform.position + chair_transform.forward * rate;
       //chair_transform.Translate(chair_transform.forward * rate);
-      Debug.Log("chair position: " + chair_transform.position);
+      // Debug.Log("chair position: " + chair_transform.position);
       yield return wait;
     }
     is_pulled_out = (out_or_in < 0);

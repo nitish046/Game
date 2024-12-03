@@ -6170,7 +6170,7 @@ MonoBehaviour:
   - {x: -0.5, y: 0, z: 1.5}
   - {x: -0.5, y: 0, z: 8.5}
   emilyPatrolPoints: []
-  motherDearPatrolPoints: []
+  alicePatrolPoints: []
   emilyNormalPoints: []
   motherDearNormalPoints: []
 --- !u!4 &456105184
@@ -7690,7 +7690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
       propertyPath: m_TagString
-      value: Hidable
+      value: Collidable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7698,7 +7698,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2074044796}
+      addedObject: {fileID: 2074044802}
   m_SourcePrefab: {fileID: 100100000, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
 --- !u!114 &1044201533 stripped
 MonoBehaviour:
@@ -7711,6 +7711,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1056726785 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8659788720011933078, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
+  m_PrefabInstance: {fileID: 3487426983250053342}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1099933498
 GameObject:
   m_ObjectHideFlags: 0
@@ -12584,6 +12589,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 53887515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1218991463 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+  m_PrefabInstance: {fileID: 1353472590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1229648689
 GameObject:
   m_ObjectHideFlags: 0
@@ -12872,8 +12882,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: Each food is worth a certain number of points. Looks like the marshmallows
-    are worth two! </br>Now let's try getting that tomato by the campfire. Make sure
-    not to let Henry see you!
+    are worth two! Now let's try getting that tomato by the campfire. Make sure not
+    to let Henry see you!
   UI_manager: {fileID: 1870910160}
 --- !u!65 &1300694153
 BoxCollider:
@@ -12997,6 +13007,71 @@ Transform:
   - {fileID: 1699224098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1353472590
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1056726785}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_Name
+      value: Henry
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1307e715e9ecc1a46a3e2fc04bf1c00f, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0902cb6577705e547b813de3ce3a6161, type: 3}
 --- !u!4 &1378230325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da26909261d44e34fa35fec8f27400b7, type: 3}
@@ -13685,6 +13760,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   game_input: {fileID: 187022497}
+  radius: 0
+  viewAngle: 0
 --- !u!114 &1644695000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14368,7 +14445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: Hmm... No food. Shh! Someone's coming... It's Henry! You'd better hide in
-    the trash can using [F] </br>until he's no longer looking.
+    the trash can using [F] until he's no longer looking.
   UI_manager: {fileID: 1870910160}
 --- !u!65 &1914658894
 BoxCollider:
@@ -14816,8 +14893,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
   m_PrefabInstance: {fileID: 1036424673}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &2074044796
-CapsuleCollider:
+--- !u!4 &2074044799 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
+  m_PrefabInstance: {fileID: 1036424673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2074044802
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14834,16 +14916,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.7
-  m_Height: 2.8863404
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.28640068, z: 0}
---- !u!4 &2074044799 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
-  m_PrefabInstance: {fileID: 1036424673}
-  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 799630224794598043, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
 --- !u!1001 &2088660789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15284,6 +15360,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2006850867}
     - target: {fileID: 2637618866404462243, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
+      propertyPath: patrol_path_name
+      value: henry
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637618866404462243, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
       propertyPath: patrolPointOperator
       value: 
       objectReference: {fileID: 456105182}
@@ -15310,6 +15390,14 @@ PrefabInstance:
     - target: {fileID: 7319617643645306480, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
       propertyPath: interactableObstructionMask.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444187024643857962, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
+      propertyPath: m_Height
+      value: 2.858279
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444187024643857962, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
+      propertyPath: m_Center.y
+      value: 1.529184
       objectReference: {fileID: 0}
     - target: {fileID: 8659788720011933078, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15361,8 +15449,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5636040179835622924, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4021455174388640753, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8659788720011933078, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1218991463}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e932b32f9f5045c44aea3bb6e7e035ec, type: 3}
 --- !u!1001 &4730689202145888571

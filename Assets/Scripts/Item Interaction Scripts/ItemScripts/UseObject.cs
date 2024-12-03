@@ -98,5 +98,4 @@ public class UseObject : MonoBehaviour
 		GameObject bomb = GameObject.Instantiate(cheesePuffSmokeBomb, placePosition, placePoint.rotation);
 		bomb.GetComponent<CPSmokeBomb>().ActivateTrap(null);
 	}
-
 }

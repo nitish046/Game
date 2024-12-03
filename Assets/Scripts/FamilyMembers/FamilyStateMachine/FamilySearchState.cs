@@ -31,6 +31,7 @@ public class FamilySearchState : FamilyBaseState
 
     public override void EnterState()
     {
+        nav_mesh_member.stoppingDistance = 0.2f;
         reached_search_location = false;
         set_rotation_time();
         is_rotating = false;
@@ -57,10 +58,8 @@ public class FamilySearchState : FamilyBaseState
         nav_mesh_member.ResetPath();
         seconds_since_seen_player = 0;
         seconds_since_rotated = 0;
+        nav_mesh_member.stoppingDistance = 0f;
         reached_search_location = false;
-
-        member_animator.ResetTrigger("isIdle");
-        member_animator.ResetTrigger("isWalking");
     }
 
     protected void SeePlayerTimer()
@@ -68,6 +67,8 @@ public class FamilySearchState : FamilyBaseState
             seconds_since_seen_player += Time.deltaTime;
             if (seconds_since_seen_player >= search_time)
             {
+                member_animator.ResetTrigger("isIdle");
+                member_animator.SetTrigger("isWalking");
                 member.stateMachine.ChangeState(member.stateMachine.patrol_state);
             }
     }

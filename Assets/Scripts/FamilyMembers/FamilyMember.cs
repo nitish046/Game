@@ -28,6 +28,7 @@ public abstract class FamilyMember : MonoBehaviour
     protected Animator animator;
     [SerializeField] protected GameObject win_lose_controller;
 
+    public string patrol_path_name;
 
     public FieldOfView fieldOfView;
     [SerializeField] protected float viewRadius;
@@ -48,6 +49,9 @@ public abstract class FamilyMember : MonoBehaviour
 
     public Material MainColor, FreezeColor;
 
+    public SkinnedMeshRenderer[] renderers;
+    public Material[][] colors;
+
     protected Vector3 player_last_seen_position;
 
     public FamilyStateMachine stateMachine;
@@ -57,6 +61,14 @@ public abstract class FamilyMember : MonoBehaviour
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
         nav_mesh_agent = GetComponent<NavMeshAgent>();
+
+        renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        colors = new Material[renderers.Length][];
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            colors[i] = renderers[i].materials;
+        }
+
         fieldOfView = gameObject.AddComponent<FieldOfView>();
         fieldOfView.makeFOV(player, this.gameObject, viewRadius, viewAngle, periferalAngle, targetMask, obstructionMask, interactableObstructionMask);
         StartCoroutine(fieldOfView.FOVRoutine());
