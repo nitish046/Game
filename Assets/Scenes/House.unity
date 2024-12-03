@@ -4043,6 +4043,14 @@ PrefabInstance:
       value: 0.423
       objectReference: {fileID: 0}
     - target: {fileID: 5053533995136697032, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
+      propertyPath: runSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053533995136697032, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
+      propertyPath: walkSpeed
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053533995136697032, guid: 24347331918836e4ab25473d84c2e6b6, type: 3}
       propertyPath: winLoseController
       value: 
       objectReference: {fileID: 341997849}
