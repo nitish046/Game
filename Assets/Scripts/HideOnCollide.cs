@@ -1,3 +1,4 @@
+using MaskedMischiefNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ public class HideOnCollide : MonoBehaviour
 		private bool already_hiding = false;
 		private bool not_entered = true;
 		private Renderer[] player_renderers;
-		private Player movement_script;
+		private PlayerRunner movement_script;
 
 		
 		[SerializeField] private GameInput game_input;
@@ -63,8 +64,11 @@ public class HideOnCollide : MonoBehaviour
 						not_entered = false;
 				}
 				can_hide = true;
-				player_renderers = other.gameObject.GetComponentsInChildren<Renderer>();
-				movement_script = other.gameObject.GetComponentInParent<Player>();
+				if(other.CompareTag("Player"))
+				{
+					player_renderers = other.gameObject.GetComponentsInChildren<Renderer>();
+					movement_script = other.gameObject.GetComponentInParent<PlayerRunner>();
+				}
 		}
 
 
