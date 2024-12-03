@@ -3744,7 +3744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score_text: {fileID: 6115704025099815531}
   win_text: {fileID: 1845438572}
-  item_holder: {fileID: 895074590}
+  item_holder: {fileID: 398375549}
   current_num_points: 0
   num_points_to_win: 50
   y_position: 0
