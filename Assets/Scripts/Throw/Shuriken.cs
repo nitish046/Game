@@ -41,9 +41,11 @@ public class Shuriken : Throw
         foreach (RaycastHit hit in hits)
         {
             GameObject o = hit.collider.gameObject;
-            if(o.layer == 7 && o.CompareTag("Untagged"))
+            if(o.layer == 7 || o.CompareTag("Henry"))
             {
-                v = Vector3.Reflect(v, hit.normal);
+                Vector3 n = new Vector3(hit.normal.x, 0, hit.normal.z);
+                n.Normalize();
+                v = Vector3.Reflect(v, n);
                 if (++bounces >= 3)
                     Destroy(this.gameObject);
                 return;
