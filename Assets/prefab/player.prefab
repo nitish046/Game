@@ -920,7 +920,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  heartImage: {fileID: 21300000, guid: 9e671f37c1ea4d941a443f0d5fcd17b8, type: 3}
+  heartImage: {fileID: 21300000, guid: 381b836b5e1f0784b93e9c9aea7837df, type: 3}
   win_lose_controller: {fileID: 0}
 --- !u!114 &5053533995136697032
 MonoBehaviour:
