@@ -27,7 +27,9 @@ namespace MaskedMischiefNamespace
 		public override void Update()
 		{
 			base.Update();
-		}
+            if (stateMachine.player.isSprinting && stateMachine.CurrentState == stateMachine.WalkingState)
+                stateMachine.ChangeState(stateMachine.RunningState);
+        }
 
 		protected override void AddCallbacks()
 		{
@@ -50,7 +52,7 @@ namespace MaskedMischiefNamespace
 			base.OnMoveStart(callbackContext);
 			if (stateMachine.player.isSprinting)
 				stateMachine.ChangeState(stateMachine.RunningState);
-			else
+            else
 				stateMachine.ChangeState(stateMachine.WalkingState);
 		}
 		protected override void OnMoveCancel(InputAction.CallbackContext callbackContext)

@@ -54,7 +54,7 @@ public class PlayerInteract : MonoBehaviour
     Collider[] rangeChecks = Physics.OverlapSphere((base.transform.position + base.transform.up * 2f), radius, mask);
     if (rangeChecks.Length > 0)
     {
-      Debug.Log(rangeChecks.Length);
+      //Debug.Log(rangeChecks.Length);
       Array.Sort(rangeChecks, (colliderA, colliderB) =>
         {
           Transform targetA = colliderA.transform;
