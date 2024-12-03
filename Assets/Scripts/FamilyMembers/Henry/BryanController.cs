@@ -44,6 +44,7 @@ public class BryanController : MonoBehaviour
 
             if (houseMusic != null)
             {
+                Debug.Log("BryanController: Calling SetBryanActivated(true)");
                 houseMusic.SetBryanActivated(true);
             }
             else
