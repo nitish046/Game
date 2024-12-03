@@ -22,8 +22,9 @@ namespace MaskedMischiefNamespace
 		[SerializeField] public GameObject trapPrefab; //This is the trap
 		[SerializeField] protected GameObject winLoseController;
 		public List<RaycastHit> hits;
-		//hiding
-		public Material[] materials; // Assign your two materials here
+        public bool is_cooldown = false;
+        //hiding
+        public Material[] materials; // Assign your two materials here
 
 		private bool isTransparent = false;
 		bool click;

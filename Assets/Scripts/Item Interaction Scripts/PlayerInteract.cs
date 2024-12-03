@@ -74,12 +74,12 @@ public class PlayerInteract : MonoBehaviour
 
       if (XZPlaneAngle(base.transform.forward, directionToTarget) < viewAngle / 2)
       {
-        Debug.Log("in angle");
+        //Debug.Log("in angle");
         float distanceToTarget = Vector3.Distance(base.transform.position, target.position);
 
         if (Physics.Raycast(base.transform.position, directionToTarget, out RaycastHit hitInfo, distance, mask))
         {
-          Debug.Log("raycast hit");
+          //Debug.Log("raycast hit");
           promptInteraction(hitInfo); // Use PromptInteraction on the most aligned collider
         }
       }

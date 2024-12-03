@@ -6,11 +6,6 @@ namespace MaskedMischiefNamespace
 {
     public class PlayerRunningState : PlayerGroundedState
     {
-        private float sprint_time = 5f;
-        private float sprint_cooldown = 3f;
-        private float current_sprint_time;
-        private float cooldown_timer;
-        private bool is_cooldown = false;
 
         public PlayerRunningState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
@@ -28,7 +23,7 @@ namespace MaskedMischiefNamespace
             stateMachine.player.animator.ResetTrigger("isSprinting");
         }
 
-        /*
+        
         public override void PhysicsUpdate()
 		{
             float speed;
@@ -36,12 +31,14 @@ namespace MaskedMischiefNamespace
             Vector3 cameraDir = stateMachine.player.mainCamera.transform.rotation.eulerAngles;
 			Vector3 moveDir = Quaternion.Euler(0, cameraDir.y, 0) * new Vector3(staticMovement.x, 0, staticMovement.y);
 			//stateMachine.player.transform.Translate(moveDir * stateMachine.player.walkSpeed);
-            if (stateMachine.player.isSprinting && !is_cooldown)
+            if (stateMachine.player.isSprinting && !stateMachine.player.is_cooldown)
             {
                 if(current_sprint_time >= sprint_cooldown)
                 {
-                    is_cooldown = true;
+                    stateMachine.player.is_cooldown = true;
                     current_sprint_time = 0f;
+                    stateMachine.player.animator.ResetTrigger("isSprinting");
+                    stateMachine.player.animator.SetTrigger("isWalking");
                 }
                 speed = stateMachine.player.runSpeed;
                 current_sprint_time += Time.deltaTime;
@@ -50,8 +47,10 @@ namespace MaskedMischiefNamespace
             {
                 if (cooldown_timer >= sprint_cooldown)
                 {
-                    is_cooldown = false;
+                    stateMachine.player.is_cooldown = false;
                     cooldown_timer = 0f;
+                    stateMachine.player.animator.ResetTrigger("isWalking");
+                    stateMachine.player.animator.SetTrigger("isSprinting");
                 }
                 speed = stateMachine.player.walkSpeed;
                 cooldown_timer += Time.deltaTime;
@@ -68,7 +67,7 @@ namespace MaskedMischiefNamespace
 			stateMachine.player.GetComponent<CharacterController>().Move(Vector3.down * -stateMachine.player.yVelocity);
 
 		}
-        */
+        
 
     }
 }

@@ -29,6 +29,8 @@ namespace MaskedMischiefNamespace
 			base.Update();
             if (stateMachine.player.isSprinting && stateMachine.CurrentState == stateMachine.WalkingState)
                 stateMachine.ChangeState(stateMachine.RunningState);
+            if (!stateMachine.player.isSprinting && stateMachine.CurrentState == stateMachine.RunningState)
+                stateMachine.ChangeState(stateMachine.WalkingState);
         }
 
 		protected override void AddCallbacks()
