@@ -7,6 +7,7 @@ public class UIManagerSignalerWinScript : UIManagerSignalerScript
 {
   private bool hasEnoughFood;
   protected StackCollectables stackCollectables;
+  //Music Control (BRB)
   [SerializeField] protected GameObject hasStackCollectibles;
 
   private void Start()

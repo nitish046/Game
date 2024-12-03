@@ -13,7 +13,7 @@ public class EmilyActivatedState : FamilyBaseState
     private float distance_to_player;
     private float follow_distance;
 
-    EmilyStateMachine emily_state_machine;
+    private EmilyStateMachine emily_state_machine;
 
     private readonly EmilyController member;
     private Animator member_animator;
@@ -32,6 +32,9 @@ public class EmilyActivatedState : FamilyBaseState
         charge_cooldown = member.charge_cooldown;
         follow_distance = member.follow_distance;
         player = member.player;
+
+        // Notify HouseMusic that Emily is activated
+        member.OnActivated();
     }
 
     public override void UpdateState()
@@ -43,7 +46,6 @@ public class EmilyActivatedState : FamilyBaseState
         {
             emily_state_machine.ChangeState(emily_state_machine.charge_state);
         }
-        
     }
 
     public override void ExitState()
@@ -52,10 +54,14 @@ public class EmilyActivatedState : FamilyBaseState
         charge_timer = 0;
         member_animator.ResetTrigger("isWalking");
         member_animator.SetTrigger("isIdle");
+
+        // Notify HouseMusic that Emily is deactivated
+        member.OnDeactivated();
     }
 
     private void KeepInRange()
     {
+        distance_to_player = Vector3.Distance(member.transform.position, player.transform.position);
 
         if (distance_to_player > follow_distance)
         {
@@ -69,6 +75,5 @@ public class EmilyActivatedState : FamilyBaseState
             member_animator.SetTrigger("isIdle");
             nav_mesh_member.ResetPath();
         }
-
     }
 }
