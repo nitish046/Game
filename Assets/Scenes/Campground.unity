@@ -15275,6 +15275,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 768544515}
     - target: {fileID: 865560803452614117, guid: 47cac5314b8e58147a5ab7c70906036c, type: 3}
+      propertyPath: crackerShuriken
+      value: 
+      objectReference: {fileID: 1864463547711910253, guid: 578fb63f43906584796579431ae3c9c5, type: 3}
+    - target: {fileID: 865560803452614117, guid: 47cac5314b8e58147a5ab7c70906036c, type: 3}
       propertyPath: itemHotbarObject
       value: 
       objectReference: {fileID: 399803416}
