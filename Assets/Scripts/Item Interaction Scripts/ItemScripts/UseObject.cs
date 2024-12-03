@@ -24,7 +24,7 @@ public class UseObject : MonoBehaviour
 
 	// Shuriken
 	[SerializeField] private GameObject crackerShuriken;
-	private Throw _shuriken;
+	private GameObject _shuriken;
 
 	private void Start()
 	{
@@ -54,6 +54,10 @@ public class UseObject : MonoBehaviour
 				MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
 				useMethod.Invoke(this, null);
 			}
+			else
+			{
+				UseShuriken();
+			}
 		}
 
 	}
@@ -61,9 +65,8 @@ public class UseObject : MonoBehaviour
 	public void UseShuriken()
 	{
 		Debug.Log("Using Shuriken");
-		_shuriken = new Throw();
-		_shuriken.transform.position = launchPoint.position;
-		_shuriken.Toss(10f, launchPoint.rotation);
+		_shuriken = Instantiate(crackerShuriken, launchPoint.position, launchPoint.rotation);
+		_shuriken.GetComponent<Shuriken>().Toss(10f, launchPoint);
 	}
 
 	public void UseTomato()

@@ -12,37 +12,32 @@ public class Throw : MonoBehaviour
 
     private bool tossed = false;
 
+    protected Vector3 v;
+
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
+
     }
 
-    public void Toss(float s, Vector3 d)
+    public void Toss(float s, Transform t)
     {
-        speed = s; dir = d;
-        dir.Normalize();
-        rb.velocity = dir * speed;
+        speed = s;
+        rb = gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
+        rb.isKinematic = true;
+        transform.position = t.position;
+        v = t.forward * s;
         tossed = true;
     }
 
-	public void Toss(float s, Quaternion r)
-	{
-		speed = s; rot = r;
-		dir.Normalize();
-		rb.velocity = (rot * Vector3.forward) * speed;
-		tossed = true;
-	}
-
 	// Update is called once per frame
-	void Update()
+	protected void Update()
     {
-        
+        //Debug.Log(rb.velocity);
     }
 
-	private void FixedUpdate()
+	protected void FixedUpdate()
 	{
-
+        transform.position += v * Time.fixedDeltaTime;
 	}
 }
