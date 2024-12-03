@@ -7814,7 +7814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9dd999b2463a7a442baee48cc5b561ff, type: 3}
       propertyPath: m_TagString
@@ -14977,6 +14977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game_input: {fileID: 187022497}
+  hiding_layer: 0
 --- !u!65 &2006850868
 BoxCollider:
   m_ObjectHideFlags: 0
