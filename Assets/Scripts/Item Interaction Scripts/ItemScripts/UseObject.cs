@@ -3,102 +3,122 @@ using UnityEngine;
 
 public class UseObject : MonoBehaviour
 {
-	private ItemHotbar itemHotbar;
-	[SerializeField] private GameObject itemHotbarObject;
-	
-	GameObject _projectile;
+  private ItemHotbar itemHotbar;
+  [SerializeField] private GameObject itemHotbarObject;
+
+  public GameInput gameInput;
+
+  GameObject _projectile;
 
 
-	// Tomato
-	public Transform launchPoint;
-	public GameObject projectile;
-	public float launchSpeed = 10f;
-	public AudioSource audioSource;
+  // Tomato
+  public Transform launchPoint;
+  public GameObject projectile;
+  public float launchSpeed = 10f;
+  public AudioSource audioSource;
 
-	// Banana
-	[SerializeField] private GameObject bananaTrapPrefab;
-	[SerializeField] private Transform placePoint;
+  // Banana
+  [SerializeField] private GameObject bananaTrapPrefab;
+  [SerializeField] private Transform placePoint;
 
-	// Cheese Puff
-	[SerializeField] private GameObject cheesePuffSmokeBomb;
+  // Cheese Puff
+  [SerializeField] private GameObject cheesePuffSmokeBomb;
 
-	// Shuriken
-	[SerializeField] private GameObject crackerShuriken;
-	private GameObject _shuriken;
+  // Shuriken
+  [SerializeField] private GameObject crackerShuriken;
+  private GameObject _shuriken;
 
-	private void Start()
-	{
-		itemHotbar = itemHotbarObject.GetComponent<ItemHotbar>();
-	}
-	private void Update()
-	{
+  private void Start()
+  {
+    itemHotbar = itemHotbarObject.GetComponent<ItemHotbar>();
+    gameInput.on_use_item += (_, __) => useItemNow();
 
-		// if (Input.GetMouseButtonDown(0))
-		// {
-		//   _projectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation);
+  }
+  private void Update()
+  {
+
+    // if (Input.GetMouseButtonDown(0))
+    // {
+    //   _projectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation);
 
 
-		// }
-		// if (Input.GetMouseButtonUp(0))
-		// {
-		//   audioSource.Play();
-		//   _projectile.GetComponent<Rigidbody>().isKinematic = false;
-		//   _projectile.GetComponent<Rigidbody>().velocity = launchSpeed * ((launchPoint.up / 2) + launchPoint.forward);
-		// }
-		if (Input.GetMouseButtonDown(0))
-		{
-			Debug.Log("Mouse Down");
-			if (itemHotbar.SelectedBoxIsOccupied())
-			{
-				string itemName = itemHotbar.UseSelectedItem();
-				MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
-				useMethod.Invoke(this, null);
-			}
-			else
-			{
-				UseShuriken();
-			}
-		}
+    // }
+    // if (Input.GetMouseButtonUp(0))
+    // {
+    //   audioSource.Play();
+    //   _projectile.GetComponent<Rigidbody>().isKinematic = false;
+    //   _projectile.GetComponent<Rigidbody>().velocity = launchSpeed * ((launchPoint.up / 2) + launchPoint.forward);
+    // }
 
-	}
 
-	public void UseShuriken()
-	{
-		Debug.Log("Using Shuriken");
-		_shuriken = Instantiate(crackerShuriken, launchPoint.position, launchPoint.rotation);
-		_shuriken.GetComponent<Shuriken>().Toss(10f, launchPoint);
-	}
+    // if (Input.GetMouseButtonDown(0))
+    // {
+    //   Debug.Log("Mouse Down");
+    //   if (itemHotbar.SelectedBoxIsOccupied())
+    //   {
+    //     string itemName = itemHotbar.UseSelectedItem();
+    //     MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
+    //     useMethod.Invoke(this, null);
+    //   }
+    //   else
+    //   {
+    //     UseShuriken();
+    //   }
+    // }
 
-	public void UseTomato()
-	{
-		Debug.Log("Using Tomato...");
-		_projectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation);
-		audioSource.Play();
-		_projectile.GetComponent<Rigidbody>().isKinematic = false;
-		_projectile.GetComponent<Rigidbody>().velocity = launchSpeed * ((launchPoint.up / 2) + launchPoint.forward);
-	}
+  }
 
-	public void UseBanana()
-	{
-		if (bananaTrapPrefab != null)
-		{
-			Debug.Log("Using Banana...");
-			Vector3 placePosition = placePoint.position + placePoint.forward * 1f;
-			Debug.Log(placePosition);
-			Debug.Log(placePoint.rotation);
-			GameObject.Instantiate(bananaTrapPrefab, placePosition, placePoint.rotation);
-		}
-		else
-		{
-			Debug.LogError("Trap prefab is not assigned in UseObject.");
-		}
-	}
+  public void useItemNow()
+  {
+    if (itemHotbar.SelectedBoxIsOccupied())
+    {
+      string itemName = itemHotbar.UseSelectedItem();
+      MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
+      useMethod.Invoke(this, null);
+    }
+    else
+    {
+      UseShuriken();
+    }
+  }
 
-	public void UseCheesePuffBomb()
-	{
-		Debug.Log("Using CheesePuffBomb...");
-		Vector3 placePosition = placePoint.position + placePoint.forward * 1f;
-		GameObject bomb = GameObject.Instantiate(cheesePuffSmokeBomb, placePosition, placePoint.rotation);
-		bomb.GetComponent<CPSmokeBomb>().ActivateTrap(null);
-	}
+  public void UseShuriken()
+  {
+    Debug.Log("Using Shuriken");
+    _shuriken = Instantiate(crackerShuriken, launchPoint.position, launchPoint.rotation);
+    _shuriken.GetComponent<Shuriken>().Toss(10f, launchPoint);
+  }
+
+  public void UseTomato()
+  {
+    Debug.Log("Using Tomato...");
+    _projectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation);
+    audioSource.Play();
+    _projectile.GetComponent<Rigidbody>().isKinematic = false;
+    _projectile.GetComponent<Rigidbody>().velocity = launchSpeed * ((launchPoint.up / 2) + launchPoint.forward);
+  }
+
+  public void UseBanana()
+  {
+    if (bananaTrapPrefab != null)
+    {
+      Debug.Log("Using Banana...");
+      Vector3 placePosition = placePoint.position + placePoint.forward * 1f;
+      Debug.Log(placePosition);
+      Debug.Log(placePoint.rotation);
+      GameObject.Instantiate(bananaTrapPrefab, placePosition, placePoint.rotation);
+    }
+    else
+    {
+      Debug.LogError("Trap prefab is not assigned in UseObject.");
+    }
+  }
+
+  public void UseCheesePuffBomb()
+  {
+    Debug.Log("Using CheesePuffBomb...");
+    Vector3 placePosition = placePoint.position + placePoint.forward * 1f;
+    GameObject bomb = GameObject.Instantiate(cheesePuffSmokeBomb, placePosition, placePoint.rotation);
+    bomb.GetComponent<CPSmokeBomb>().ActivateTrap(null);
+  }
 }
