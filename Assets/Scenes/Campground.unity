@@ -14977,6 +14977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game_input: {fileID: 187022497}
+  hiding_layer: 0
 --- !u!65 &2006850868
 BoxCollider:
   m_ObjectHideFlags: 0
