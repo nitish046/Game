@@ -30,7 +30,7 @@ public class CPSmokeBomb : Trap
     for (int i = 0; i < iterations; i++)
     {
       bombTransform.localScale += new Vector3(increment, increment, increment);
-      Debug.Log(i + ", " + bombTransform.localScale);
+      //Debug.Log(i + ", " + bombTransform.localScale);
       yield return waitForIt;
     }
     StartCoroutine(SmokeCloudFades());
