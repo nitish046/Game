@@ -28,7 +28,17 @@ public class Shuriken : Throw
         if (bounces >= 3)
             Destroy(this);
         v = Vector3.Reflect(v, collision.GetContact(0).normal);
-	}
+
+        
+
+        if (collision.gameObject.CompareTag("Henry"))
+        {
+            FamilyStateMachine state_machine = collision.gameObject.GetComponent<FamilyMember>().stateMachine;
+            state_machine.freeze_state.effect_duration = 5f;
+            state_machine.freeze_state.is_trap_slip = true;
+            state_machine.ChangeState(state_machine.freeze_state);
+        }
+    }
 
     protected void FixedUpdate()
     {
