@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectDuration: 5
-  splatSoundClip: {fileID: 8300000, guid: 8c1201cc3055be04898f24397b51bfc7, type: 3}
+  splatSoundClip: {fileID: 8300000, guid: bf37e9956d9d5e04f9dd2bb79b50523d, type: 3}
   volume: 1
 --- !u!54 &-5410353738544912921
 Rigidbody:
