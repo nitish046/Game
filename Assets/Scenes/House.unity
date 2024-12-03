@@ -9549,7 +9549,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1361734717249261173, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
   m_PrefabInstance: {fileID: 1190351751}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &999370841
+--- !u!114 &999370842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9558,11 +9558,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 999370835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78268ce833760646b26392bee0e6d51, type: 3}
+  m_Script: {fileID: 11500000, guid: e2179050cacf76c4a9d0c179056a9117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   use_events: 0
-  prompt_message: 
+  prompt_message: '[F]<br>Open'
+  isLocked: 0
 --- !u!4 &1017348668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 243961259347399854, guid: ca056e9ad1ff94247a126d19e180b9a0, type: 3}
@@ -10670,16 +10671,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8796721322156064441, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
       propertyPath: m_Name
-      value: Door (5)
+      value: Bryan's Door
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7749080587353775246, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
+    - {fileID: 1531500734916407884, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1361734717249261173, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 999370841}
+      addedObject: {fileID: 999370842}
   m_SourcePrefab: {fileID: 100100000, guid: 8e420690ae068054fa396a80caba7b0f, type: 3}
 --- !u!4 &1195453157 stripped
 Transform:
