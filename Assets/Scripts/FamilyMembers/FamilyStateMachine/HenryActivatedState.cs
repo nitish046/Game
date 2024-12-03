@@ -1,11 +1,9 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.AI;
 
 public class HenryActivatedState : FamilyBaseState
 {
-    //remove all eventually
     private float rate_of_fire;
     private float shot_timer;
 
@@ -38,6 +36,9 @@ public class HenryActivatedState : FamilyBaseState
 
         hammer_origin = member.hammer_origin;
         Throwable_object_array = member.Throwable_object_array;
+
+        // Notify HouseMusic that Henry is activated
+        member.OnActivated();
     }
 
     public override void UpdateState()
@@ -50,17 +51,19 @@ public class HenryActivatedState : FamilyBaseState
         {
             if (shotCoroutine != null)
             {
-
                 member.StopCoroutine(shotCoroutine);
             }
             shotCoroutine = member.StartCoroutine(shooter());
             shot_timer = 0;
         }
-        
     }
+
     public override void ExitState()
     {
         nav_mesh_member.ResetPath();
+
+        // Notify HouseMusic that Henry is deactivated
+        member.OnDeactivated();
     }
 
     private void KeepInRange()
@@ -77,17 +80,6 @@ public class HenryActivatedState : FamilyBaseState
             member_animator.SetTrigger("isIdle");
             nav_mesh_member.ResetPath();
         }
-    }
-
-    public void shoot()
-    {
-        member_animator.SetBool("isThrowing", true);
-        GameObject tool_to_throw = Throwable_object_array[Random.Range(0, Throwable_object_array.Length)];
-
-        GameObject thrown_object = GameObject.Instantiate(tool_to_throw, hammer_origin.position, hammer_origin.rotation);
-        Rigidbody object_rigid_body = thrown_object.GetComponent<Rigidbody>();
-        object_rigid_body.velocity = 10f * (hammer_origin.forward);
-        object_rigid_body.angularVelocity = 20f * Vector3.one;
     }
 
     private IEnumerator shooter()
@@ -110,4 +102,3 @@ public class HenryActivatedState : FamilyBaseState
         member_animator.SetTrigger("isDoneThrowing");
     }
 }
-
