@@ -146,6 +146,7 @@ public class ItemHotbar : MonoBehaviour
         {
           // Debug.Log("NOT i < itemList.Count");
           hotbarImages[i].color = Color.clear;
+          hotbarCounts[i].GetComponent<Text>().text = "0";
         }
       }
       // Debug.Log("EXITING itemList.Count <= numBoxes || currentIndex < numBoxes");
