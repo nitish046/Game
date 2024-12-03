@@ -10,7 +10,7 @@ public class Reaction : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Terrain") || collision.gameObject.CompareTag("Henry"))
+        if (!collision.gameObject.CompareTag("Player"))
         {
             PlaySplatSound();
 

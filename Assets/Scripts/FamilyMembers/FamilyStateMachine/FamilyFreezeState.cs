@@ -60,15 +60,6 @@ public class FamilyFreezeState : FamilyBaseState
             ApplyFreezeMaterial();
         }
 
-        if (member.splash != null && member.splash.clip != null)
-        {
-            member.splash.Play();
-        }
-        else
-        {
-            UnityEngine.Debug.LogWarning("Splash AudioSource or AudioClip is not assigned.");
-        }
-
         // If it's a trap freeze, make Henry fall and pause animation
         if (slip)
         {
