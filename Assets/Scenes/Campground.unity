@@ -15594,6 +15594,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 865560803452614117, guid: 47cac5314b8e58147a5ab7c70906036c, type: 3}
+      propertyPath: gameInput
+      value: 
+      objectReference: {fileID: 187022497}
+    - target: {fileID: 865560803452614117, guid: 47cac5314b8e58147a5ab7c70906036c, type: 3}
       propertyPath: launchPoint
       value: 
       objectReference: {fileID: 768544515}
