@@ -76,10 +76,10 @@ public class UseObject : MonoBehaviour
       MethodInfo useMethod = this.GetType().GetMethod("Use" + itemName);
       useMethod.Invoke(this, null);
     }
-    else
-    {
-      UseShuriken();
-    }
+    // else
+    // {
+    //   UseShuriken();
+    // }
   }
 
   public void UseShuriken()
