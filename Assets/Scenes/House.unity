@@ -8401,7 +8401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerIndex: -1
   AutoEnableInputs: 1
-  XYAxis: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  XYAxis: {fileID: 68276043730178036, guid: d135c2e3402ebca4086dd0a22fda852e, type: 3}
   ZAxis: {fileID: 0}
 --- !u!1001 &766075704
 PrefabInstance:
